@@ -1,4 +1,4 @@
-/*FUENTE DEL CLIENTE*/
+/*- FUENTE -*/
 @font-face {
   font-family: 'goldplaymedium';
   src: url('fonts/goldplay_medium-webfont.woff2') format('woff2'),
@@ -104,9 +104,10 @@
 }
 .card {
   border-radius: 12px;
+  padding-bottom: .5em;
 }
 .card-content {
-  padding: 12px !important;
+  padding: 0 !important;
 }
 .card .card-title {
   font-family: 'goldplaysemibold';
@@ -118,5 +119,62 @@
 .card a {
   font-size: 1em;
   font-family: 'goldplaymedium';
+  padding: 0 1em;
+}
+.card-title {
+  background-color: brown;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
+/*- PALETA COLOR -*/
+.bg-color-primary {
+  background-color: #08426A;
+}
+.color-primary {
+  color: #08426A;
+}
+.bg-cobranza {
+  background-color: #5795CE;
+}
+.bg-cobranza-light {
+  background-color: #7AABD8;
+}
+.bg-cupos {
+  background-color: #D4D0CD;
+}
+.bg-cupos-light {
+  background-color: #D9D9D9;
+}
+.bg-vencimientos {
+  background-color: #FBE09E;
+}
+.bg-vencimientos-light {
+  background-color: #FCEABC;
+}
+.bg-futuros {
+  background-color: #74B5AF;
+}
+.bg-futuros-light {
+  background-color: #8FC4BF;
+}
+.bg-eventos {
+  background-color: #755A56;
+}
+.bg-eventos-light {
+  background-color: #D9D9D9;
+}
+
+
+/*- TEST -*/
+.chip {cursor: pointer; transition: all .3s;}
+.chip:hover, .active {box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);}
+
+.chip.c-cobranzas:hover {background-color: #5795CE; color: white;}
+.chip.c-cupos:hover {background-color: #D4D0CD;}
+.chip.c-vencimientos:hover {background-color: #FBE09E;}
+.chip.c-futuros:hover {background-color: #74B5AF; color: white;}
+.chip.c-eventos:hover {background-color: #755A56; color: white;}
+.chip.c-todos:hover {background-color: #08426A; color: white;}
+
+.chip.c-todos.active {background-color: #08426A; color: white;}
