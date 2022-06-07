@@ -10,7 +10,11 @@ function EventosHome(){
     }, []);
 
     return (
-        <div className='card-panel teal lighten-2'>dfd</div>
+        <div className='date-container'>
+            <div className='row'>
+                <h3>Martes 17 de mayo, 2022</h3>
+            </div>
+        </div>
     )
 }
 

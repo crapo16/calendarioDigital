@@ -1,3 +1,29 @@
+/*FUENTE DEL CLIENTE*/
+@font-face {
+  font-family: 'goldplaymedium';
+  src: url('fonts/goldplay_medium-webfont.woff2') format('woff2'),
+       url('fonts/goldplay_medium-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'goldplayregular';
+  src: url('fonts/goldplay_regular-webfont.woff2') format('woff2'),
+       url('fonts/goldplay_regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'goldplaysemibold';
+  src: url('fonts/goldplay_semibold-webfont.woff2') format('woff2'),
+       url('fonts/goldplay_semibold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
 .App {
   text-align: center;
 }
@@ -36,7 +62,61 @@
     transform: rotate(360deg);
   }
 }
-
+.date-container {
+  font-family: 'goldplaymedium';
+  color: #08426A;
+  padding: 0 2em;
+}
+.date-container h3 {font-size: 1.62em;}
+.user-container {
+  font-family: 'goldplayregular', sans-serif;
+  padding-left: 2em;
+  padding-right: 2em;
+  background-color: #f0f0f0;
+  color: #333;
+}
+.user-container h4 {font-size: 2.5em;}
+.user-container h5 {font-size: 1.75em;}
+.event-container {
+  padding: 1.5em;
+}
+.botonera {
+  font-family: 'goldplaymedium';
+  font-size: .9em;
+  padding: 0 2em;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+/*
+.event-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 12px;
+  padding: 1em;
+}*/
 .contenedorHome, a{
   display: block;
 }
+
+.btn {
+  border-radius: 50px;
+}
+.card {
+  border-radius: 12px;
+}
+.card-content {
+  padding: 12px !important;
+}
+.card .card-title {
+  font-family: 'goldplaysemibold';
+  text-transform: uppercase;
+  font-size: 1em;
+  text-align: center;
+  font-weight: 600;
+}
+.card a {
+  font-size: 1em;
+  font-family: 'goldplaymedium';
+}
+

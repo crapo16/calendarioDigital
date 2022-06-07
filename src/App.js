@@ -15,7 +15,7 @@ function App() {
       <Bienvenida nombreUsuario="Roberto Villa" nroCuenta="3990" nombreCuenta="Aceitera Gral. Deheza S.A."/>
       <EventosHome/>
       <Botonera/>
-      <div className='row'>
+      <div className='row event-container'>
       <CobranzasHome/>
       <CuposHome/>
       <VencimientosHome/>
