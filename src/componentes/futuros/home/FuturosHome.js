@@ -1,4 +1,5 @@
-function FuturosHome(){
+import FuturosItem from "../item/FuturosItem";
+function FuturosHome({futuros}){
     return (
         <div className="contenedorHome" id="futuros">
             <div className="col s12 m4 l2">
@@ -6,8 +7,14 @@ function FuturosHome(){
                 <div className="card-content white-text">
                 <span className="card-title bg-futuros">Futuros</span>
 
-                <a href="#" className="truncate hoverable white-text">Venta $3.545.610,21 - lorem ipsun sit dolor ammet neque plus ultra veritas veritae</a>
-                <a href="#" className="truncate hoverable white-text">Venta $3.545.610,21 - lorem ipsun sit dolor ammet neque plus ultra veritas veritae</a>
+                {
+                    futuros.length>0?
+                    futuros.map(function(futuro){
+                        return (
+                            <FuturosItem key={futuro.id} item={futuro}/>
+                        )
+                    }): <p>Sin eventos</p>
+                } 
                 </div>
             </div>
             </div>
