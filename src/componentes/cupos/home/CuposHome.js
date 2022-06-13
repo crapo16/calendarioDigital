@@ -1,4 +1,6 @@
-function CuposHome(){
+import CupoItem from "../item/CupoItem";
+
+function CuposHome({cupos}){
     return (
         <div className="contenedorHome" id="cupos">
             <div className="col s12 m4 l2">
@@ -6,8 +8,14 @@ function CuposHome(){
                 <div className="card-content black-text">
                 <span className="card-title bg-cupos">Cupos</span>
 
-                <a href="#" className="truncate hoverable black-text">Venta $3.545.610,21 - lorem ipsun sit dolor ammet neque plus ultra veritas veritae</a>
-                <a href="#" className="truncate hoverable black-text">Venta $3.545.610,21 - lorem ipsun sit dolor ammet neque plus ultra veritas veritae</a>
+                {
+                            cupos.length>0?
+                            cupos.map(function(cupo){
+                                return (
+                                    <CupoItem key={cupo.id} item={cupo}/>
+                                )
+                            }): <p>Sin eventos</p>
+                }
                 </div>
             </div>
             </div>
