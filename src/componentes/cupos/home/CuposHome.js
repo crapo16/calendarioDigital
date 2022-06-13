@@ -6,8 +6,8 @@ function CuposHome(){
                 <div className="card-content black-text">
                 <span className="card-title bg-cupos">Cupos</span>
 
-                <a href="#" class="truncate hoverable black-text">Venta $3.545.610,21 - lorem ipsun sit dolor ammet neque plus ultra veritas veritae</a>
-                <a href="#" class="truncate hoverable black-text">Venta $3.545.610,21 - lorem ipsun sit dolor ammet neque plus ultra veritas veritae</a>
+                <a href="#" className="truncate hoverable black-text">Venta $3.545.610,21 - lorem ipsun sit dolor ammet neque plus ultra veritas veritae</a>
+                <a href="#" className="truncate hoverable black-text">Venta $3.545.610,21 - lorem ipsun sit dolor ammet neque plus ultra veritas veritae</a>
                 </div>
             </div>
             </div>
