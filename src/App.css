@@ -92,11 +92,12 @@
 .event-container {
   padding: 1em 0;
 }
-
 .contenedorHome, a{
   display: block;
 }
-
+.contenedorHome > .col{
+  padding-left: 0;
+}
 .btn {
   border-radius: 50px;
 }
@@ -117,13 +118,15 @@
 .card a {
   font-size: 1em;
   font-family: 'goldplaymedium';
-  padding: 0 1em;
+  padding: 0 .5em;
+  margin: 0 12px;
 }
 .card-title {
   background-color: brown;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
+
 .divider {margin: 5px 12px;}
 
 /*- PALETA COLOR -*/
