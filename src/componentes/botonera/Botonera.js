@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Botonera() {
   return (
     <div className="botonera" id="botonera">
@@ -10,10 +12,12 @@ function Botonera() {
         <div className="chip c-todos active">TODOS</div>
       </div>
       <div>
-        <div className="btn waves-effect indigo lighten-5 color-primary">
-          <i className="material-icons left">today</i>
-          VER CALENDARIO
-        </div>
+        <Link to={'/calendario'}>       
+          <div className="btn waves-effect indigo lighten-5 color-primary">
+            <i className="material-icons left">today</i>
+            VER CALENDARIO
+          </div>
+        </Link>
       </div>
     </div>
   );
