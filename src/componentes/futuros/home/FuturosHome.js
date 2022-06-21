@@ -2,7 +2,7 @@ import FuturosItem from "../item/FuturosItem";
 function FuturosHome({futuros}){
     return (
         <div className="contenedorHome" id="futuros">
-            <div className="col s12 m4 l2">
+            <div className="col s12 m3 l2">
             <div className="card bg-futuros-light hoverable">
                 <div className="card-content white-text">
                 <span className="card-title bg-futuros">Futuros</span>

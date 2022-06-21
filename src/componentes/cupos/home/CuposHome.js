@@ -3,9 +3,9 @@ import CupoItem from "../item/CupoItem";
 function CuposHome({cupos}){
     return (
         <div className="contenedorHome" id="cupos">
-            <div className="col s12 m4 l2">
+            <div className="col s12 m3 l2">
             <div className="card bg-cupos-light hoverable">
-                <div className="card-content black-text">
+                <div className="card-content white-text">
                 <span className="card-title bg-cupos">Cupos</span>
 
                 {

@@ -62,12 +62,6 @@
     transform: rotate(360deg);
   }
 }
-.date-container {
-  font-family: 'goldplaymedium';
-  color: #08426A;
-  padding: 0 2em;
-}
-.date-container h3 {font-size: 1.62em;}
 .user-container {
   font-family: 'goldplayregular', sans-serif;
   padding-left: 2em;
@@ -80,25 +74,30 @@
 .event-container {
   padding: 1.5em;
 }
-.botonera {
+.date-container {
   font-family: 'goldplaymedium';
-  font-size: .9em;
+  color: #08426A;
   padding: 0 2em;
+}
+.date-container h3 {font-size: 1.62em;}
+.date-container > .row {margin-bottom: .5em;}
+
+.botonera {
+  font-family: 'goldplaymedium', sans-serif;
+  font-size: .9em;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
 }
-/*
 .event-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  gap: 12px;
-  padding: 1em;
-}*/
+  padding: 1em 0;
+}
 .contenedorHome, a{
   display: block;
 }
-
+.contenedorHome > .col{
+  padding-left: 0;
+}
 .btn {
   border-radius: 50px;
 }
@@ -119,13 +118,16 @@
 .card a {
   font-size: 1em;
   font-family: 'goldplaymedium';
-  padding: 0 1em;
+  padding: 0 .5em;
+  margin: 0 12px;
 }
 .card-title {
   background-color: brown;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
+
+.divider {margin: 5px 12px;}
 
 /*- PALETA COLOR -*/
 .bg-color-primary {
@@ -135,22 +137,22 @@
   color: #08426A;
 }
 .bg-cobranza {
-  background-color: #5795CE;
+  background-color: #6BA0D2;
 }
 .bg-cobranza-light {
-  background-color: #7AABD8;
+  background-color: #8AB5DD;
 }
 .bg-cupos {
-  background-color: #D4D0CD;
+  background-color: #71898B;
 }
 .bg-cupos-light {
-  background-color: #D9D9D9;
+  background-color: #A3B3B4;
 }
 .bg-vencimientos {
-  background-color: #FBE09E;
+  background-color: #DBB277;
 }
 .bg-vencimientos-light {
-  background-color: #FCEABC;
+  background-color: #E7CCA4;
 }
 .bg-futuros {
   background-color: #74B5AF;
@@ -159,10 +161,10 @@
   background-color: #8FC4BF;
 }
 .bg-eventos {
-  background-color: #755A56;
+  background-color: #B65F50;
 }
 .bg-eventos-light {
-  background-color: #D9D9D9;
+  background-color: #C9897E;
 }
 
 
@@ -170,11 +172,11 @@
 .chip {cursor: pointer; transition: all .3s;}
 .chip:hover, .active {box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);}
 
-.chip.c-cobranzas:hover {background-color: #5795CE; color: white;}
-.chip.c-cupos:hover {background-color: #D4D0CD;}
-.chip.c-vencimientos:hover {background-color: #FBE09E;}
+.chip.c-cobranzas:hover {background-color: #6BA0D2; color: white;}
+.chip.c-cupos:hover {background-color: #71898B; color: white;}
+.chip.c-vencimientos:hover {background-color: #DBB277; color: white;}
 .chip.c-futuros:hover {background-color: #74B5AF; color: white;}
-.chip.c-eventos:hover {background-color: #755A56; color: white;}
+.chip.c-eventos:hover {background-color: #B65F50; color: white;}
 .chip.c-todos:hover {background-color: #08426A; color: white;}
 
 .chip.c-todos.active {background-color: #08426A; color: white;}

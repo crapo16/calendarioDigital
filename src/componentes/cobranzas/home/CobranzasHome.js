@@ -4,7 +4,7 @@ import CobranzasItem from '../item/CobranzasItem';
 function CobranzasHome({cobranzas}){
     return (
         <div className="contenedorHome" id="cobranzas">
-            <div className="col s12 m4 l2">
+            <div className="col s12 m3 l2">
             <div className="card bg-cobranza-light hoverable">
                 <div className="card-content white-text">
                 <span className="card-title bg-cobranza">Cobranzas</span>
