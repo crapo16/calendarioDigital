@@ -25,9 +25,9 @@ function CobranzasItem({item}){
             >
                 <div className="modalCobranzaHeader">
                     <h6>Cobranza</h6>
-                    <button className="btnCerrarModal" onClick={toggleModal}>X</button>
+                    <button className="btnCerrarModal" onClick={toggleModal}><i class="material-icons">close</i></button>
                 </div>    
-                    <div>{item.cv} {item.impComprobante} - lorem ipsun sit dolor ammet neque plus ultra veritas veritae</div>
+                <div>{item.cv} {item.impComprobante} - lorem ipsun sit dolor ammet neque plus ultra veritas veritae</div>
                 
             </Modal>
 
