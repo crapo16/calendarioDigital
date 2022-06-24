@@ -23,11 +23,19 @@ function CobranzasItem({item}){
                 contentLabel="Detalle Evento"
                 className={"modalCobranza"}
             >
-                <div className="modalCobranzaHeader">
+                <div className="modalHeader bg-cobranza">
                     <h6>Cobranza</h6>
                     <button className="btnCerrarModal" onClick={toggleModal}><i class="material-icons">close</i></button>
                 </div>    
-                <div>{item.cv} {item.impComprobante} - lorem ipsun sit dolor ammet neque plus ultra veritas veritae</div>
+                <div className="itemContainer"> 
+                    <div><strong>{item.cv}</strong></div> 
+                    <div>{item.impComprobante}</div>
+                </div>
+                <div className="divider"/>
+                <div className="itemContainer"> 
+                    <div>{item.cv}</div> 
+                    <div>{item.impComprobante}</div>
+                </div>
                 
             </Modal>
 

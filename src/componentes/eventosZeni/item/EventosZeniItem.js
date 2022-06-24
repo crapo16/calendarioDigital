@@ -18,11 +18,13 @@ export default function EventosZeniItem({item}){
                 contentLabel="Detalle Evento"
                 className={"modalEventoZeni"}
             >
-                <div className="modalEventoZeniHeader">
+                <div className="modalHeader bg-eventos">
                     <h6>Evento Zeni</h6>
                     <button className="btnCerrarModal" onClick={toggleModal}><i class="material-icons">close</i></button>
                 </div>    
-                <div>{item.nombre} - lorem ipsun sit dolor ammet neque plus ultra veritas veritae</div>               
+                <div className="itemContainer">
+                    <div>{item.nombre}</div> 
+                </div>               
             </Modal>
         <a href="#" onClick={toggleModal} className="truncate hoverable white-text">{item.nombre} - lorem ipsun sit dolor ammet neque plus ultra veritas veritae</a><div class="divider"></div>
         </div>

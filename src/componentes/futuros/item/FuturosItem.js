@@ -18,11 +18,19 @@ export default function FuturosItem({item}){
                 contentLabel="Detalle Evento"
                 className={"modalFuturo"}
             >
-                <div className="modalFuturoHeader">
+                <div className="modalHeader bg-futuros">
                     <h6>Futuro</h6>
                     <button className="btnCerrarModal" onClick={toggleModal}><i class="material-icons">close</i></button>
                 </div>    
-                <div>{item.operacion} {item.producto} Vol.{item.volumen} - lorem ipsun sit dolor ammet neque plus ultra veritas veritae</div>               
+                <div className="itemContainer">
+                    <div>{item.operacion}</div> 
+                    <div>{item.producto}</div>
+                </div>
+                <div className="divider"/>  
+                <div className="itemContainer">
+                    <div>Volumen:</div> 
+                    <div>{item.volumen}</div>
+                </div>              
             </Modal>
             <a href="#" onClick={toggleModal} className="truncate hoverable white-text">{item.operacion} {item.producto} Vol.{item.volumen} - lorem ipsun sit dolor ammet neque plus ultra veritas veritae</a><div class="divider"></div>
         </div>
