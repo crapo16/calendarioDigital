@@ -19,7 +19,8 @@ function EventosHome({nombreUsuario, nroCuenta, nombreCuenta}){
     const [eventosZeni, setEventosZeni]=useState([]);
     const [futuros, setFuturos]=useState([]);
     const [vencimientos, setVencimientos]=useState([]);
-   
+    
+
     useEffect(function(){
         
         getEventos().then(function(eventos){

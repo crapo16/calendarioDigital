@@ -180,3 +180,17 @@
 .chip.c-todos:hover {background-color: #08426A; color: white;}
 
 .chip.c-todos.active {background-color: #08426A; color: white;}
+
+/*Estilos para modales de detalle*/
+.ReactModal__Body--open {
+  width:  50%;
+  height: 50%;
+}
+
+.modalCobranzaHeader{
+  background-color: #6BA0D2;
+  margin-right:10px;
+}
+
+.btnCerrarModal{
+}

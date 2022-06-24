@@ -1,7 +1,10 @@
 import './CobranzasHome.css';
 import CobranzasItem from '../item/CobranzasItem';
+import ReactModal from "react-modal";
 
 function CobranzasHome({cobranzas}){
+
+    
     return (
         <div className="contenedorHome" id="cobranzas">
             <div className="col s12 m3 l2">
