@@ -243,6 +243,39 @@
   margin: 0;
 }
 
+
+/* CALENDARIO */
+.fc .fc-toolbar.fc-header-toolbar {
+  font-family: 'goldplaymedium';
+  padding: 16px;
+  color: #08426A;
+  margin-bottom: 0;
+}
+.fc .fc-toolbar-title {
+  font-size: 2em;
+}
+.fc .fc-view-harness a {
+  color: #08426A;
+}
+.fc .fc-daygrid-day-number {
+  color: #08426A;
+}
+.fc .fc-col-header-cell-cushion {
+  font-family: 'goldplaysemibold';
+  font-size: 1.25em;
+}
+.fc .fc-daygrid-day-top {
+  justify-content: center;
+  font-family: 'goldplaysemibold';
+  font-size: 1.25em;
+  margin: 12px 0;
+}
+.fc-h-event .fc-event-title-container {
+  font-family: 'goldplaymedium';
+  padding: 2px 4px;
+}
+
+
 /*Ajustes responsive*/
 @media screen and (max-width: 1200px) {
   .ReactModal__Content {

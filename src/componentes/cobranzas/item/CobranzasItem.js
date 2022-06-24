@@ -28,7 +28,7 @@ function CobranzasItem({item}){
                     <button className="btnCerrarModal" onClick={toggleModal}><i class="material-icons">close</i></button>
                 </div>    
                 <div className="itemContainer"> 
-                    <div><strong>{item.cv}</strong></div> 
+                    <div>{item.cv}</div> 
                     <div>{item.impComprobante}</div>
                 </div>
                 <div className="divider"/>
