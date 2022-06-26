@@ -9,7 +9,8 @@ import CuposHome from '../cupos/home/CuposHome';
 import VencimientosHome from '../vencimientos/home/VencimientosHome';
 import FuturosHome from '../futuros/home/FuturosHome';
 import EventosZeniHome from '../eventosZeni/home/EventosZeniHome';
-import Botonera from '../botonera/Botonera';
+
+import { Link } from 'react-router-dom';
 
 
 
@@ -19,8 +20,30 @@ function EventosHome({nombreUsuario, nroCuenta, nombreCuenta}){
     const [eventosZeni, setEventosZeni]=useState([]);
     const [futuros, setFuturos]=useState([]);
     const [vencimientos, setVencimientos]=useState([]);
+    const [visibilidadCobranzas, setVisibilidadCobranzas]=useState(false);
+    const [visibilidadEventosZeni, setVisibilidadEventosZeni]=useState(false);
+    const [visibilidadCupos, setVisibilidadCupos]=useState(false);
+    const [visibilidadFuturos, setVisibilidadFuturos]=useState(false);
+    const [visibilidadVencimientos, setVisibilidadVencimientos]=useState(false);
+    const [visibilidadTodos, setVisibilidadTodos]=useState(true);
     
+    function cambiarTodos(visibilidad){
 
+        if(visibilidad)
+        {
+        setVisibilidadCobranzas(false);
+        setVisibilidadEventosZeni(false);
+        setVisibilidadCupos(false);
+        setVisibilidadFuturos(false);
+        setVisibilidadVencimientos(false);
+        setVisibilidadTodos(true);
+        }
+        else{
+            
+            setVisibilidadTodos(false);
+        }
+    }
+    
     useEffect(function(){
         
         getEventos().then(function(eventos){
@@ -31,10 +54,12 @@ function EventosHome({nombreUsuario, nroCuenta, nombreCuenta}){
             setEventosZeni(eventos['eventosZeni']);
                       
         });
+
+
+
+        
         
     }, []);
-
-
 
     return (
         <div>
@@ -46,14 +71,34 @@ function EventosHome({nombreUsuario, nroCuenta, nombreCuenta}){
                 <div className='row'>
                     <h3>Martes 17 de mayo, 2022</h3>
                 </div>
-                <Botonera/>
+                <div className="botonera" id="botonera">
+                    <div>
+                        <div className={visibilidadCobranzas?"chip c-cobranzas active":"chip c-cobranzas"} onClick={()=>setVisibilidadCobranzas(!visibilidadCobranzas)}  >COBRANZAS</div>
+                        <div className={visibilidadCupos?"chip c-cupos active":"chip c-cupos"} onClick={()=>setVisibilidadCupos(!visibilidadCupos)}>CUPOS OTORGADOS</div>
+                        <div className={visibilidadVencimientos?"chip c-vencimientos active":"chip c-vencimientos"} onClick={()=>setVisibilidadVencimientos(!visibilidadVencimientos)}>VENCIMIENTOS</div>
+                        <div className={visibilidadFuturos?"chip c-futuros active":"chip c-futuros"} onClick={()=>setVisibilidadFuturos(!visibilidadFuturos)}>FUTUROS Y OPCIONES</div>
+                        <div className={visibilidadEventosZeni?"chip c-eventos active":"chip c-eventos"} onClick={()=>setVisibilidadEventosZeni(!visibilidadEventosZeni)}>EVENTOS</div>
+                        <div className={visibilidadTodos?"chip c-todos active active":"chip c-todos"} onClick={()=>cambiarTodos(!visibilidadTodos)}>TODOS</div>
+                    </div>
+                    <div>
+                        <Link to={'/calendario'}>       
+                        <div className="btn waves-effect indigo lighten-5 color-primary">
+                            <i className="material-icons left">today</i>
+                            VER CALENDARIO
+                        </div>
+                        </Link>
+                    </div>
+                </div>
                 
                 <div className='row event-container'>
-                    <CobranzasHome cobranzas={cobranzas}/>
-                    <CuposHome cupos={cupos}/>
-                    <VencimientosHome vencimientos={vencimientos}/>
-                    <FuturosHome futuros={futuros}/>
-                    <EventosZeniHome eventosZeni={eventosZeni}/>
+                    <CobranzasHome cobranzas={cobranzas} visibilidadCobranzas={visibilidadCobranzas} visibilidadTodos={visibilidadTodos}/>
+                    <CuposHome cupos={cupos} visibilidadCupos={visibilidadCupos} visibilidadTodos={visibilidadTodos}/>
+                    <VencimientosHome vencimientos={vencimientos} visibilidadVencimientos={visibilidadVencimientos} visibilidadTodos={visibilidadTodos}/>
+                    <FuturosHome futuros={futuros} visibilidadFuturos={visibilidadFuturos} visibilidadTodos={visibilidadTodos}/>
+                    <EventosZeniHome eventosZeni={eventosZeni} visibilidadEventosZeni={visibilidadEventosZeni} visibilidadTodos={visibilidadTodos}/>
+                    {!visibilidadTodos && !visibilidadVencimientos && !visibilidadCobranzas && !visibilidadCupos && !visibilidadEventosZeni && !visibilidadFuturos?
+                        <p>Seleccione al menos un item para ver los eventos</p>:""
+                    }
                 </div>
                 
             </div>
