@@ -32,7 +32,7 @@ export default function VecimientosItem({item}){
                     <div>{item.fechaFin}</div>
                 </div>              
             </Modal>
-            <a href="#" onClick={toggleModal} className="truncate hoverable white-text">{item.nombre} - {item.fechaFin} - lorem ipsun sit dolor ammet neque plus ultra veritas veritae</a><div class="divider"></div>
+            <a href="#" onClick={toggleModal} className="truncate hoverable white-text">{item.nombre} - {item.fechaFin} - lorem ipsun sit dolor ammet neque plus ultra veritas veritae</a><div className="divider"></div>
         </div>
 
         

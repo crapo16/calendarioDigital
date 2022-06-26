@@ -26,7 +26,7 @@ export default function EventosZeniItem({item}){
                     <div>{item.nombre}</div> 
                 </div>               
             </Modal>
-        <a href="#" onClick={toggleModal} className="truncate hoverable white-text">{item.nombre} - lorem ipsun sit dolor ammet neque plus ultra veritas veritae</a><div class="divider"></div>
+        <a href="#" onClick={toggleModal} className="truncate hoverable white-text">{item.nombre} - lorem ipsun sit dolor ammet neque plus ultra veritas veritae</a><div className="divider"></div>
         </div>
     );
 }

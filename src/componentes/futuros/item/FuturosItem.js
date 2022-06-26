@@ -32,7 +32,7 @@ export default function FuturosItem({item}){
                     <div>{item.volumen}</div>
                 </div>              
             </Modal>
-            <a href="#" onClick={toggleModal} className="truncate hoverable white-text">{item.operacion} {item.producto} Vol.{item.volumen} - lorem ipsun sit dolor ammet neque plus ultra veritas veritae</a><div class="divider"></div>
+            <a href="#" onClick={toggleModal} className="truncate hoverable white-text">{item.operacion} {item.producto} Vol.{item.volumen} - lorem ipsun sit dolor ammet neque plus ultra veritas veritae</a><div className="divider"></div>
         </div>
         
     );
