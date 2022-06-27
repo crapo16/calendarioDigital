@@ -7,7 +7,7 @@ function CobranzasHome({cobranzas, visibilidadCobranzas, visibilidadTodos}){
     
     return (
         <div className={visibilidadCobranzas || visibilidadTodos?"contenedorHome":"hide"} id="cobranzas">
-            <div className="col s12 m3 l2">
+
             <div className="card bg-cobranza-light hoverable">
                 <div className="card-content white-text">
                 <span className="card-title bg-cobranza">Cobranzas</span>
@@ -21,7 +21,7 @@ function CobranzasHome({cobranzas, visibilidadCobranzas, visibilidadTodos}){
                 }
                 </div>
             </div>
-            </div>
+
         </div>
 
     );

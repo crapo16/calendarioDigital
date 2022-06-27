@@ -90,7 +90,8 @@ function EventosHome({nombreUsuario, nroCuenta, nombreCuenta}){
                     </div>
                 </div>
                 
-                <div className='row event-container'>
+
+                <div className='event-container'>
                     <CobranzasHome cobranzas={cobranzas} visibilidadCobranzas={visibilidadCobranzas} visibilidadTodos={visibilidadTodos}/>
                     <CuposHome cupos={cupos} visibilidadCupos={visibilidadCupos} visibilidadTodos={visibilidadTodos}/>
                     <VencimientosHome vencimientos={vencimientos} visibilidadVencimientos={visibilidadVencimientos} visibilidadTodos={visibilidadTodos}/>
@@ -99,7 +100,7 @@ function EventosHome({nombreUsuario, nroCuenta, nombreCuenta}){
                     {!visibilidadTodos && !visibilidadVencimientos && !visibilidadCobranzas && !visibilidadCupos && !visibilidadEventosZeni && !visibilidadFuturos?
                         <p>Seleccione al menos un item para ver los eventos</p>:""
                     }
-                </div>
+                 </div>
                 
             </div>
         </div>

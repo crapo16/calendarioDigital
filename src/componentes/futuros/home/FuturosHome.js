@@ -2,7 +2,7 @@ import FuturosItem from "../item/FuturosItem";
 function FuturosHome({futuros,visibilidadFuturos,visibilidadTodos}){
     return (
         <div className={visibilidadFuturos || visibilidadTodos?"contenedorHome":"hide"} id="futuros">
-            <div className="col s12 m3 l2">
+
             <div className="card bg-futuros-light hoverable">
                 <div className="card-content white-text">
                 <span className="card-title bg-futuros">Futuros</span>
@@ -17,7 +17,7 @@ function FuturosHome({futuros,visibilidadFuturos,visibilidadTodos}){
                 } 
                 </div>
             </div>
-            </div>
+
         </div>
 
     );

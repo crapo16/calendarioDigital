@@ -2,7 +2,7 @@ import EventosZeniItem from "../item/EventosZeniItem";
 function EventosZeniHome({eventosZeni,visibilidadEventosZeni,visibilidadTodos}){
     return (
         <div className={visibilidadEventosZeni || visibilidadTodos?"contenedorHome":"hide"} id="eventosZeni">
-            <div className="col s12 m3 l2">
+
             <div className="card bg-eventos-light hoverable">
                 <div className="card-content white-text">
                 <span className="card-title bg-eventos">Eventos Zeni</span>
@@ -17,7 +17,7 @@ function EventosZeniHome({eventosZeni,visibilidadEventosZeni,visibilidadTodos}){
                 
                 </div>
             </div>
-            </div>
+
         </div>
     );
 }

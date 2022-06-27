@@ -2,7 +2,7 @@ import VencimientosItem from "../item/VencimientosItem";
 function VencimientosHome({vencimientos,visibilidadVencimientos,visibilidadTodos}){
     return (
         <div className={visibilidadVencimientos || visibilidadTodos?"contenedorHome":"hide"} id="vencimientos">
-            <div className="col s12 m3 l2">
+
             <div className="card bg-vencimientos-light hoverable">
                 <div className="card-content white-text">
                 <span className="card-title bg-vencimientos">Vencimientos</span>
@@ -17,7 +17,7 @@ function VencimientosHome({vencimientos,visibilidadVencimientos,visibilidadTodos
                 
                 </div>
             </div>
-            </div>
+
         </div>
     );
 }
