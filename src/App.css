@@ -212,12 +212,30 @@
 
 
 /* CALENDARIO */
+/*toolbar*/
 .fc .fc-toolbar.fc-header-toolbar {
   font-family: 'goldplaymedium';
   padding: 16px;
   color: #08426A;
   margin-bottom: 0;
+  background-color: #F6F7F7;
 }
+/*botones toolbar*/
+.fc .fc-button-primary:not(:disabled).fc-button-active {background-color: white; color: #08426A;}
+.fc .fc-button-primary:disabled {color: #08426A;background-color: white;}
+.fc-button-group > .fc-button {background-color: #F6F7F7; color: #08426A; border: hidden;}
+.fc-button-group > .fc-button:hover {background-color: white; color: #6BA0D2;}
+.fc-button-group > .fc-button::selection {color: #6BA0D2;}
+.fc-button-group > .fc-button:focus {outline: solid #F6F7F7; }
+/*.fc-direction-ltr .fc-button-group > .fc-button:not(:first-child) {color: blueviolet;}*/
+.fc-direction-ltr .fc-button-group > .fc-button {padding: 4px 6px;}
+.fc-direction-ltr .fc-button-group > .fc-button > span {font-size: 30px;}
+.fc .fc-button-primary:not(:disabled):active:focus, .fc .fc-button-primary:not(:disabled).fc-button-active:focus {
+  border: none; background-color: #F6F7F7; color: #08426A;
+}
+
+
+.fc .fc-view-harness-active > .fc-view {background-color: #F6F7F7;}
 .fc .fc-toolbar-title {font-size: 2em;}
 .fc .fc-view-harness a {color: #08426A;}
 .fc .fc-daygrid-day-number {color: #08426A;}
@@ -230,7 +248,16 @@
 }
 .fc-h-event .fc-event-title-container {font-family: 'goldplaymedium'; padding: 2px 4px;}
 
-
+/* Día actual */
+.fc .fc-daygrid-day.fc-day-today {
+  background-color: rgba(107, 160, 210, .1);
+}
+.fc .fc-daygrid-day.fc-day-today .fc-daygrid-day-top a {
+  background-color: #08426A;
+  color: white;
+  border-radius: 4px;
+  padding: 0 4px;
+}
 
 /*Ajustes responsive*/
 @media screen and (max-width: 1200px) {
