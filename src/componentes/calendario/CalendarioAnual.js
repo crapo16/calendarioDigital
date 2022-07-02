@@ -56,8 +56,6 @@ export default function CalendarioAnual() {
                 <FullCalendar
                   key={"month" + item}
                   initialView="dayGridMonth"
-                  // initialDate={2020-`${months[i]}`-1}
-                  //initialDate={`${months[i]}`}
                   initialDate={"2022" + `${months2[i]}` + "01"}
                   plugins={[dayGridPlugin, timeGridPlugin]}
                   height="auto"
@@ -96,8 +94,6 @@ export default function CalendarioAnual() {
                 <FullCalendar
                   key={"month" + item}
                   initialView="dayGridMonth"
-                  // initialDate={2020-`${months[i]}`-1}
-                  //initialDate={`${months[i]}`}
                   initialDate={"2022" + `${months3[i]}` + "01"}
                   plugins={[dayGridPlugin, timeGridPlugin]}
                   height="auto"
