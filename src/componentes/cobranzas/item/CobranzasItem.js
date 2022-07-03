@@ -25,7 +25,7 @@ function CobranzasItem({item}){
             >
                 <div className="modalHeader bg-cobranza">
                     <h6>Cobranza</h6>
-                    <button className="btnCerrarModal" onClick={toggleModal}><i class="material-icons">close</i></button>
+                    <button className="btnCerrarModal" onClick={toggleModal}><i className="material-icons">close</i></button>
                 </div>    
                 <div className="itemContainer"> 
                     <div>{item.cv}</div> 

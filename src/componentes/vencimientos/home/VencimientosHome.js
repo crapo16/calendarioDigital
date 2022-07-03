@@ -1,5 +1,10 @@
 import VencimientosItem from "../item/VencimientosItem";
-function VencimientosHome({vencimientos,visibilidadVencimientos,visibilidadTodos}){
+import { EventosContext } from "../../../context/EventosContext";
+import { useContext } from "react";
+
+function VencimientosHome({visibilidadVencimientos,visibilidadTodos}){
+    const {eventos}=useContext(EventosContext);
+
     return (
         <div className={visibilidadVencimientos || visibilidadTodos?"contenedorHome":"hide"} id="vencimientos">
 
@@ -7,8 +12,8 @@ function VencimientosHome({vencimientos,visibilidadVencimientos,visibilidadTodos
                 <div className="card-content white-text">
                 <span className="card-title bg-vencimientos">Vencimientos</span>
                 {
-                    vencimientos.length>0?
-                    vencimientos.map(function(vencimiento){
+                    eventos['vencimientos']!=null && eventos['vencimientos'].length>0?
+                    eventos['vencimientos'].map(function(vencimiento){
                         return (
                             <VencimientosItem key={vencimiento.id} item={vencimiento}/>
                         )

@@ -20,7 +20,7 @@ export default function EventosZeniItem({item}){
             >
                 <div className="modalHeader bg-eventos">
                     <h6>Evento Zeni</h6>
-                    <button className="btnCerrarModal" onClick={toggleModal}><i class="material-icons">close</i></button>
+                    <button className="btnCerrarModal" onClick={toggleModal}><i className="material-icons">close</i></button>
                 </div>    
                 <div className="itemContainer">
                     <div>{item.nombre}</div> 

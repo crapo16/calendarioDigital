@@ -1,5 +1,9 @@
 import FuturosItem from "../item/FuturosItem";
+import { EventosContext } from "../../../context/EventosContext";
+import { useContext } from "react";
 function FuturosHome({futuros,visibilidadFuturos,visibilidadTodos}){
+    const {eventos}=useContext(EventosContext);
+
     return (
         <div className={visibilidadFuturos || visibilidadTodos?"contenedorHome":"hide"} id="futuros">
 
@@ -8,8 +12,8 @@ function FuturosHome({futuros,visibilidadFuturos,visibilidadTodos}){
                 <span className="card-title bg-futuros">Futuros</span>
 
                 {
-                    futuros.length>0?
-                    futuros.map(function(futuro){
+                    eventos['futuros']!=null && eventos['futuros'].length>0?
+                    eventos['futuros'].map(function(futuro){
                         return (
                             <FuturosItem key={futuro.id} item={futuro}/>
                         )

@@ -15,11 +15,6 @@ import { Link } from 'react-router-dom';
 
 
 function EventosHome({nombreUsuario, nroCuenta, nombreCuenta}){
-    const [cobranzas, setCobranzas]=useState([]);
-    const [cupos, setCupos]=useState([]);
-    const [eventosZeni, setEventosZeni]=useState([]);
-    const [futuros, setFuturos]=useState([]);
-    const [vencimientos, setVencimientos]=useState([]);
     const [visibilidadCobranzas, setVisibilidadCobranzas]=useState(false);
     const [visibilidadEventosZeni, setVisibilidadEventosZeni]=useState(false);
     const [visibilidadCupos, setVisibilidadCupos]=useState(false);
@@ -43,23 +38,6 @@ function EventosHome({nombreUsuario, nroCuenta, nombreCuenta}){
             setVisibilidadTodos(false);
         }
     }
-    
-    useEffect(function(){
-        
-        getEventos().then(function(eventos){
-            setCobranzas(eventos['cobranzas']);
-            setCupos(eventos['cuposOtorgados']);
-            setFuturos(eventos['futuros']);
-            setVencimientos(eventos['vencimientos']);
-            setEventosZeni(eventos['eventosZeni']);
-                      
-        });
-
-
-
-        
-        
-    }, []);
 
     return (
         <div>
@@ -92,11 +70,11 @@ function EventosHome({nombreUsuario, nroCuenta, nombreCuenta}){
                 
 
                 <div className='event-container'>
-                    <CobranzasHome cobranzas={cobranzas} visibilidadCobranzas={visibilidadCobranzas} visibilidadTodos={visibilidadTodos}/>
-                    <CuposHome cupos={cupos} visibilidadCupos={visibilidadCupos} visibilidadTodos={visibilidadTodos}/>
-                    <VencimientosHome vencimientos={vencimientos} visibilidadVencimientos={visibilidadVencimientos} visibilidadTodos={visibilidadTodos}/>
-                    <FuturosHome futuros={futuros} visibilidadFuturos={visibilidadFuturos} visibilidadTodos={visibilidadTodos}/>
-                    <EventosZeniHome eventosZeni={eventosZeni} visibilidadEventosZeni={visibilidadEventosZeni} visibilidadTodos={visibilidadTodos}/>
+                    <CobranzasHome visibilidadCobranzas={visibilidadCobranzas} visibilidadTodos={visibilidadTodos}/>
+                    <CuposHome visibilidadCupos={visibilidadCupos} visibilidadTodos={visibilidadTodos}/>
+                    <VencimientosHome  visibilidadVencimientos={visibilidadVencimientos} visibilidadTodos={visibilidadTodos}/>
+                    <FuturosHome visibilidadFuturos={visibilidadFuturos} visibilidadTodos={visibilidadTodos}/>
+                    <EventosZeniHome visibilidadEventosZeni={visibilidadEventosZeni} visibilidadTodos={visibilidadTodos}/>
                     {!visibilidadTodos && !visibilidadVencimientos && !visibilidadCobranzas && !visibilidadCupos && !visibilidadEventosZeni && !visibilidadFuturos?
                         <p>Seleccione al menos un item para ver los eventos</p>:""
                     }

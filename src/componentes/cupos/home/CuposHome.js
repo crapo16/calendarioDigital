@@ -1,6 +1,10 @@
 import CupoItem from "../item/CupoItem";
+import { useContext } from "react";
+import { EventosContext } from "../../../context/EventosContext";
 
-function CuposHome({cupos, visibilidadCupos,visibilidadTodos}){
+function CuposHome({visibilidadCupos,visibilidadTodos}){
+    const {eventos}=useContext(EventosContext);
+
     return (
         <div className={visibilidadCupos || visibilidadTodos?"contenedorHome":"hide"} id="cupos">
 
@@ -9,8 +13,8 @@ function CuposHome({cupos, visibilidadCupos,visibilidadTodos}){
                 <span className="card-title bg-cupos">Cupos</span>
 
                 {
-                            cupos.length>0?
-                            cupos.map(function(cupo){
+                            eventos['cupos']!=null && eventos['cupos'].length>0?
+                            eventos['cupos'].map(function(cupo){
                                 return (
                                     <CupoItem key={cupo.id} item={cupo}/>
                                 )

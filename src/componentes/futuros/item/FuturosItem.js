@@ -20,7 +20,7 @@ export default function FuturosItem({item}){
             >
                 <div className="modalHeader bg-futuros">
                     <h6>Futuro</h6>
-                    <button className="btnCerrarModal" onClick={toggleModal}><i class="material-icons">close</i></button>
+                    <button className="btnCerrarModal" onClick={toggleModal}><i className="material-icons">close</i></button>
                 </div>    
                 <div className="itemContainer">
                     <div>{item.operacion}</div> 

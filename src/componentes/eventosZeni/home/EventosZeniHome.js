@@ -1,5 +1,9 @@
 import EventosZeniItem from "../item/EventosZeniItem";
-function EventosZeniHome({eventosZeni,visibilidadEventosZeni,visibilidadTodos}){
+import { useContext } from "react";
+import { EventosContext } from "../../../context/EventosContext";
+
+function EventosZeniHome({visibilidadEventosZeni,visibilidadTodos}){
+    const {eventos}=useContext(EventosContext);
     return (
         <div className={visibilidadEventosZeni || visibilidadTodos?"contenedorHome":"hide"} id="eventosZeni">
 
@@ -7,8 +11,8 @@ function EventosZeniHome({eventosZeni,visibilidadEventosZeni,visibilidadTodos}){
                 <div className="card-content white-text">
                 <span className="card-title bg-eventos">Eventos Zeni</span>
                 {
-                    eventosZeni.length>0?
-                    eventosZeni.map(function(eventoZeni){
+                    eventos['eventosZeni']!=null&&eventos['eventosZeni'].length>0?
+                    eventos['eventosZeni'].map(function(eventoZeni){
                         return (
                             <EventosZeniItem key={eventoZeni.id} item={eventoZeni}/>
                         )

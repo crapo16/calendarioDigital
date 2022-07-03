@@ -5,7 +5,7 @@ const eventos={
         {id:2,vto:"15/07/2021",cv:"Venta",impComprobante:"3.455.612,3",iva:"345.612",saldoConf:"0,00",pendiente:"3.123.456",moneda:"S",datosCpte:"LP A 2 331004671478",
         cpteOrigen:"LP A 2 331004671478",cto:"21/16862/7",contraparte:"ADM Agro SRL", tipoCobranza:"Valor Zeni", observaciones:"--",tipo:"LP",coe:"331004671478"},
     ],
-    cuposOtorgados:[
+    cupos:[
         {id:1,fecha:"29/06/2021", comprador:"ADM Agro SRL", vendedor:"Adeco Agropecuaria S.A", destinatario:"ADM Agro SRL", destino:"ADM Agro SRL", localidadDestino:"Ingeniero White", 
         contrato:"21/15334/5",otorgados:"1", producto:"Soja", nroCupo:"PS1274087"},
         {id:2,fecha:"20/06/2022", comprador:"ADM Agro SRL", vendedor:"Adeco Agropecuaria S.A", destinatario:"ADM Agro SRL", destino:"ADM Agro SRL", localidadDestino:"Ingeniero White", 
