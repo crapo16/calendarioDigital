@@ -12,40 +12,35 @@ export default function Calendario(){
 
     return (
       <>
-      <div class="date-container">
-        <div className='row'>
-          <h3>Buscar por:</h3>
-        </div>
-        <p>
+      <div class="check_container">
+
+          <h6>Buscar por:</h6>
+
           <label>
-            <input type="checkbox" class="filled-in" checked="checked" id="checkbox_cobranzas" />
+            <input type="checkbox" class="filled-in color-cobranzas" checked="checked" id="checkbox_cobranzas" />
             <span>COBRANZAS</span>
           </label>
-        </p>
-        <p>
+
           <label>
-            <input type="checkbox" class="filled-in" checked="checked" id="checkbox_cupos" />
+            <input type="checkbox" class="filled-in color-cupos" checked="checked" id="checkbox_cupos" />
             <span>CUPOS OTORGADOS</span>
           </label>        
-        </p>
-        <p>
-        <label>
-          <input type="checkbox" class="filled-in" checked="checked" id="checkbox_vencimientos" />
-          <span>VENCIMIENTOS</span>
-        </label>         
-        </p>
-        <p>
-        <label>
-          <input type="checkbox" class="filled-in" checked="checked" id="checkbox_futuros" />
-          <span>FECHAS DE FUTUROS</span>
-        </label>      
-        </p>
-        <p>
-        <label>
-          <input type="checkbox" class="filled-in" checked="checked" id="checkbox_todos" />
-          <span>TODOS</span>
-        </label>
-        </p>
+
+          <label>
+            <input type="checkbox" class="filled-in color-vencimientos" checked="checked" id="checkbox_vencimientos" />
+            <span>VENCIMIENTOS</span>
+          </label>         
+
+          <label>
+            <input type="checkbox" class="filled-in color-futuros" checked="checked" id="checkbox_futuros" />
+            <span>FECHAS DE FUTUROS</span>
+          </label>      
+
+          <label>
+            <input type="checkbox" class="filled-in color-todos" checked="checked" id="checkbox_todos" />
+            <span>TODOS</span>
+          </label>
+
       </div>
 
       <FullCalendar
