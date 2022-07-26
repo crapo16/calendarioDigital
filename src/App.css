@@ -300,6 +300,10 @@
   padding: 0 4px;
 }
 
+.color-red{
+  color : red!important
+}
+
 /*Ajustes responsive*/
 @media screen and (max-width: 1200px) {
   .ReactModal__Content {width: 40vw;}
