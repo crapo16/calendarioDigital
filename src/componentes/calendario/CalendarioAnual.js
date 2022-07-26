@@ -22,6 +22,7 @@ export default function CalendarioAnual() {
                   plugins={[dayGridPlugin, timeGridPlugin]}
                   height="auto"
                   weekNumbers={false}
+                  locale="es"
                   firstDay={5}
                   headerToolbar={{}}
                   views={{
@@ -61,6 +62,7 @@ export default function CalendarioAnual() {
                   height="auto"
                   weekNumbers={false}
                   firstDay={5}
+                  locale="es"
                   headerToolbar={{}}
                   views={{
                     dayGridMonth: {
@@ -97,6 +99,7 @@ export default function CalendarioAnual() {
                   initialDate={"2022" + `${months3[i]}` + "01"}
                   plugins={[dayGridPlugin, timeGridPlugin]}
                   height="auto"
+                  locale="es"
                   weekNumbers={false}
                   firstDay={2}
                   headerToolbar={{}}
