@@ -2,8 +2,7 @@ import './EventosHome.css';
 
 /*import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'*/
-import getEventos from '../../api';
-import {useState,useEffect} from 'react';
+import {useState,useEffect,memo} from 'react';
 import CobranzasHome from '../cobranzas/home/CobranzasHome';
 import CuposHome from '../cupos/home/CuposHome';
 import VencimientosHome from '../vencimientos/home/VencimientosHome';
@@ -39,6 +38,10 @@ function EventosHome({nombreUsuario, nroCuenta, nombreCuenta}){
         }
     }
 
+    useEffect(()=>{
+        console.log('EventosHome');
+
+    },[])
     return (
         <div>
             <div className='user-container section'>
@@ -85,4 +88,4 @@ function EventosHome({nombreUsuario, nroCuenta, nombreCuenta}){
     )
 }
 
-export default EventosHome;
+export default memo(EventosHome);

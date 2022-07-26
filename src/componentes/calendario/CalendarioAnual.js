@@ -55,6 +55,7 @@ export default class CalendarioAnual extends React.Component {
                   plugins={[dayGridPlugin, timeGridPlugin]}
                   height="auto"
                   weekNumbers={false}
+                  locale="es"
                   firstDay={5}
                   headerToolbar={this.state.headerToolbar}
                   views={{
@@ -130,6 +131,7 @@ export default class CalendarioAnual extends React.Component {
                   initialDate={ this.state.year + `${this.state.months3[i]}` + "01"}
                   plugins={[dayGridPlugin, timeGridPlugin]}
                   height="auto"
+                  locale="es"
                   weekNumbers={false}
                   firstDay={2}
                   headerToolbar={this.state.headerToolbar}

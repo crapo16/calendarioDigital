@@ -14,7 +14,7 @@ const eventos={
     futuros:[
         {id:1,tipo:"Futuros",operacion:"Futuro",condicion:"V",producto:"TRIGO",posicion:"01/2012",volumen:"100,000", precioEj:"0,00", precioPrima:"$ 185,0000", destino:"Buenos Aires",registro:"951990", fecAlta:"02/12/2010", regCancela:"--",
         fecInicial:"--", precioInic:"$ 0,0000", enContratos:"0.00", estado:"Cancelada"},
-        {id:2,ipo:"Futuros",operacion:"Futuro",condicion:"V",producto:"ACEITE",posicion:"02/2012",volumen:"200,000", precioEj:"0,00", precioPrima:"$ 185,0000", destino:"Buenos Aires",registro:"951990", fecAlta:"02/12/2010", regCancela:"--",
+        {id:2,tipo:"Futuros",operacion:"Futuro",condicion:"V",producto:"ACEITE",posicion:"02/2012",volumen:"200,000", precioEj:"0,00", precioPrima:"$ 185,0000", destino:"Buenos Aires",registro:"951990", fecAlta:"02/12/2010", regCancela:"--",
         fecInicial:"--", precioInic:"$ 0,0000", enContratos:"0.00", estado:"Cancelada"}
     ],
     vencimientos:[
@@ -29,9 +29,9 @@ const eventos={
 
 
 const promesa= new Promise(function(resolve,reject){
-    setTimeout(function(){
+    
         resolve(eventos);
-    },1000)
+    
 });
 
 export default function getEventos(){

@@ -1,13 +1,12 @@
 import './CobranzasHome.css';
 import CobranzasItem from '../item/CobranzasItem';
 import ReactModal from "react-modal";
-import { useContext } from 'react';
+import { useContext,memo } from 'react';
 import { EventosContext } from '../../../context/EventosContext';
 import { useState } from 'react';
 
 function CobranzasHome({visibilidadCobranzas, visibilidadTodos}){
     const {eventos}=useContext(EventosContext);
-    
     return (
         <div className={visibilidadCobranzas || visibilidadTodos?"contenedorHome":"hide"} id="cobranzas">
 
@@ -30,4 +29,4 @@ function CobranzasHome({visibilidadCobranzas, visibilidadTodos}){
     );
 }
 
-export default CobranzasHome;
+export default memo(CobranzasHome);
