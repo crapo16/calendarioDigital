@@ -1,10 +1,9 @@
 import CupoItem from "../item/CupoItem";
-import { useContext } from "react";
+import { useContext,memo } from "react";
 import { EventosContext } from "../../../context/EventosContext";
 
 function CuposHome({visibilidadCupos,visibilidadTodos}){
     const {eventos}=useContext(EventosContext);
-
     return (
         <div className={visibilidadCupos || visibilidadTodos?"contenedorHome":"hide"} id="cupos">
 
@@ -27,4 +26,4 @@ function CuposHome({visibilidadCupos,visibilidadTodos}){
     );
 }
 
-export default CuposHome;
+export default memo(CuposHome);

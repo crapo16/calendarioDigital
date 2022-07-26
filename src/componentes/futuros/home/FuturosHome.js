@@ -1,9 +1,9 @@
 import FuturosItem from "../item/FuturosItem";
 import { EventosContext } from "../../../context/EventosContext";
-import { useContext } from "react";
+import { useContext,memo } from "react";
+
 function FuturosHome({futuros,visibilidadFuturos,visibilidadTodos}){
     const {eventos}=useContext(EventosContext);
-
     return (
         <div className={visibilidadFuturos || visibilidadTodos?"contenedorHome":"hide"} id="futuros">
 
@@ -27,4 +27,4 @@ function FuturosHome({futuros,visibilidadFuturos,visibilidadTodos}){
     );
 }
 
-export default FuturosHome;
+export default memo(FuturosHome);
