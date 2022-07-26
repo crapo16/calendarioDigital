@@ -217,7 +217,6 @@
   /*height: 100vh;*/
   border-right: solid thin #C9CBCD;
   color: #08426A;
-  background-color: pink;
 }
 .check_container label {font-family: 'goldplaymedium'; display: block; margin: 0 0 8px 20px; font-size: 16px; color: #08426A;}
 .check_container h6 {font-size: 18px; font-family: 'goldplaysemibold', Arial, sans-serif; margin: 20px;}
