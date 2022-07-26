@@ -3,27 +3,60 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import * as React from 'react'
 
-export default function CalendarioAnual() {
+export default class CalendarioAnual extends React.Component {
   
-  const months1 = ["01", "02", "03", "04"];
-  const months2 = ["05", "06", "07", "08"];
-  const months3 = ["09", "10", "11", "12"];
+  constructor(props){
+    super()
+    this.state = { headerToolbar : {
+      start: 'title', // will normally be on the left. if RTL, will be on the right
+      center: '',
+      end: '' // will normally be on the right. if RTL, will be on the left
+    },
+    months1 : ["01", "02", "03", "04"],months2: ["05", "06", "07", "08"], months3: ["09", "10", "11", "12"],year:new Date().getFullYear()};
+    
+  
+  }
+
+  addRedClass(list){
+    for (let element of list) {
+      for (let child of element.children) {
+        let label = child.firstChild?.firstChild
+        console.log(label)
+        label.className = "color-red";
+      }
+   
+   
+    } 
+  }
+  componentDidMount() {
+    //let dayNumberElements = this.elem.nativeElement.querySelectorAll('.fc-daygrid-day-number');
+   
+    // 👇️ use document.getElementById()
+    let listSundays = document.getElementsByClassName('fc-day-sun');
+    let listSaturdays = document.getElementsByClassName('fc-day-sat')
+    this.addRedClass(listSundays)
+    this.addRedClass(listSaturdays)
+ 
+  }
+  render() {
   return (
     <div>
       <table>
+        <tbody>
         <tr>
-          {months1.map((item, i) => (
-            <td>
-              <div>
+          {this.state.months1.map((item, i) => (
+            <td key={"td1" + item}>
+              <div key={"div1" + item}>
                 <FullCalendar
+
                   key={"month" + item}
                   initialView="dayGridMonth"
-                  initialDate={new Date().getFullYear() + `${months1[i]}` + "01"}
+                  initialDate={ this.state.year + `${this.state.months1[i]}` + "01"}
                   plugins={[dayGridPlugin, timeGridPlugin]}
                   height="auto"
                   weekNumbers={false}
                   firstDay={5}
-                  headerToolbar={{}}
+                  headerToolbar={this.state.headerToolbar}
                   views={{
                     dayGridMonth: {
                       titleFormat: {
@@ -50,18 +83,18 @@ export default function CalendarioAnual() {
         </tr>
 
         <tr>
-          {months2.map((item, i) => (
-            <td>
-              <div>
+          {this.state.months2.map((item, i) => (
+            <td key={"td2" + item}>
+              <div key={"div2" + item}>
                 <FullCalendar
                   key={"month" + item}
                   initialView="dayGridMonth"
-                  initialDate={"2022" + `${months2[i]}` + "01"}
+                  initialDate={ this.state.year + `${this.state.months2[i]}` + "01"}
                   plugins={[dayGridPlugin, timeGridPlugin]}
                   height="auto"
                   weekNumbers={false}
                   firstDay={5}
-                  headerToolbar={{}}
+                  headerToolbar={this.state.headerToolbar}
                   views={{
                     dayGridMonth: {
                       titleFormat: {
@@ -87,19 +120,19 @@ export default function CalendarioAnual() {
           ))}
         </tr>
 
-        <tr>
-          {months3.map((item, i) => (
-            <td>
-              <div>
+        <tr >
+          {this.state.months3.map((item, i) => (
+            <td key={"td3" + item}>
+              <div key={"div3" + item}>
                 <FullCalendar
                   key={"month" + item}
                   initialView="dayGridMonth"
-                  initialDate={"2022" + `${months3[i]}` + "01"}
+                  initialDate={ this.state.year + `${this.state.months3[i]}` + "01"}
                   plugins={[dayGridPlugin, timeGridPlugin]}
                   height="auto"
                   weekNumbers={false}
                   firstDay={2}
-                  headerToolbar={{}}
+                  headerToolbar={this.state.headerToolbar}
                   views={{
                     dayGridMonth: {
                       titleFormat: {
@@ -124,7 +157,13 @@ export default function CalendarioAnual() {
             </td>
           ))}
         </tr>
+        </tbody>
       </table>
     </div>
   );
+     
+  }
+
+  
 }
+
