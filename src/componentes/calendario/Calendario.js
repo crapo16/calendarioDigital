@@ -33,7 +33,8 @@ export default function Calendario() {
   const [isCheckedTodos, setIsCheckedTodos] = useState(true);
 
   const location = useLocation()
-  const { vista } = location.state 
+  
+  const { vista=""} = location?.state || ""
   
   let initialView = "dayGridMonth" 
   switch(vista){
