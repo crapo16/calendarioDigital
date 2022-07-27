@@ -7,7 +7,7 @@ import { EventosContext } from "../../context/EventosContext";
 import * as React from "react";
 import { useContext } from "react";
 import { useState } from "react";
-import { useLocation } from "react";
+import { useLocation } from 'react-router-dom';
 
 import { useEffect } from "react";
 import CobranzasModal from "../cobranzas/modal/CobranzasModal";
@@ -112,7 +112,6 @@ export default function Calendario() {
     for (let element of list) {
       for (let child of element.children) {
         let label = child.firstChild?.firstChild;
-        console.log(label);
         label.className = "color-red";
       }
     }
