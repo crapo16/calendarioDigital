@@ -3,6 +3,7 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import * as React from 'react'
 import SelectorEventos from './SelectorEventos'
+import { Link } from 'react-router-dom';
 
 export default class CalendarioAnual extends React.Component {
   
@@ -22,7 +23,6 @@ export default class CalendarioAnual extends React.Component {
     for (let element of list) {
       for (let child of element.children) {
         let label = child.firstChild?.firstChild
-        console.log(label)
         label.className = "color-red";
       }
    
@@ -39,12 +39,49 @@ export default class CalendarioAnual extends React.Component {
     this.addRedClass(listSaturdays)
  
   }
+
+  
   render() {
   return (
     <>
       <SelectorEventos/>
       <div>
+
+        <div className="margin-bottom-1 fc fc-media-screen fc-direction-ltr fc-theme-standard">
+          <div className="fc-header-toolbar fc-toolbar fc-toolbar-ltr">
+            <div className="fc-toolbar-chunk"><div className="fc-button-group">
+            
+              <button type="button" title="Mes antes" aria-pressed="false" className="fc-prev-button fc-button fc-button-primary"><span className="fc-icon fc-icon-chevron-left"></span></button>
+              <button type="button" title="Mes siguiente" aria-pressed="false" className="fc-next-button fc-button fc-button-primary"><span className="fc-icon fc-icon-chevron-right"></span></button>
+            </div>
+            {/* <button type="button" title="Este mes" disabled="" aria-pressed="false" className="fc-today-button fc-button fc-button-primary">Hoy</button> */}
+            </div>
+            <div className="fc-toolbar-chunk">
+              <h2 className="fc-toolbar-title" id="fc-dom-2">{ new Date().getFullYear()}</h2>
+            </div>
+            <div className="fc-toolbar-chunk">
+            <Link 
+                to="/calendario" state={{ vista: "dia" }}>
+                <button type="button" title="Vista del día" aria-pressed="false" className="fc-timeGridDay-button fc-button fc-button-primary">Día</button>
+
+              </Link>
+              <Link 
+                to="/calendario" state={{ vista: "semana" }}>
+              <button type="button" title="Vista de la semana" aria-pressed="false" className="fc-timeGridWeek-button fc-button fc-button-primary">Semana</button>
+
+              </Link>
+              <Link 
+                to="/calendario" state={{ vista: "mes" }}>
+              <button type="button" title="Vista del mes" aria-pressed="false" className="fc-dayGridMonth-button fc-button fc-button-primary ">Mes</button>
+
+              </Link>
+              <button  type="button" title="Año" aria-pressed="true" className="fc-vistaAnual-button fc-button fc-button-primary fc-button-active">Año</button>
+            </div>
+          </div>
+        </div>
+      
         <table>
+          
           <tbody>
           <tr>
             {this.state.months1.map((item, i) => (

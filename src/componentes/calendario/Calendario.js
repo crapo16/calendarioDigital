@@ -7,6 +7,8 @@ import { EventosContext } from '../../context/EventosContext'
 import * as React from 'react'
 import { useContext } from 'react'
 import { useState } from 'react'
+import { useLocation } from 'react-router-dom'
+
 import { useEffect } from 'react'
 import CobranzasModal from '../cobranzas/modal/CobranzasModal'
 import CuposModal from '../cupos/modal/CuposModal'
@@ -21,8 +23,20 @@ export default function Calendario(){
   const [isOpenCupo, setIsOpenCupo] = useState(false);
   const [isOpenVencimiento, setIsOpenVencimiento] = useState(false);
   const [isOpenFuturo, setIsOpenFuturo] = useState(false);
+  const location = useLocation()
+  const { vista } = location.state 
   
+  let initialView = "dayGridMonth" 
+  switch(vista){
+    case "dia":
+      initialView = "timeGridDay"
+      break;
+    case "semana":
+      initialView = "dayGridWeek"
+      break;
 
+    default:  
+  }
   function toggleModalCobranza() {
       setIsOpenCobranza(!isOpenCobranza);
   }
@@ -60,8 +74,9 @@ export default function Calendario(){
     for (let element of list) {
       for (let child of element.children) {
         let label = child.firstChild?.firstChild
-        console.log(label)
-        label.className = "color-red";
+        if(label){
+          label.className = "color-red";
+        }       
       }
    
    
@@ -80,7 +95,6 @@ export default function Calendario(){
 
     return (
       <>
-
       <CobranzasModal isOpen={isOpenCobranza} item={contenido} toggleModal={toggleModalCobranza}/>
       <CuposModal isOpen={isOpenCupo} item={contenido} toggleModal={toggleModalCupo}/>
       <FuturoModal isOpen={isOpenFuturo} item={contenido} toggleModal={toggleModalFuturo}/>
@@ -90,7 +104,7 @@ export default function Calendario(){
 
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin]}
-        initialView="dayGridMonth"
+        initialView={  initialView  }
         locale = {esLocale}
         customButtons={{
             vistaDiaria: {
