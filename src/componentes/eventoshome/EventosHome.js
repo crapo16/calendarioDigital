@@ -38,6 +38,29 @@ function EventosHome({nombreUsuario, nroCuenta, nombreCuenta}){
         }
     }
 
+    function cambiarCobranzas(visibilidad){
+        setVisibilidadCobranzas(visibilidad);
+        setVisibilidadTodos(false);
+    }
+
+    function cambiarCupos(visibilidad){
+        setVisibilidadCupos(visibilidad);
+        setVisibilidadTodos(false);
+
+    }
+
+    function cambiarFuturos(visibilidad){
+        setVisibilidadFuturos(visibilidad);
+        setVisibilidadTodos(false);
+
+    }
+
+    function cambiarVencimientos(visibilidad){
+        setVisibilidadVencimientos(visibilidad);
+        setVisibilidadTodos(false);
+
+    }
+
     useEffect(()=>{
         console.log('EventosHome');
 
@@ -54,11 +77,11 @@ function EventosHome({nombreUsuario, nroCuenta, nombreCuenta}){
                 </div>
                 <div className="botonera" id="botonera">
                     <div>
-                        <div className={visibilidadCobranzas?"chip c-cobranzas active":"chip c-cobranzas"} onClick={()=>setVisibilidadCobranzas(!visibilidadCobranzas)}  >COBRANZAS</div>
-                        <div className={visibilidadCupos?"chip c-cupos active":"chip c-cupos"} onClick={()=>setVisibilidadCupos(!visibilidadCupos)}>CUPOS OTORGADOS</div>
-                        <div className={visibilidadVencimientos?"chip c-vencimientos active":"chip c-vencimientos"} onClick={()=>setVisibilidadVencimientos(!visibilidadVencimientos)}>VENCIMIENTOS</div>
-                        <div className={visibilidadFuturos?"chip c-futuros active":"chip c-futuros"} onClick={()=>setVisibilidadFuturos(!visibilidadFuturos)}>FUTUROS Y OPCIONES</div>
-                        <div className={visibilidadEventosZeni?"chip c-eventos active":"chip c-eventos"} onClick={()=>setVisibilidadEventosZeni(!visibilidadEventosZeni)}>EVENTOS</div>
+                        <div className={visibilidadCobranzas?"chip c-cobranzas active":"chip c-cobranzas"} onClick={()=>cambiarCobranzas(!visibilidadCobranzas)}  >COBRANZAS</div>
+                        <div className={visibilidadCupos?"chip c-cupos active":"chip c-cupos"} onClick={()=>cambiarCupos(!visibilidadCupos)}>CUPOS OTORGADOS</div>
+                        <div className={visibilidadVencimientos?"chip c-vencimientos active":"chip c-vencimientos"} onClick={()=>cambiarVencimientos(!visibilidadVencimientos)}>VENCIMIENTOS</div>
+                        <div className={visibilidadFuturos?"chip c-futuros active":"chip c-futuros"} onClick={()=>cambiarFuturos(!visibilidadFuturos)}>FUTUROS Y OPCIONES</div>
+                        {/* <div className={visibilidadEventosZeni?"chip c-eventos active":"chip c-eventos"} onClick={()=>setVisibilidadEventosZeni(!visibilidadEventosZeni)}>EVENTOS</div> */}
                         <div className={visibilidadTodos?"chip c-todos active active":"chip c-todos"} onClick={()=>cambiarTodos(!visibilidadTodos)}>TODOS</div>
                     </div>
                     <div>
@@ -77,7 +100,7 @@ function EventosHome({nombreUsuario, nroCuenta, nombreCuenta}){
                     <CuposHome visibilidadCupos={visibilidadCupos} visibilidadTodos={visibilidadTodos}/>
                     <VencimientosHome  visibilidadVencimientos={visibilidadVencimientos} visibilidadTodos={visibilidadTodos}/>
                     <FuturosHome visibilidadFuturos={visibilidadFuturos} visibilidadTodos={visibilidadTodos}/>
-                    <EventosZeniHome visibilidadEventosZeni={visibilidadEventosZeni} visibilidadTodos={visibilidadTodos}/>
+                    {/* <EventosZeniHome visibilidadEventosZeni={visibilidadEventosZeni} visibilidadTodos={visibilidadTodos}/> */}
                     {!visibilidadTodos && !visibilidadVencimientos && !visibilidadCobranzas && !visibilidadCupos && !visibilidadEventosZeni && !visibilidadFuturos?
                         <p>Seleccione al menos un item para ver los eventos</p>:""
                     }
