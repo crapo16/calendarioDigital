@@ -259,6 +259,7 @@
   color: #08426A;
   margin-bottom: 0;
   background-color: #F6F7F7;
+  border-bottom: solid thin;
 }
 /*botones toolbar*/
 .fc .fc-button-primary:not(:disabled).fc-button-active {background-color: white; color: #08426A;}
@@ -274,36 +275,86 @@
   border: none; background-color: #F6F7F7; color: #08426A;
 }
 
-
 .fc .fc-view-harness-active > .fc-view {background-color: #F6F7F7;}
 .fc .fc-toolbar-title {font-size: 2em;}
 .fc .fc-view-harness a {color: #08426A;}
 .fc .fc-daygrid-day-number {color: #08426A;}
-.fc .fc-col-header-cell-cushion {font-family: 'goldplaysemibold'; font-size: 1.25em;}
+.fc .fc-col-header-cell-cushion {font-family: 'goldplaysemibold'; font-size: 1.2em; text-transform: uppercase; margin: 20px 0;}
+
+
+/* Ubicación txt Día en vista día */
+.fc-timeGridDay-view .fc-scrollgrid-sync-inner {text-align: left;}
+.fc-timeGridDay-view .fc-scrollgrid-sync-inner a {margin-left: 10px;}
+/*-------------*/
+/* Eliminar primera columna tabla */
+table.fc-col-header colgroup {display: none;}
+tbody colgroup {display: none;}
+span.fc-timegrid-axis-cushion {display: none;}
+.fc-direction-ltr .fc-timegrid-slot-label-frame {display: none;}
+
+thead tr th.fc-timegrid-axis {display: none;} /*elimino  primer columna thead*/
+tbody tr td.fc-timegrid-axis {display: none;} /*elimino  primer columna tbody*/
+
+.fc-timeGridWeek-view .fc-scrollgrid-section-liquid {display:none;} /*elimino fila final vista semana*/
+.fc-timeGridDay-view .fc-scrollgrid-section-liquid {display: none;} /*elimino fila final vista dia*/
+
+/* Día actual */
+.fc-timeGridWeek-view .fc-daygrid-day {height: 100vh;}
+.fc-timeGridWeek-view .fc-daygrid-day.fc-day-today {background-color: rgba(107, 160, 210, .1);} 
+.fc-timeGridDay-view .fc-daygrid-day.fc-day-today {background-color: rgba(107, 160, 210, .1);}
+/*-------------*/
+
 .fc .fc-daygrid-day-top {
   justify-content: center;
   font-family: 'goldplaysemibold';
   font-size: 1.25em;
   margin: 12px 0;
 }
-.fc-h-event .fc-event-title-container {font-family: 'goldplaymedium'; padding: 2px 4px;}
+.fc-h-event .fc-event-title-container {font-family: 'goldplaymedium'; padding: 2px 4px; font-size: 16px;}
 
-/* Día actual */
-.fc .fc-daygrid-day.fc-day-today {
-  background-color: rgba(107, 160, 210, .1);
-}
 .fc .fc-daygrid-day.fc-day-today .fc-daygrid-day-top a {
   background-color: #08426A;
   color: white;
   border-radius: 4px;
   padding: 0 4px;
 }
-
 .color-red{
   color : red!important
 }
 
-/*Ajustes responsive*/
+
+/* Estilos tablas */
+table {
+  border:none;
+ }
+.fc-theme-standard td, .fc-theme-standard th {
+  border: 1px solid #C9CBCD;
+}
+.fc-theme-standard td.fc-timegrid-slot {
+  border-collapse: collapse;
+  border: hidden;
+}
+.fc .fc-daygrid-body-natural .fc-daygrid-day-events {
+  margin-bottom: 0;
+
+}
+.fc .fc-daygrid-event-harness {
+  margin: 6px !important;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.fc-daygrid-event {border-radius: 8px; padding: 2px 4px;transition: All 0.2s ease;-webkit-transition:All 0.2s ease;-moz-transition:All 0.2s ease; -o-transition:All 0.2s ease;}
+.fc-daygrid-event:hover {box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.4);}
+.fc-h-event {border: none;}
+
+
+
+/*colgroup {display: none;}*/
+
+
+
+
+/*-- Ajustes responsive --*/
 @media screen and (max-width: 1200px) {
   .ReactModal__Content {width: 40vw;}
 }
@@ -337,9 +388,4 @@
 
 .eventoFuturo{
   background-color: #74B5AF;
-}
-
-
-.margin-bottom-1{
-  margin-bottom : -1%
 }
