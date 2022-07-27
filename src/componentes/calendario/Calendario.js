@@ -17,10 +17,17 @@ import SelectorEventos from './SelectorEventos'
 export default function Calendario(){
   const {eventos}= useContext(EventosContext);
   const [contenido,setContenido]=useState({});
+  //Para controlar los modales
   const [isOpenCobranza, setIsOpenCobranza] = useState(false);
   const [isOpenCupo, setIsOpenCupo] = useState(false);
   const [isOpenVencimiento, setIsOpenVencimiento] = useState(false);
   const [isOpenFuturo, setIsOpenFuturo] = useState(false);
+  //Para controlar los checkboxes
+  const [isCheckedCobranza, setIsCheckedCobranza]= useState(false);
+  const [isCheckedCupo, setIsCheckedCupo]= useState(false);
+  const [isCheckedVencimiento, setIsCheckedVencimiento]= useState(false);
+  const [isCheckedFuturo, setIsCheckedFuturo]=useState(false);
+  const [isCheckedTodos, setIsCheckedTodos]=useState(true);
   
 
   function toggleModalCobranza() {
@@ -37,6 +44,24 @@ export default function Calendario(){
 
   function toggleModalFuturo() {
     setIsOpenFuturo(!isOpenFuturo);
+  }
+
+  function handleCheckCupos(){
+    setIsCheckedCupo(!isCheckedCupo);
+  }
+
+  function handleCheckCobranzas(){
+    setIsCheckedCobranza(!isCheckedCobranza);
+  }
+  function handleCheckVencimientos(){
+    setIsCheckedVencimiento(!isCheckedVencimiento);
+  }
+  function handleCheckFuturos(){
+    setIsCheckedFuturo(!isCheckedFuturo);
+  }
+
+  function handleCheckTodos(){
+    setIsCheckedTodos(!isCheckedTodos);
   }
 
 
@@ -86,8 +111,9 @@ export default function Calendario(){
       <FuturoModal isOpen={isOpenFuturo} item={contenido} toggleModal={toggleModalFuturo}/>
       <VencimientoModal isOpen={isOpenVencimiento} item={contenido} toggleModal={toggleModalVencimiento}/>
 
-      <SelectorEventos/>
-
+      <SelectorEventos isCheckedCobranza={isCheckedCobranza} isCheckedCupo={isCheckedCupo} isCheckedFuturo={isCheckedFuturo} isCheckedVencimiento={isCheckedVencimiento} isCheckedTodos={isCheckedTodos}
+        handleCheckCobranzas={handleCheckCobranzas} handleCheckCupos={handleCheckCupos} handleCheckFuturos={handleCheckFuturos} handleCheckVencimientos={handleCheckVencimientos} handleCheckTodos={handleCheckTodos}
+      />
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin]}
         initialView="dayGridMonth"
