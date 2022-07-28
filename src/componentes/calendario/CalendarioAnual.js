@@ -9,14 +9,18 @@ export default class CalendarioAnual extends React.Component {
   
   constructor(props){
     super()
+    let year = new Date().getFullYear()
     this.state = { headerToolbar : {
       start: 'title', // will normally be on the left. if RTL, will be on the right
       center: '',
       end: '' // will normally be on the right. if RTL, will be on the left
     },
-    months1 : ["01", "02", "03", "04"],months2: ["05", "06", "07", "08"], months3: ["09", "10", "11", "12"],year:new Date().getFullYear()};
-    
+    months1 : [new Date(year+"-01-01T12:00:00"),new Date(year+"-02-01T12:00:00"),new Date(year+"-03-01T12:00:00"),new Date(year+"-04-01T12:00:00")],
+    months2: [new Date(year+"-05-01T12:00:00"),new Date(year+"-06-01T12:00:00"),new Date(year+"-07-01T12:00:00"),new Date(year+"-08-01T12:00:00")],
+    months3: [new Date(year+"-09-01T12:00:00"),new Date(year+"-10-01T12:00:00"),new Date(year+"-11-01T12:00:00"),new Date(year+"-12-01T12:00:00")],
+    year:new Date().getFullYear()
   
+    }
   }
 
   addRedClass(list){
@@ -39,7 +43,18 @@ export default class CalendarioAnual extends React.Component {
     this.addRedClass(listSaturdays)
  
   }
+  changeYear(add){
+    let year = add ? this.state.year + 1 : this.state.year - 1 ;
 
+    this.setState({
+      months1 : [new Date(year+"-01-01T12:00:00"),new Date(year+"-02-01T12:00:00"),new Date(year+"-03-01T12:00:00"),new Date(year+"-04-01T12:00:00")],
+      months2: [new Date(year+"-05-01T12:00:00"),new Date(year+"-06-01T12:00:00"),new Date(year+"-07-01T12:00:00"),new Date(year+"-08-01T12:00:00")],
+      months3: [new Date(year+"-09-01T12:00:00"),new Date(year+"-10-01T12:00:00"),new Date(year+"-11-01T12:00:00"),new Date(year+"-12-01T12:00:00")],
+      year: year
+    })
+    this.forceUpdate()
+    
+  }
   
   render() {
   return (
@@ -51,13 +66,13 @@ export default class CalendarioAnual extends React.Component {
           <div className="fc-header-toolbar fc-toolbar fc-toolbar-ltr">
             <div className="fc-toolbar-chunk"><div className="fc-button-group">
             
-              <button type="button" title="Mes antes" aria-pressed="false" className="fc-prev-button fc-button fc-button-primary"><span className="fc-icon fc-icon-chevron-left"></span></button>
-              <button type="button" title="Mes siguiente" aria-pressed="false" className="fc-next-button fc-button fc-button-primary"><span className="fc-icon fc-icon-chevron-right"></span></button>
+              <button onClick={ () => this.changeYear(false)} type="button" title="Año antes" aria-pressed="false" className="fc-prev-button fc-button fc-button-primary"><span className="fc-icon fc-icon-chevron-left"></span></button>
+              <button onClick={ () => this.changeYear(true)}type="button" title="Año siguiente" aria-pressed="false" className="fc-next-button fc-button fc-button-primary"><span className="fc-icon fc-icon-chevron-right"></span></button>
             </div>
             {/* <button type="button" title="Este mes" disabled="" aria-pressed="false" className="fc-today-button fc-button fc-button-primary">Hoy</button> */}
             </div>
             <div className="fc-toolbar-chunk">
-              <h2 className="fc-toolbar-title" id="fc-dom-2">{ new Date().getFullYear()}</h2>
+              <h2 className="fc-toolbar-title" id="fc-dom-2">{ this.state.year}</h2>
             </div>
             <div className="fc-toolbar-chunk">
             <Link 
@@ -91,7 +106,7 @@ export default class CalendarioAnual extends React.Component {
 
                     key={"month" + item}
                     initialView="dayGridMonth"
-                    initialDate={ this.state.year + `${this.state.months1[i]}` + "01"}
+                    initialDate={ item }
                     plugins={[dayGridPlugin, timeGridPlugin]}
                     height="auto"
                     weekNumbers={false}
@@ -130,7 +145,7 @@ export default class CalendarioAnual extends React.Component {
                   <FullCalendar
                     key={"month" + item}
                     initialView="dayGridMonth"
-                    initialDate={ this.state.year + `${this.state.months2[i]}` + "01"}
+                    initialDate={ item }
                     plugins={[dayGridPlugin, timeGridPlugin]}
                     height="auto"
                     locale="es"
@@ -169,7 +184,7 @@ export default class CalendarioAnual extends React.Component {
                   <FullCalendar
                     key={"month" + item}
                     initialView="dayGridMonth"
-                    initialDate={ this.state.year + `${this.state.months3[i]}` + "01"}
+                    initialDate={ item }
                     plugins={[dayGridPlugin, timeGridPlugin]}
                     height="auto"
                     locale="es"
