@@ -95,7 +95,7 @@ export default class CalendarioAnual extends React.Component {
           </div>
         </div>
       
-        <table>
+        <table class="table_year">
           
           <tbody>
           <tr>

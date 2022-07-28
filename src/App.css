@@ -358,12 +358,12 @@ table {
 .fc-daygrid-event:hover {box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.4);}
 .fc-h-event {border: none;}
 
-
-
-/*colgroup {display: none;}*/
-
-
-
+/* Tabla vista anual */
+table.table_year, table.table_year tr td {vertical-align: top;}
+table.table_year h2.fc-toolbar-title {font-family: 'goldplaysemibold'; font-size: 1.2em;}
+table.table_year .fc-header-toolbar {border-bottom: none !important; border-top-left-radius: 6px; border-top-right-radius: 6px;}
+table.table_year tr {border-bottom: none;}
+table.table_year .fc-col-header-cell a {font-size: 1em;}
 
 /*-- Ajustes responsive --*/
 @media screen and (max-width: 1200px) {
