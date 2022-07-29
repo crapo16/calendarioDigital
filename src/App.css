@@ -212,14 +212,15 @@
 
 /*-- CHECKBOX SECTION --*/
 .check_container {
-  /*background-color: #fff;*/
+  background-color: #F6F7F7;
   text-transform: uppercase;
   /*height: 100vh;*/
   border-right: solid thin #C9CBCD;
   color: #08426A;
+  padding-top: 20px;
 }
-.check_container label {font-family: 'goldplaymedium'; display: block; margin: 0 0 8px 20px; font-size: 16px; color: #08426A;}
-.check_container h6 {font-size: 18px; font-family: 'goldplaysemibold', Arial, sans-serif; margin: 20px;}
+.check_container label {font-family: 'goldplaymedium';  margin: 0 0 8px 20px; font-size: 16px; color: #08426A;}
+.check_container h6 {font-size: 18px; font-family: 'goldplaysemibold', Arial, sans-serif; margin: 0 20px 20px; display: inline;}
 
 /*- Color Chexboxs unchecked -*/
 [type="checkbox"].filled-in:not(:checked)+span:not(.lever):after {
