@@ -400,3 +400,7 @@ table.table_year .fc-col-header-cell a {font-size: 1em;}
 .eventoFuturo{
   background-color: #74B5AF;
 }
+
+.ReactModal__Overlay--after-open{
+  z-index: 99;
+}

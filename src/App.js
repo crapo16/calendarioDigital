@@ -2,6 +2,7 @@ import EventosHome from './componentes/eventoshome/EventosHome';
 import { Routes,Route, Link } from 'react-router-dom';
 import Calendario from './componentes/calendario/Calendario';
 import CalendarioAnual from './componentes/calendario/CalendarioAnual';
+import CalendarioAnual2 from './componentes/calendario/CalendarioAnual';
 import './App.css';
 import EventosContextProvider from './context/EventosContext';
 
