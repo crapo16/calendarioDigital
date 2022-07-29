@@ -124,26 +124,28 @@ function CalendarioAnual2() {
   }
 
   function changeYear(add) {
-    add ? setCurrentYear(currentYear + 1) : setCurrentYear(currentYear - 1);
+    let year=add ? currentYear + 1 : currentYear - 1;
+    setCurrentYear(year);
+    
     setMonths1([
-      new Date(currentYear + "-01-01T12:00:00"),
-      new Date(currentYear + "-02-01T12:00:00"),
-      new Date(currentYear + "-03-01T12:00:00"),
+      new Date(year + "-01-01T12:00:00"),
+      new Date(year + "-02-01T12:00:00"),
+      new Date(year + "-03-01T12:00:00"),
     ]);
     setMonths2([
-      new Date(currentYear + "-04-01T12:00:00"),
-      new Date(currentYear + "-05-01T12:00:00"),
-      new Date(currentYear + "-06-01T12:00:00"),
+      new Date(year + "-04-01T12:00:00"),
+      new Date(year + "-05-01T12:00:00"),
+      new Date(year+ "-06-01T12:00:00"),
     ]);
     setMonths3([
-      new Date(currentYear + "-07-01T12:00:00"),
-      new Date(currentYear + "-08-01T12:00:00"),
-      new Date(currentYear + "-09-01T12:00:00")
+      new Date(year + "-07-01T12:00:00"),
+      new Date(year + "-08-01T12:00:00"),
+      new Date(year + "-09-01T12:00:00")
     ]);
     setMonths4([
-        new Date(currentYear + "-10-01T12:00:00"),
-        new Date(currentYear + "-11-01T12:00:00"),
-        new Date(currentYear + "-12-01T12:00:00"),
+        new Date(year + "-10-01T12:00:00"),
+        new Date(year + "-11-01T12:00:00"),
+        new Date(year + "-12-01T12:00:00"),
       ]);
 
 
@@ -359,7 +361,13 @@ function CalendarioAnual2() {
     let listSaturdays = document.getElementsByClassName("fc-day-sat");
     addRedClass(listSundays);
     addRedClass(listSaturdays);
-  }, []);
+  }, [
+    isCheckedCobranza,
+    isCheckedCupo,
+    isCheckedFuturo,
+    isCheckedVencimiento,
+    isCheckedTodos,
+  ]);
 
   return (
     <>
