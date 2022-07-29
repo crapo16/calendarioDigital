@@ -350,6 +350,13 @@ export default function Calendario() {
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin]}
         initialView={ initialView }
+        dayMaxEventRows= {true} // for all non-TimeGrid views
+        views= {{
+          timeGrid: {
+            dayMaxEventRows: 2 // adjust to 6 only for timeGridWeek/timeGridDay
+          }
+        }}
+        eventMaxStack={1}
         locale={esLocale}
         customButtons={{
           vistaDiaria: {
