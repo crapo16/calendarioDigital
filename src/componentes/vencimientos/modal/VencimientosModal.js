@@ -13,12 +13,12 @@ function VencimientoModal({isOpen,item,toggleModal}){
                     <button className="btnCerrarModal" onClick={toggleModal}><i className="material-icons">close</i></button>
                 </div>    
                 <div className="itemContainer">
-                    <div>{item.nombre}</div> 
-                    <div>{item.fechaFin}</div>
+                    <div>Nombre</div> 
+                    <div>{item.nombre}</div>
                 </div>
                 <div className="divider"/> 
                 <div className="itemContainer">
-                    <div>{item.nombre}</div> 
+                    <div>Fecha fin</div> 
                     <div>{item.fechaFin}</div>
                 </div>              
             </Modal>
