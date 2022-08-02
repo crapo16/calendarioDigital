@@ -62,7 +62,7 @@ function EventosHome({nombreUsuario, nroCuenta, nombreCuenta}){
     }
 
     useEffect(()=>{
-        console.log(process.env);
+        console.log(process.env.REACT_APP_WS_TOKEN);
 
     },[])
     return (
