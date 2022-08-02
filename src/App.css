@@ -333,9 +333,7 @@ tbody tr td .fc-day-sun .fc-daygrid-day-top a {color: #F1644A;}
   border-radius: 4px;
   padding: 0 4px;
 }
-.color-red{
-  color : red!important
-}
+
 
 
 /* Estilos tablas */
@@ -360,9 +358,15 @@ table {
 .fc-h-event {border: none;}
 
 /* Tabla vista anual */
+table.table_year {background-color: #F6F7F7;}
 table.table_year, table.table_year tr td {vertical-align: top;}
-table.table_year h2.fc-toolbar-title {font-family: 'goldplaysemibold'; font-size: 1.2em;}
-table.table_year .fc-header-toolbar {border-bottom: none !important; border-top-left-radius: 6px; border-top-right-radius: 6px;}
+table.table_year td.fc-daygrid-day {background-color: #fff;}
+table.table_year tr td .fc-daygrid-day-events {max-height: 90px; overflow: auto;}
+table.table_year th, table.table_year td {border-color: #F6F7F7;}
+table.table_year table {border: none !important;}
+
+table.table_year h2.fc-toolbar-title {font-family: 'goldplaysemibold'; font-size: 1.3em; color: #74B5AF;}
+table.table_year .fc-toolbar.fc-header-toolbar {border-bottom: none; border-top-left-radius: 6px; border-top-right-radius: 6px; background-color: #fff;}
 table.table_year tr {border-bottom: none;}
 table.table_year .fc-col-header-cell a {font-size: 1em;}
 
