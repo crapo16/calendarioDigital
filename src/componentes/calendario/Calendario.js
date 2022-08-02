@@ -122,9 +122,9 @@ export default function Calendario() {
     //cargo los eventos que se muestran en el calendario
     let eventos = [
       {
-        title: "event 1",
+        title: "Venta 3.455.612,2",
         className: "eventoCobranza",
-        date: "2022-07-26",
+        date: "2022-08-02",
         extendedProps: {
           tipoEvento: "Cobranza",
           id: 1,
@@ -146,9 +146,9 @@ export default function Calendario() {
         },
       },
       {
-        title: "event 2",
+        title: "Venta 3.455.612,3",
         className: "eventoCobranza",
-        date: "2022-07-26",
+        date: "2022-08-02",
         extendedProps: {
           tipoEvento: "Cobranza",
           id: 2,
@@ -170,9 +170,9 @@ export default function Calendario() {
         },
       },
       {
-        title: "event 3",
+        title: "Soja - ADM Agro SRL - Adeco Agropecuaria S.A",
         className: "eventoCupo",
-        date: "2022-07-27",
+        date: "2022-07-29",
         extendedProps: {
           tipoEvento: "Cupo",
           id: 1,
@@ -189,9 +189,9 @@ export default function Calendario() {
         },
       },
       {
-        title: "event 4",
+        title: "Soja - ADM Agro SRL - Adeco Agropecuaria S.A",
         className: "eventoCupo",
-        date: "2022-07-27",
+        date: "2022-08-03",
         extendedProps: {
           tipoEvento: "Cupo",
           id: 2,
@@ -208,9 +208,9 @@ export default function Calendario() {
         },
       },
       {
-        title: "event 5",
+        title: "Vencimiento 1 - 14/08/2022",
         className: "eventoVencimiento",
-        date: "2022-07-28",
+        date: "2022-08-03",
         extendedProps: {
           tipoEvento: "Vencimiento",
           id: 1,
@@ -219,9 +219,9 @@ export default function Calendario() {
         },
       },
       {
-        title: "event 6",
+        title: "Vencimiento 2 - 15/08/2022",
         className: "eventoVencimiento",
-        date: "2022-07-28",
+        date: "2022-07-29",
         extendedProps: {
           tipoEvento: "Vencimiento",
           id: 2,
@@ -230,9 +230,9 @@ export default function Calendario() {
         },
       },
       {
-        title: "event 7",
+        title: "Futuro TRIGO Vol.100,000",
         className: "eventoFuturo",
-        date: "2022-07-29",
+        date: "2022-08-01",
         extendedProps: {
           tipoEvento: "Futuro",
           id: 1,
@@ -255,7 +255,7 @@ export default function Calendario() {
         },
       },
       {
-        title: "event 8",
+        title: "Futuro ACEITE Vol.200,000",
         className: "eventoFuturo",
         date: "2022-07-29",
         extendedProps: {
@@ -353,7 +353,7 @@ export default function Calendario() {
         dayMaxEventRows= {true} // for all non-TimeGrid views
         views= {{
           timeGrid: {
-            dayMaxEventRows: 2 // adjust to 6 only for timeGridWeek/timeGridDay
+            dayMaxEventRows: 3 // adjust to 6 only for timeGridWeek/timeGridDay
           }
         }}
         eventMaxStack={1}
