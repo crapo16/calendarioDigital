@@ -62,7 +62,7 @@ function EventosHome({nombreUsuario, nroCuenta, nombreCuenta}){
     }
 
     useEffect(()=>{
-        console.log('EventosHome');
+        console.log(process.env);
 
     },[])
     return (
@@ -75,6 +75,7 @@ function EventosHome({nombreUsuario, nroCuenta, nombreCuenta}){
                 <div className='row'>
                     <h3>Martes 17 de mayo, 2022</h3>
                 </div>
+
                 <div className="botonera" id="botonera">
                     <div>
                         <div className={visibilidadCobranzas?"chip c-cobranzas active":"chip c-cobranzas"} onClick={()=>cambiarCobranzas(!visibilidadCobranzas)}  >COBRANZAS</div>

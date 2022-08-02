@@ -113,7 +113,6 @@ function CalendarioAnual2() {
     }
   }
 
-
   function addRedClass(list) {
     for (let element of list) {
       for (let child of element.children) {
@@ -124,9 +123,9 @@ function CalendarioAnual2() {
   }
 
   function changeYear(add) {
-    let year=add ? currentYear + 1 : currentYear - 1;
+    let year = add ? currentYear + 1 : currentYear - 1;
     setCurrentYear(year);
-    
+
     setMonths1([
       new Date(year + "-01-01T12:00:00"),
       new Date(year + "-02-01T12:00:00"),
@@ -135,227 +134,196 @@ function CalendarioAnual2() {
     setMonths2([
       new Date(year + "-04-01T12:00:00"),
       new Date(year + "-05-01T12:00:00"),
-      new Date(year+ "-06-01T12:00:00"),
+      new Date(year + "-06-01T12:00:00"),
     ]);
     setMonths3([
       new Date(year + "-07-01T12:00:00"),
       new Date(year + "-08-01T12:00:00"),
-      new Date(year + "-09-01T12:00:00")
+      new Date(year + "-09-01T12:00:00"),
     ]);
     setMonths4([
-        new Date(year + "-10-01T12:00:00"),
-        new Date(year + "-11-01T12:00:00"),
-        new Date(year + "-12-01T12:00:00"),
-      ]);
-
-
+      new Date(year + "-10-01T12:00:00"),
+      new Date(year + "-11-01T12:00:00"),
+      new Date(year + "-12-01T12:00:00"),
+    ]);
   }
 
   useEffect(() => {
     //cargo los eventos que se muestran en el calendario
     let eventos = [
-        {
-          title: "event 1",
-          className: "eventoCobranza",
-          date: "2022-07-26",
-          extendedProps: {
-            tipoEvento: "Cobranza",
-            id: 1,
-            vto: "14/07/2021",
-            cv: "Venta",
-            impComprobante: "3.455.612,2",
-            iva: "345.612",
-            saldoConf: "0,00",
-            pendiente: "3.123.456",
-            moneda: "S",
-            datosCpte: "LP A 2 331004671478",
-            cpteOrigen: "LP A 2 331004671478",
-            cto: "21/16862/7",
-            contraparte: "ADM Agro SRL",
-            tipoCobranza: "Valor Zeni",
-            observaciones: "--",
-            tipo: "LP",
-            coe: "331004671478",
-          },
+      {
+        title: "Venta 3.455.612,2",
+        className: "eventoCobranza",
+        date: "2022-08-02",
+        extendedProps: {
+          tipoEvento: "Cobranza",
+          id: 1,
+          vto: "14/07/2021",
+          cv: "Venta",
+          impComprobante: "3.455.612,2",
+          iva: "345.612",
+          saldoConf: "0,00",
+          pendiente: "3.123.456",
+          moneda: "S",
+          datosCpte: "LP A 2 331004671478",
+          cpteOrigen: "LP A 2 331004671478",
+          cto: "21/16862/7",
+          contraparte: "ADM Agro SRL",
+          tipoCobranza: "Valor Zeni",
+          observaciones: "--",
+          tipo: "LP",
+          coe: "331004671478",
         },
-        {
-          title: "event 2",
-          className: "eventoCobranza",
-          date: "2022-07-26",
-          extendedProps: {
-            tipoEvento: "Cobranza",
-            id: 2,
-            vto: "15/07/2021",
-            cv: "Venta",
-            impComprobante: "3.455.612,3",
-            iva: "345.612",
-            saldoConf: "0,00",
-            pendiente: "3.123.456",
-            moneda: "S",
-            datosCpte: "LP A 2 331004671478",
-            cpteOrigen: "LP A 2 331004671478",
-            cto: "21/16862/7",
-            contraparte: "ADM Agro SRL",
-            tipoCobranza: "Valor Zeni",
-            observaciones: "--",
-            tipo: "LP",
-            coe: "331004671478",
-          },
+      },
+      {
+        title: "Venta 3.455.612,3",
+        className: "eventoCobranza",
+        date: "2022-08-02",
+        extendedProps: {
+          tipoEvento: "Cobranza",
+          id: 2,
+          vto: "15/07/2021",
+          cv: "Venta",
+          impComprobante: "3.455.612,3",
+          iva: "345.612",
+          saldoConf: "0,00",
+          pendiente: "3.123.456",
+          moneda: "S",
+          datosCpte: "LP A 2 331004671478",
+          cpteOrigen: "LP A 2 331004671478",
+          cto: "21/16862/7",
+          contraparte: "ADM Agro SRL",
+          tipoCobranza: "Valor Zeni",
+          observaciones: "--",
+          tipo: "LP",
+          coe: "331004671478",
         },
-        {
-          title: "event 3",
-          className: "eventoCupo",
-          date: "2022-07-27",
-          extendedProps: {
-            tipoEvento: "Cupo",
-            id: 1,
-            fecha: "29/06/2021",
-            comprador: "ADM Agro SRL",
-            vendedor: "Adeco Agropecuaria S.A",
-            destinatario: "ADM Agro SRL",
-            destino: "ADM Agro SRL",
-            localidadDestino: "Ingeniero White",
-            contrato: "21/15334/5",
-            otorgados: "1",
-            producto: "Soja",
-            nroCupo: "PS1274087",
-          },
+      },
+      {
+        title: "Soja - ADM Agro SRL - Adeco Agropecuaria S.A",
+        className: "eventoCupo",
+        date: "2022-07-29",
+        extendedProps: {
+          tipoEvento: "Cupo",
+          id: 1,
+          fecha: "29/06/2021",
+          comprador: "ADM Agro SRL",
+          vendedor: "Adeco Agropecuaria S.A",
+          destinatario: "ADM Agro SRL",
+          destino: "ADM Agro SRL",
+          localidadDestino: "Ingeniero White",
+          contrato: "21/15334/5",
+          otorgados: "1",
+          producto: "Soja",
+          nroCupo: "PS1274087",
         },
-        {
-          title: "event 4",
-          className: "eventoCupo",
-          date: "2022-07-27",
-          extendedProps: {
-            tipoEvento: "Cupo",
-            id: 2,
-            fecha: "20/06/2022",
-            comprador: "ADM Agro SRL",
-            vendedor: "Adeco Agropecuaria S.A",
-            destinatario: "ADM Agro SRL",
-            destino: "ADM Agro SRL",
-            localidadDestino: "Ingeniero White",
-            contrato: "21/15334/5",
-            otorgados: "1",
-            producto: "Soja",
-            nroCupo: "PS1274087",
-          },
+      },
+      {
+        title: "Soja - ADM Agro SRL - Adeco Agropecuaria S.A",
+        className: "eventoCupo",
+        date: "2022-08-03",
+        extendedProps: {
+          tipoEvento: "Cupo",
+          id: 2,
+          fecha: "20/06/2022",
+          comprador: "ADM Agro SRL",
+          vendedor: "Adeco Agropecuaria S.A",
+          destinatario: "ADM Agro SRL",
+          destino: "ADM Agro SRL",
+          localidadDestino: "Ingeniero White",
+          contrato: "21/15334/5",
+          otorgados: "1",
+          producto: "Soja",
+          nroCupo: "PS1274087",
         },
-        {
-          title: "event 5",
-          className: "eventoVencimiento",
-          date: "2022-07-28",
-          extendedProps: {
-            tipoEvento: "Vencimiento",
-            id: 1,
-            nombre: "Vencimiento 1",
-            fechaFin: "14/08/2022",
-          },
+      },
+      {
+        title: "Vencimiento 1 - 14/08/2022",
+        className: "eventoVencimiento",
+        date: "2022-08-03",
+        extendedProps: {
+          tipoEvento: "Vencimiento",
+          id: 1,
+          nombre: "Vencimiento 1",
+          fechaFin: "14/08/2022",
         },
-        {
-          title: "event 6",
-          className: "eventoVencimiento",
-          date: "2022-07-28",
-          extendedProps: {
-            tipoEvento: "Vencimiento",
-            id: 2,
-            nombre: "Vencimiento 2",
-            fechaFin: "15/08/2022",
-          },
+      },
+      {
+        title: "Vencimiento 2 - 15/08/2022",
+        className: "eventoVencimiento",
+        date: "2022-07-29",
+        extendedProps: {
+          tipoEvento: "Vencimiento",
+          id: 2,
+          nombre: "Vencimiento 2",
+          fechaFin: "15/08/2022",
         },
-        {
-          title: "event 7",
-          className: "eventoFuturo",
-          date: "2022-07-29",
-          extendedProps: {
-            tipoEvento: "Futuro",
-            id: 1,
-            tipo: "Futuros",
-            operacion: "Futuro",
-            condicion: "V",
-            producto: "TRIGO",
-            posicion: "01/2012",
-            volumen: "100,000",
-            precioEj: "0,00",
-            precioPrima: "$ 185,0000",
-            destino: "Buenos Aires",
-            registro: "951990",
-            fecAlta: "02/12/2010",
-            regCancela: "--",
-            fecInicial: "--",
-            precioInic: "$ 0,0000",
-            enContratos: "0.00",
-            estado: "Cancelada",
-          },
+      },
+      {
+        title: "Futuro TRIGO Vol.100,000",
+        className: "eventoFuturo",
+        date: "2022-08-01",
+        extendedProps: {
+          tipoEvento: "Futuro",
+          id: 1,
+          tipo: "Futuros",
+          operacion: "Futuro",
+          condicion: "V",
+          producto: "TRIGO",
+          posicion: "01/2012",
+          volumen: "100,000",
+          precioEj: "0,00",
+          precioPrima: "$ 185,0000",
+          destino: "Buenos Aires",
+          registro: "951990",
+          fecAlta: "02/12/2010",
+          regCancela: "--",
+          fecInicial: "--",
+          precioInic: "$ 0,0000",
+          enContratos: "0.00",
+          estado: "Cancelada",
         },
-        {
-          title: "event 8",
-          className: "eventoFuturo",
-          date: "2022-07-29",
-          extendedProps: {
-            tipoEvento: "Futuro",
-            id: 2,
-            tipo: "Futuros",
-            operacion: "Futuro",
-            condicion: "V",
-            producto: "ACEITE",
-            posicion: "02/2012",
-            volumen: "200,000",
-            precioEj: "0,00",
-            precioPrima: "$ 185,0000",
-            destino: "Buenos Aires",
-            registro: "951990",
-            fecAlta: "02/12/2010",
-            regCancela: "--",
-            fecInicial: "--",
-            precioInic: "$ 0,0000",
-            enContratos: "0.00",
-            estado: "Cancelada",
-          },
+      },
+      {
+        title: "Futuro ACEITE Vol.200,000",
+        className: "eventoFuturo",
+        date: "2022-07-29",
+        extendedProps: {
+          tipoEvento: "Futuro",
+          id: 2,
+          tipo: "Futuros",
+          operacion: "Futuro",
+          condicion: "V",
+          producto: "ACEITE",
+          posicion: "02/2012",
+          volumen: "200,000",
+          precioEj: "0,00",
+          precioPrima: "$ 185,0000",
+          destino: "Buenos Aires",
+          registro: "951990",
+          fecAlta: "02/12/2010",
+          regCancela: "--",
+          fecInicial: "--",
+          precioInic: "$ 0,0000",
+          enContratos: "0.00",
+          estado: "Cancelada",
         },
-        {
-            title: "event 9",
-            className: "eventoFuturo",
-            date: "2023-07-29",
-            extendedProps: {
-              tipoEvento: "Futuro",
-              id: 2,
-              tipo: "Futuros",
-              operacion: "Futuro",
-              condicion: "V",
-              producto: "ACEITE",
-              posicion: "02/2012",
-              volumen: "200,000",
-              precioEj: "0,00",
-              precioPrima: "$ 186,0000",
-              destino: "Buenos Aires",
-              registro: "951990",
-              fecAlta: "02/12/2010",
-              regCancela: "--",
-              fecInicial: "--",
-              precioInic: "$ 0,0000",
-              enContratos: "0.00",
-              estado: "Cancelada",
-            },
-          }
-      ];
-  
-      if (!isCheckedCobranza && !isCheckedTodos)
-        eventos = eventos.filter(
-          (e) => e.extendedProps.tipoEvento !== "Cobranza"
-        );
-      if (!isCheckedCupo && !isCheckedTodos)
-        eventos = eventos.filter(
-          (e) => e.extendedProps.tipoEvento !== "Cupo"
-        );
-      if (!isCheckedVencimiento && !isCheckedTodos)
-        eventos = eventos.filter(
-          (e) => e.extendedProps.tipoEvento !== "Vencimiento"
-        );
-      if (!isCheckedFuturo && !isCheckedTodos)
-        eventos = eventos.filter(
-          (e) => e.extendedProps.tipoEvento !== "Futuro"
-        ); 
-      setEventosCalendario(eventos);
+      },
+    ];
+
+    if (!isCheckedCobranza && !isCheckedTodos)
+      eventos = eventos.filter(
+        (e) => e.extendedProps.tipoEvento !== "Cobranza"
+      );
+    if (!isCheckedCupo && !isCheckedTodos)
+      eventos = eventos.filter((e) => e.extendedProps.tipoEvento !== "Cupo");
+    if (!isCheckedVencimiento && !isCheckedTodos)
+      eventos = eventos.filter(
+        (e) => e.extendedProps.tipoEvento !== "Vencimiento"
+      );
+    if (!isCheckedFuturo && !isCheckedTodos)
+      eventos = eventos.filter((e) => e.extendedProps.tipoEvento !== "Futuro");
+    setEventosCalendario(eventos);
 
     let listSundays = document.getElementsByClassName("fc-day-sun");
     let listSaturdays = document.getElementsByClassName("fc-day-sat");
