@@ -10,7 +10,7 @@ import CuposModal from "../cupos/modal/CuposModal";
 import FuturoModal from "../futuros/modal/FuturoModal";
 import VencimientoModal from "../vencimientos/modal/VencimientosModal";
 
-function CalendarioAnual2() {
+function CalendarioAnual() {
   const [eventosCalendario, setEventosCalendario] = useState([]);
   const [contenido, setContenido] = useState({});
   //Para controlar los modales
@@ -610,4 +610,4 @@ function CalendarioAnual2() {
   );
 }
 
-export default CalendarioAnual2;
+export default CalendarioAnual;
