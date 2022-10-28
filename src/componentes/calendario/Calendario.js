@@ -5,7 +5,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import { EventosContext } from "../../context/EventosContext";
 //import resourceTimelinePlugin from '@fullcalendar/resource-timeline'
 import * as React from "react";
-import { useContext } from "react";
+import { useContext ,Link} from "react";
 import { useState } from "react";
 import { useLocation } from 'react-router-dom';
 
@@ -18,6 +18,7 @@ import SelectorEventos from "./SelectorEventos";
 
 export default function Calendario() {
   //const {eventos}= useContext(EventosContext);
+  const {eventos}=useContext(EventosContext);
   const [eventosCalendario, setEventosCalendario] = useState([]);
   const [contenido, setContenido] = useState({});
   //Para controlar los modales
@@ -109,14 +110,14 @@ export default function Calendario() {
     }
   }
 
-  function addRedClass(list) {
-    for (let element of list) {
-      for (let child of element.children) {
-        let label = child.firstChild?.firstChild;
-        label.className = "color-red";
-      }
-    }
-  }
+  // function addRedClass(list) {
+  //   for (let element of list) {
+  //     for (let child of element.children) {
+  //       let label = child.firstChild?.firstChild;
+  //       label.className = "color-red";
+  //     }
+  //   }
+  // }
 
   useEffect(() => {
     //cargo los eventos que se muestran en el calendario
@@ -279,7 +280,7 @@ export default function Calendario() {
           estado: "Cancelada",
         },
       },
-    ];
+    ]; 
 
     if (!isCheckedCobranza && !isCheckedTodos)
       eventos = eventos.filter(
@@ -299,11 +300,8 @@ export default function Calendario() {
       );
     console.log(eventos);    
     setEventosCalendario(eventos);
-    //seteo con color rojo los dias sabados y domingo
-    let listSundays = document.getElementsByClassName("fc-day-sun");
-    let listSaturdays = document.getElementsByClassName("fc-day-sat");
-    addRedClass(listSundays);
-    addRedClass(listSaturdays);
+
+
   }, [
     isCheckedCobranza,
     isCheckedCupo,
@@ -368,7 +366,9 @@ export default function Calendario() {
           vistaAnual: {
             text: "Año",
             click: function () {
-              document.location.href = "../CalendarioAnual";
+              var getUrl = window.location;
+              var baseUrl = getUrl .protocol + "//" + getUrl.host + "/";
+              document.location.href = baseUrl+="CalendarioAnual";
             },
           },
         }}
