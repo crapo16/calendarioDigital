@@ -9,7 +9,7 @@ function CuposModal({isOpen,item,toggleModal}){
                 className={"modalCupo"}
             >
                 <div className="modalHeader bg-cupos">
-                    <h6>Cupo</h6>
+                    <h6>Cupos Otorgados</h6>
                     <button className="btnCerrarModal" onClick={toggleModal}><i className="material-icons">close</i></button>
                 </div>    
             <div className="itemContainer">

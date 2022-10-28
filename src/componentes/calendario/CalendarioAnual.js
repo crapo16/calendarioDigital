@@ -113,14 +113,6 @@ function CalendarioAnual() {
     }
   }
 
-  function addRedClass(list) {
-    for (let element of list) {
-      for (let child of element.children) {
-        let label = child.firstChild?.firstChild;
-        label.className = "color-red";
-      }
-    }
-  }
 
   function changeYear(add) {
     let year = add ? currentYear + 1 : currentYear - 1;
@@ -154,7 +146,7 @@ function CalendarioAnual() {
       {
         title: "Venta 3.455.612,2",
         className: "eventoCobranza",
-        date: "2022-08-02",
+        date: "2022-08-04",
         extendedProps: {
           tipoEvento: "Cobranza",
           id: 1,
@@ -178,7 +170,7 @@ function CalendarioAnual() {
       {
         title: "Venta 3.455.612,3",
         className: "eventoCobranza",
-        date: "2022-08-02",
+        date: "2022-08-04",
         extendedProps: {
           tipoEvento: "Cobranza",
           id: 2,
@@ -202,7 +194,7 @@ function CalendarioAnual() {
       {
         title: "Soja - ADM Agro SRL - Adeco Agropecuaria S.A",
         className: "eventoCupo",
-        date: "2022-07-29",
+        date: "2022-08-05",
         extendedProps: {
           tipoEvento: "Cupo",
           id: 1,
@@ -221,7 +213,7 @@ function CalendarioAnual() {
       {
         title: "Soja - ADM Agro SRL - Adeco Agropecuaria S.A",
         className: "eventoCupo",
-        date: "2022-08-03",
+        date: "2022-08-08",
         extendedProps: {
           tipoEvento: "Cupo",
           id: 2,
@@ -240,7 +232,7 @@ function CalendarioAnual() {
       {
         title: "Vencimiento 1 - 14/08/2022",
         className: "eventoVencimiento",
-        date: "2022-08-03",
+        date: "2022-08-05",
         extendedProps: {
           tipoEvento: "Vencimiento",
           id: 1,
@@ -251,7 +243,7 @@ function CalendarioAnual() {
       {
         title: "Vencimiento 2 - 15/08/2022",
         className: "eventoVencimiento",
-        date: "2022-07-29",
+        date: "2022-08-06",
         extendedProps: {
           tipoEvento: "Vencimiento",
           id: 2,
@@ -262,7 +254,7 @@ function CalendarioAnual() {
       {
         title: "Futuro TRIGO Vol.100,000",
         className: "eventoFuturo",
-        date: "2022-08-01",
+        date: "2022-08-06",
         extendedProps: {
           tipoEvento: "Futuro",
           id: 1,
@@ -287,7 +279,7 @@ function CalendarioAnual() {
       {
         title: "Futuro ACEITE Vol.200,000",
         className: "eventoFuturo",
-        date: "2022-07-29",
+        date: "2022-08-08",
         extendedProps: {
           tipoEvento: "Futuro",
           id: 2,
@@ -325,10 +317,7 @@ function CalendarioAnual() {
       eventos = eventos.filter((e) => e.extendedProps.tipoEvento !== "Futuro");
     setEventosCalendario(eventos);
 
-    let listSundays = document.getElementsByClassName("fc-day-sun");
-    let listSaturdays = document.getElementsByClassName("fc-day-sat");
-    addRedClass(listSundays);
-    addRedClass(listSaturdays);
+
   }, [
     isCheckedCobranza,
     isCheckedCupo,
@@ -460,7 +449,7 @@ function CalendarioAnual() {
                       height="auto"
                       weekNumbers={false}
                       locale="es"
-                      firstDay={5}
+                      firstDay={1}
                       headerToolbar={headerToolbar}
                       views={{
                         dayGridMonth: {
@@ -499,7 +488,7 @@ function CalendarioAnual() {
                       height="auto"
                       locale="es"
                       weekNumbers={false}
-                      firstDay={5}
+                      firstDay={1}
                       headerToolbar={headerToolbar}
                       views={{
                         dayGridMonth: {
@@ -537,14 +526,19 @@ function CalendarioAnual() {
                       plugins={[dayGridPlugin, timeGridPlugin]}
                       height="auto"
                       locale="es"
+                      datesSet={(arg) => {
+                        console.log(arg.start) //starting visible date
+                        console.log(arg.end) //ending visible date
+                      }}
                       weekNumbers={false}
-                      firstDay={2}
+                      firstDay={1}
                       headerToolbar={headerToolbar}
                       views={{
                         dayGridMonth: {
                           titleFormat: {
                             month: "long",
                           },
+                          nowIndicatorClassNames:"fecha-actual"
                         },
                         dayGridYear: {
                           titleFormat: {
@@ -577,7 +571,7 @@ function CalendarioAnual() {
                       height="auto"
                       locale="es"
                       weekNumbers={false}
-                      firstDay={5}
+                      firstDay={1}
                       headerToolbar={headerToolbar}
                       views={{
                         dayGridMonth: {

@@ -14,7 +14,7 @@ export default function FuturosItem({item}){
     return (
         <div>
             <FuturoModal item={item} isOpen={isOpen} toggleModal={toggleModal}/>
-            <a href="#" onClick={toggleModal} className="truncate hoverable white-text">{item.operacion} {item.producto} Vol.{item.volumen} - lorem ipsun sit dolor ammet neque plus ultra veritas veritae</a><div className="divider"></div>
+            <a href="#" onClick={toggleModal} className="truncate hoverable white-text">{item.operacion} {item.producto} Vol.{item.volumen} - {item.registro}</a><div className="divider"></div>
         </div>
         
     );

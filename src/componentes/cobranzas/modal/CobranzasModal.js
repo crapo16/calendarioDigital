@@ -10,7 +10,7 @@ function CobranzasModal({item, toggleModal, isOpen}){
                 className={"modalCobranza"}
             >
                 <div className="modalHeader bg-cobranza">
-                    <h6>Cobranza</h6>
+                    <h6>Cobranzas y Pagos</h6>
                     <button className="btnCerrarModal" onClick={toggleModal}><i className="material-icons">close</i></button>
                 </div>  
                 <div className="itemContainer"> 

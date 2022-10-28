@@ -12,7 +12,7 @@ function VencimientosHome({visibilidadVencimientos,visibilidadTodos}){
                 <div className="card-content white-text">
                 <span className="card-title bg-vencimientos">Vencimientos</span>
                 {
-                    eventos['vencimientos']!=null && eventos['vencimientos'].length>0?
+                    eventos!=null && eventos['vencimientos']!=null && eventos['vencimientos'].length>0?
                     eventos['vencimientos'].map(function(vencimiento){
                         return (
                             <VencimientosItem key={vencimiento.id} item={vencimiento}/>

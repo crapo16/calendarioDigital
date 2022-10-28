@@ -14,7 +14,7 @@ function CobranzasHome({visibilidadCobranzas, visibilidadTodos}){
                 <div className="card-content white-text">
                 <span className="card-title bg-cobranza">Cobranzas</span>
                 {
-                            eventos['cobranzas']!=null && eventos['cobranzas'].length>0?
+                            eventos!=null && eventos['cobranzas']!=null && eventos['cobranzas'].length>0?
                             eventos['cobranzas'].map(function(cobranza){
                                 return (
                                     <CobranzasItem key={cobranza.id} item={cobranza}/>

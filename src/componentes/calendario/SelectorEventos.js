@@ -23,7 +23,7 @@ function SelectorEventos(props) {
           id="checkbox_cobranzas"
           onClick={handleCheckCobranzas}
         />
-        <span>COBRANZAS</span>
+        <span><span className="span-botonera-calendario span-cobranzas">COBRANZAS Y PAGOS</span></span>
       </label>
 
       <label>
@@ -34,7 +34,8 @@ function SelectorEventos(props) {
           id="checkbox_cupos"
           onClick={handleCheckCupos}
         />
-        <span>CUPOS OTORGADOS</span>
+        <span><span className="span-botonera-calendario span-cupos">CUPOS OTORGADOS</span></span>
+
       </label>
       <label>
         <input
@@ -44,7 +45,7 @@ function SelectorEventos(props) {
           id="checkbox_vencimientos"
           onClick={handleCheckVencimientos}
         />
-        <span>VENCIMIENTOS</span>
+        <span><span className="span-botonera-calendario span-vencimientos">VENCIMIENTOS</span></span>
       </label>
 
       <label>
@@ -55,7 +56,7 @@ function SelectorEventos(props) {
           id="checkbox_futuros"
           onClick={handleCheckFuturos}
         />
-        <span>FECHAS DE FUTUROS</span>
+        <span><span className="span-botonera-calendario span-futuros">VENCIMIENTO FUT Y OPC</span></span>
       </label>
 
       <label>
@@ -66,7 +67,7 @@ function SelectorEventos(props) {
           id="checkbox_todos"
           onClick={handleCheckTodos}
         />
-        <span>TODOS</span>
+        <span><span className="span-botonera-calendario span-todos">TODOS</span></span>
       </label>
     </div>
   );

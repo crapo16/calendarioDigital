@@ -18,7 +18,7 @@ function CobranzasItem({item}){
         <div>
             <CobranzasModal isOpen={isOpen} toggleModal={toggleModal} item={item}/>
 
-            <a href="#" onClick={toggleModal}  data-target={"modal"+item.id} className="truncate hoverable white-text modal-trigger">{item.cv} {item.impComprobante} - lorem ipsun sit dolor ammet neque plus ultra veritas veritae</a>
+            <a href="#" onClick={toggleModal}  data-target={"modal"+item.id} className="truncate hoverable white-text modal-trigger">{item.cv} {item.impComprobante} - {item.cpteOrigen}</a>
             <div className="divider"></div>
         </div>
     );

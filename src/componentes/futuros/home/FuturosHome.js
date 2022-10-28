@@ -12,7 +12,7 @@ function FuturosHome({futuros,visibilidadFuturos,visibilidadTodos}){
                 <span className="card-title bg-futuros">Futuros</span>
 
                 {
-                    eventos['futuros']!=null && eventos['futuros'].length>0?
+                    eventos!=null && eventos['futuros']!=null && eventos['futuros'].length>0?
                     eventos['futuros'].map(function(futuro){
                         return (
                             <FuturosItem key={futuro.id} item={futuro}/>

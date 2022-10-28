@@ -9,7 +9,7 @@ function FuturoModal({isOpen,toggleModal,item}){
             className={"modalFuturo"}
         >
             <div className="modalHeader bg-futuros">
-                <h6>Futuro</h6>
+                <h6>Vencimiento Fut y Opc</h6>
                 <button className="btnCerrarModal" onClick={toggleModal}><i className="material-icons">close</i></button>
             </div>    
             <div className="itemContainer">

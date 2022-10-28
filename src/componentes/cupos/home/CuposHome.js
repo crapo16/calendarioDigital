@@ -12,7 +12,7 @@ function CuposHome({visibilidadCupos,visibilidadTodos}){
                 <span className="card-title bg-cupos">Cupos</span>
 
                 {
-                            eventos['cupos']!=null && eventos['cupos'].length>0?
+                            eventos!=null && eventos['cupos']!=null && eventos['cupos'].length>0?
                             eventos['cupos'].map(function(cupo){
                                 return (
                                     <CupoItem key={cupo.id} item={cupo}/>

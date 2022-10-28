@@ -8,12 +8,18 @@ import CuposHome from '../cupos/home/CuposHome';
 import VencimientosHome from '../vencimientos/home/VencimientosHome';
 import FuturosHome from '../futuros/home/FuturosHome';
 import EventosZeniHome from '../eventosZeni/home/EventosZeniHome';
+import { EventosContext } from '../../context/EventosContext';
 
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { useContext } from 'react';
 
 
 
 function EventosHome({nombreUsuario, nroCuenta, nombreCuenta}){
+
+    const {user,hash,fechaHasta}=useParams();
+
+    const {setDatosUsuario,eventos}=useContext(EventosContext);
     const [visibilidadCobranzas, setVisibilidadCobranzas]=useState(false);
     const [visibilidadEventosZeni, setVisibilidadEventosZeni]=useState(false);
     const [visibilidadCupos, setVisibilidadCupos]=useState(false);
@@ -62,9 +68,11 @@ function EventosHome({nombreUsuario, nroCuenta, nombreCuenta}){
     }
 
     useEffect(()=>{
-        console.log(process.env.REACT_APP_WS_TOKEN);
+        setDatosUsuario(user,hash,fechaHasta);
 
-    },[])
+
+
+    },[user,hash,fechaHasta])
     return (
         <div>
             <div className='user-container section'>
