@@ -1,0 +1,20 @@
+.button-ver-mas-cupos {
+    background-color: #71898B;
+    color: white;
+    height:25px; 
+    width:100px; 
+    margin: -20px -50px; 
+    position:relative;
+    top:50%; 
+    left:50%;
+    padding: 0;
+    border: none;
+}
+
+.button-ver-mas-cupos:active{
+    background-color: #71898B;
+}
+
+.button-ver-mas-cupos:focus{
+    background-color: #71898B;
+}

@@ -1,24 +1,42 @@
+import './CuposHome.css';
 import CupoItem from "../item/CupoItem";
-import { useContext,memo } from "react";
+import { useContext, useState, memo } from "react";
 import { EventosContext } from "../../../context/EventosContext";
 
-function CuposHome({visibilidadCupos,visibilidadTodos}){
-    const {eventos}=useContext(EventosContext);
+function CuposHome({ visibilidadCupos, visibilidadTodos }) {
+    const { eventos } = useContext(EventosContext);
+
+    const [cantidadItems, setCantidadItems] = useState(10);
+    const [mostrarBoton, setMostrarBoton] = useState(true)
+
+    const handleClick = () => {
+        const cantidadItemsNuevo = cantidadItems + 10;
+        setCantidadItems(cantidadItemsNuevo);
+        if (eventos['cupos'].length <= cantidadItems) {
+            setMostrarBoton(false);
+        }
+    };
+
     return (
-        <div className={visibilidadCupos || visibilidadTodos?"contenedorHome":"hide"} id="cupos">
+        <div className={visibilidadCupos || visibilidadTodos ? "contenedorHome" : "hide"} id="cupos">
 
             <div className="card bg-cupos-light hoverable">
                 <div className="card-content white-text">
-                <span className="card-title bg-cupos">Cupos</span>
+                    <span className="card-title bg-cupos">Cupos</span>
 
-                {
-                            eventos!=null && eventos['cupos']!=null && eventos['cupos'].length>0?
-                            eventos['cupos'].map(function(cupo){
+                    {
+                        eventos != null && eventos['cupos'] != null && eventos['cupos'].length > 0 ?
+                            eventos['cupos'].slice(0, cantidadItems).map(function (cupo) {
                                 return (
-                                    <CupoItem key={cupo.id} item={cupo}/>
+                                    <CupoItem key={cupo.id} item={cupo} />
                                 )
-                            }): <p>Sin eventos</p>
-                }
+                            }) : <p>Sin eventos</p>
+                    }
+                    {
+                        mostrarBoton && eventos != null && eventos['cupos'] != null && eventos['cupos'].length > 0
+                            ? <button class="button-ver-mas-cupos" onClick={handleClick}>Ver más</button>
+                            : null
+                    }
                 </div>
             </div>
 
