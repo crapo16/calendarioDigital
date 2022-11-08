@@ -33,7 +33,7 @@ function CuposHome({ visibilidadCupos, visibilidadTodos }) {
                             }) : <p>Sin eventos</p>
                     }
                     {
-                        mostrarBoton && eventos != null && eventos['cupos'] != null && eventos['cupos'].length > 0
+                        mostrarBoton && eventos != null && eventos['cupos'] != null && eventos['cupos'].length > 0 && eventos['cupos'].length > 10
                             ? <button class="button-ver-mas-cupos" onClick={handleClick}>Ver más</button>
                             : null
                     }

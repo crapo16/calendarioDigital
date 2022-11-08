@@ -7,7 +7,7 @@ import { useState } from 'react';
 function CobranzasHome({ visibilidadCobranzas, visibilidadTodos }) {
     const { eventos } = useContext(EventosContext);
     const [cantidadItems, setCantidadItems] = useState(10);
-    const [mostrarBoton, setMostrarBoton] = useState(true)
+    const [mostrarBoton, setMostrarBoton] = useState(false)
 
     const handleClick = () => {
         const cantidadItemsNuevo = cantidadItems + 10;
@@ -34,9 +34,9 @@ function CobranzasHome({ visibilidadCobranzas, visibilidadTodos }) {
 
                     }
                     {
-                        mostrarBoton && eventos != null && eventos['cobranzas'] != null && eventos['cobranzas'].length > 0 
+                        mostrarBoton && eventos != null && eventos['cobranzas'] != null && eventos['cobranzas'].length > 0 && eventos['cobranzas'].length > 10
                         ? <button class="button-ver-mas" onClick={handleClick}>Ver más</button> 
-                        : null
+                        : <></>
                     }
                 </div>
             </div>

@@ -2,24 +2,25 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import esLocale from "@fullcalendar/core/locales/es";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import { EventosContext } from "../../context/EventosContext";
-//import resourceTimelinePlugin from '@fullcalendar/resource-timeline'
 import * as React from "react";
-import { useContext, Link } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from 'react-router-dom';
-import { useEffect } from "react";
 import CobranzasModal from "../cobranzas/modal/CobranzasModal";
 import CuposModal from "../cupos/modal/CuposModal";
 import FuturoModal from "../futuros/modal/FuturoModal";
 import VencimientoModal from "../vencimientos/modal/VencimientosModal";
 import SelectorEventos from "./SelectorEventos";
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import configData from '../../config.json';
+import './Calendario.css';
 
 export default function Calendario() {
+
   //const {eventos}= useContext(EventosContext);
-  const { eventos } = useContext(EventosContext);
+  const [seCargoEventos, setSeCargoEventos] = useState(false);
   const [eventosCalendario, setEventosCalendario] = useState([]);
+  const [error, setError] = useState(null);
+  const [eventosTodos, setEventosTodos] = useState([]);
   const [contenido, setContenido] = useState({});
   //Para controlar los modales
   const [isOpenCobranza, setIsOpenCobranza] = useState(false);
@@ -34,6 +35,8 @@ export default function Calendario() {
   const [isCheckedTodos, setIsCheckedTodos] = useState(true);
   const navigate = useNavigate();
   const location = useLocation()
+
+  // const eventoState = useState([]);
 
   const { vista = "" } = location?.state || ""
 
@@ -74,6 +77,7 @@ export default function Calendario() {
     setIsCheckedCobranza(!isCheckedCobranza);
     setIsCheckedTodos(false);
   }
+
   function handleCheckVencimientos() {
     setIsCheckedVencimiento(!isCheckedVencimiento);
     setIsCheckedTodos(false);
@@ -120,27 +124,64 @@ export default function Calendario() {
   // }
 
   useEffect(() => {
-    //cargo los eventos que se muestran en el calendario
-    let arrayEventos = eventos['eventosFullCalendar'];
 
-    if (!isCheckedCobranza && !isCheckedTodos)
-      arrayEventos = arrayEventos.filter(
-        (e) => e.extendedProps.tipoEvento !== "Cobranza"
-      );
-    if (!isCheckedCupo && !isCheckedTodos)
-    arrayEventos = arrayEventos.filter(
-        (e) => e.extendedProps.tipoEvento !== "Cupo"
-      );
-    if (!isCheckedVencimiento && !isCheckedTodos)
-    arrayEventos = arrayEventos.filter(
-        (e) => e.extendedProps.tipoEvento !== "Vencimiento"
-      );
-    if (!isCheckedFuturo && !isCheckedTodos)
-    arrayEventos = arrayEventos.filter(
-        (e) => e.extendedProps.tipoEvento !== "Futuro"
-      );
+    const options = {
+      headers: new Headers({ 'Access-Control-Allow-Origin': '*', Accept: 'application/json' }),
+      method: "GET"
+    };
+    const datosUsuario = JSON.parse(localStorage.getItem('userData'));
+    const obtenerEventos = async () => {
+      await fetch(`${configData.SERVER_URL}Evento?hash=${datosUsuario[1]}&user=${datosUsuario[0]}&fechaHasta=${datosUsuario[2]}`, options)
+        .then(res => res.json())
+        .then(
+          (result) => {
+            setEventosCalendario(result['eventosFullCalendar']);
+            setEventosTodos(result['eventosFullCalendar']);
+            setSeCargoEventos(true);
+          },
+          // Note: it's important to handle errors here
+          // instead of a catch() block so that we don't swallow
+          // exceptions from actual bugs in components.
+          (error) => {
+            setSeCargoEventos(true);
+            setError(error);
+          }
+        )
+    }
 
-    setEventosCalendario(arrayEventos);
+    if (!seCargoEventos) {
+      obtenerEventos();
+    }
+
+    if (seCargoEventos) {
+      let arrayEventos = new Array;
+
+      if (isCheckedCobranza) {
+        let arrayCobranza = eventosTodos.filter((e) => e.extendedProps.tipoEvento == "Cobranza");
+        arrayEventos = arrayEventos.concat(arrayCobranza);
+      }
+
+      if (isCheckedCupo) {
+        let arrayCupo = eventosTodos.filter((e) => e.extendedProps.tipoEvento == "Cupo");
+        arrayEventos = arrayEventos.concat(arrayCupo);
+      }
+
+      if (isCheckedFuturo) {
+        let arrayFuturo = eventosTodos.filter((e) => e.extendedProps.tipoEvento == "Futuro");
+        arrayEventos = arrayEventos.concat(arrayFuturo);
+      }
+
+      if (isCheckedVencimiento) {
+        let arrayVencimiento = eventosTodos.filter((e) => e.extendedProps.tipoEvento == "Vencimiento");
+        arrayEventos = arrayEventos.concat(arrayVencimiento);
+      }
+
+      if (isCheckedTodos) {
+        obtenerEventos();
+        arrayEventos = eventosTodos;
+      }
+      setEventosCalendario(arrayEventos);
+    }
 
   }, [
     isCheckedCobranza,
@@ -151,79 +192,79 @@ export default function Calendario() {
   ]);
 
   return (
-    <>
-      <CobranzasModal
-        isOpen={isOpenCobranza}
-        item={contenido}
-        toggleModal={toggleModalCobranza}
-      />
-      <CuposModal
-        isOpen={isOpenCupo}
-        item={contenido}
-        toggleModal={toggleModalCupo}
-      />
-      <FuturoModal
-        isOpen={isOpenFuturo}
-        item={contenido}
-        toggleModal={toggleModalFuturo}
-      />
-      <VencimientoModal
-        isOpen={isOpenVencimiento}
-        item={contenido}
-        toggleModal={toggleModalVencimiento}
-      />
 
-      <SelectorEventos
-        isCheckedCobranza={isCheckedCobranza}
-        isCheckedCupo={isCheckedCupo}
-        isCheckedFuturo={isCheckedFuturo}
-        isCheckedVencimiento={isCheckedVencimiento}
-        isCheckedTodos={isCheckedTodos}
-        handleCheckCobranzas={handleCheckCobranzas}
-        handleCheckCupos={handleCheckCupos}
-        handleCheckFuturos={handleCheckFuturos}
-        handleCheckVencimientos={handleCheckVencimientos}
-        handleCheckTodos={handleCheckTodos}
-      />
-      <FullCalendar
-        plugins={[dayGridPlugin, timeGridPlugin]}
-        initialView={initialView}
-        dayMaxEventRows={true} // for all non-TimeGrid views
-        views={{
-          timeGrid: {
-            dayMaxEventRows: 3 // adjust to 6 only for timeGridWeek/timeGridDay
-          }
-        }}
-        eventMaxStack={1}
-        locale={esLocale}
-        customButtons={{
-          vistaDiaria: {
-            text: "Día",
-            click: function () {
-              alert("Agregar resourceTimeline (resourceTimelinePlugin)");
-            },
-          },
-          vistaAnual: {
-            text: "Año",
-            click: function () {
-              navigate('/calendarioanual', {replace: true})
-              // var getUrl = window.location;
-              // var baseUrl = getUrl.protocol + "//" + getUrl.host + "/";
-              // document.location.href = baseUrl += "CalendarioAnual";
-            },
-          },
-        }}
-        headerToolbar={{
-          left: "prev,next today",
-          center: "title",
-          right: "timeGridDay timeGridWeek dayGridMonth vistaAnual",
-        }}
-        weekends={true}
-        eventClick={(info) => {
-          mostrarModal(info.event.extendedProps);
-        }}
-        events={eventosCalendario}
-      />
-    </>
+    <div>
+
+      {seCargoEventos ?
+        <><CobranzasModal
+          isOpen={isOpenCobranza}
+          item={contenido}
+          toggleModal={toggleModalCobranza} /><CuposModal
+            isOpen={isOpenCupo}
+            item={contenido}
+            toggleModal={toggleModalCupo} /><FuturoModal
+            isOpen={isOpenFuturo}
+            item={contenido}
+            toggleModal={toggleModalFuturo} /><VencimientoModal
+            isOpen={isOpenVencimiento}
+            item={contenido}
+            toggleModal={toggleModalVencimiento} />
+          <SelectorEventos
+            isCheckedCobranza={isCheckedCobranza}
+            isCheckedCupo={isCheckedCupo}
+            isCheckedFuturo={isCheckedFuturo}
+            isCheckedVencimiento={isCheckedVencimiento}
+            isCheckedTodos={isCheckedTodos}
+            handleCheckCobranzas={handleCheckCobranzas}
+            handleCheckCupos={handleCheckCupos}
+            handleCheckFuturos={handleCheckFuturos}
+            handleCheckVencimientos={handleCheckVencimientos}
+            handleCheckTodos={handleCheckTodos} />
+          <FullCalendar
+            plugins={[dayGridPlugin, timeGridPlugin]}
+            initialView={initialView}
+            dayMaxEventRows={true} // for all non-TimeGrid views
+            views={{
+              timeGrid: {
+                dayMaxEventRows: 3 // adjust to 6 only for timeGridWeek/timeGridDay
+              }
+            }}
+            eventMaxStack={1}
+            locale={esLocale}
+            customButtons={{
+              vistaDiaria: {
+                text: "Día",
+                click: function () {
+                  alert("Agregar resourceTimeline (resourceTimelinePlugin)");
+                },
+              },
+              vistaAnual: {
+                text: "Año",
+                click: function () {
+                  navigate('/calendarioanual', { replace: true });
+                  // var getUrl = window.location;
+                  // var baseUrl = getUrl.protocol + "//" + getUrl.host + "/";
+                  // document.location.href = baseUrl += "CalendarioAnual";
+                },
+              },
+            }}
+            headerToolbar={{
+              left: "prev,next today",
+              center: "title",
+              right: "timeGridDay timeGridWeek dayGridMonth vistaAnual",
+            }}
+            weekends={true}
+            eventClick={(info) => {
+              mostrarModal(info.event.extendedProps);
+            }}
+            events={eventosCalendario} /></>
+        : <>
+          <div className="pos-center">
+            <div className="loader">
+            </div>
+          </div>
+        </>}
+
+    </div>
   );
 }

@@ -32,7 +32,7 @@ function FuturosHome({ futuros, visibilidadFuturos, visibilidadTodos }) {
                             }) : <p>Sin eventos</p>
                     }
                     {
-                        mostrarBoton && eventos != null && eventos['futuros'] != null && eventos['futuros'].length > 0
+                        mostrarBoton && eventos != null && eventos['futuros'] != null && eventos['futuros'].length > 0 && eventos['futuros'].length > 10
                             ? <button class="button-ver-mas-futuro" onClick={handleClick}>Ver más</button>
                             : null
                     }

@@ -10,13 +10,13 @@ import FuturosHome from '../futuros/home/FuturosHome';
 import { EventosContext } from '../../context/EventosContext';
 import { Link, useParams } from 'react-router-dom';
 import { useContext } from 'react';
+import configData from '../../config.json';
 
 
 function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
 
     const { user, hash, fechaHasta } = useParams();
-
-    const { setDatosUsuario, eventos } = useContext(EventosContext);
+    const { eventos, setEventos } = useContext(EventosContext);
     const [visibilidadCobranzas, setVisibilidadCobranzas] = useState(false);
     const [visibilidadEventosZeni, setVisibilidadEventosZeni] = useState(false);
     const [visibilidadCupos, setVisibilidadCupos] = useState(false);
@@ -25,6 +25,7 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
     const [visibilidadTodos, setVisibilidadTodos] = useState(true);
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const [fechaHoy] = useState(new Date().toLocaleDateString('es-AR', options).charAt(0).toUpperCase() + new Date().toLocaleDateString('es-AR', options).slice(1));
+    const [hasLoaded, setHasLoaded] = useState(false);
 
     function cambiarTodos(visibilidad) {
 
@@ -66,19 +67,39 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
     }
 
     useEffect(() => {
-        setDatosUsuario(user, hash, fechaHasta);
+        let datosUsuario = [user, hash, fechaHasta];
+        localStorage.setItem('userData', JSON.stringify(datosUsuario));
+        async function obtenerEventos() {
+            const options = {
+                headers: new Headers({ 'Access-Control-Allow-Origin': '*', Accept: 'application/json' }),
+                method: "GET"
+            };
+            await fetch(`${configData.SERVER_URL}Evento?hash=${datosUsuario[1]}&user=${datosUsuario[0]}&fechaHasta=${datosUsuario[2]}`, options)
+                .then((response) => {
+                    response.json().then((json) =>
+                        setEventos(json),
+                    )
+                });
 
-    }, [user, hash, fechaHasta])
+            if (eventos) {
+                setHasLoaded(true);
+            }
+        }
+
+        !hasLoaded && obtenerEventos();
+    }, [hasLoaded]);
+
+
     return (
         <div>
             <div className='user-container section'>
                 {
 
-                    eventos['usuario'] && eventos['usuario'].razonSocial ? <h4> Buen día {eventos['usuario'].razonSocial}</h4> : <h4></h4>
+                    eventos && eventos['usuario'] && eventos['usuario'].razonSocial ? <h4> Buen día {eventos['usuario'].razonSocial}</h4> : <h4></h4>
                 }
 
                 {
-                    eventos['usuario'] ? eventos['usuario'].cuentas.map(e =>
+                    eventos && eventos['usuario'] ? eventos['usuario'].cuentas.map(e =>
                         <h5>Cuenta {e.numeroCuenta}, {e.denominacionCuenta}</h5>) :
                         <h5></h5>}
             </div>

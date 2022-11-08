@@ -32,7 +32,7 @@ function VencimientosHome({ visibilidadVencimientos, visibilidadTodos }) {
                             }) : <p>Sin eventos</p>
                     }
                     {
-                        mostrarBoton && eventos != null && eventos['vencimientos'] != null && eventos['vencimientos'].length > 0
+                        mostrarBoton && eventos != null && eventos['vencimientos'] != null && eventos['vencimientos'].length > 0 && eventos['vencimientos'].length > 10
                             ? <button class="button-ver-mas-vencimiento" onClick={handleClick}>Ver más</button>
                             : null
                     }
