@@ -11,7 +11,7 @@ function VencimientosHome({ visibilidadVencimientos, visibilidadTodos }) {
     const handleClick = () => {
         const cantidadItemsNuevo = cantidadItems + 10;
         setCantidadItems(cantidadItemsNuevo);
-        if (eventos['vencimientos'].length <= cantidadItems) {
+        if (eventos['vencimientos'].length <= cantidadItemsNuevo) {
             setMostrarBoton(false);
         }
     };

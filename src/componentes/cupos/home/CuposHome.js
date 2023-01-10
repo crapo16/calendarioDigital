@@ -12,7 +12,7 @@ function CuposHome({ visibilidadCupos, visibilidadTodos }) {
     const handleClick = () => {
         const cantidadItemsNuevo = cantidadItems + 10;
         setCantidadItems(cantidadItemsNuevo);
-        if (eventos['cupos'].length <= cantidadItems) {
+        if (eventos['cupos'].length <= cantidadItemsNuevo) {
             setMostrarBoton(false);
         }
     };

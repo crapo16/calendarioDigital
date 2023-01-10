@@ -7,12 +7,12 @@ import { useState } from 'react';
 function CobranzasHome({ visibilidadCobranzas, visibilidadTodos }) {
     const { eventos } = useContext(EventosContext);
     const [cantidadItems, setCantidadItems] = useState(10);
-    const [mostrarBoton, setMostrarBoton] = useState(false)
+    const [mostrarBoton, setMostrarBoton] = useState(true)
 
     const handleClick = () => {
         const cantidadItemsNuevo = cantidadItems + 10;
         setCantidadItems(cantidadItemsNuevo);
-        if (eventos['cobranzas'].length <= cantidadItems) {
+        if (eventos['cobranzas'].length <= cantidadItemsNuevo) {
             setMostrarBoton(false);
         }
     };

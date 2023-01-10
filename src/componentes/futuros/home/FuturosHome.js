@@ -11,7 +11,7 @@ function FuturosHome({ futuros, visibilidadFuturos, visibilidadTodos }) {
     const handleClick = () => {
         const cantidadItemsNuevo = cantidadItems + 10;
         setCantidadItems(cantidadItemsNuevo);
-        if (eventos['futuros'].length <= cantidadItems) {
+        if (eventos['futuros'].length <= cantidadItemsNuevo) {
             setMostrarBoton(false);
         }
     };
