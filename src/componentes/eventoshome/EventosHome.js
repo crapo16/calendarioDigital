@@ -25,7 +25,7 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
     const [visibilidadTodos, setVisibilidadTodos] = useState(true);
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const [fechaHoy] = useState(new Date().toLocaleDateString('es-AR', options).charAt(0).toUpperCase() + new Date().toLocaleDateString('es-AR', options).slice(1));
-    const [hasLoaded, setHasLoaded] = useState(false);
+    const [seCargoEventos, setSeCargoEventos] = useState(false);
 
     function cambiarTodos(visibilidad) {
 
@@ -82,64 +82,74 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
                 });
 
             if (eventos) {
-                setHasLoaded(true);
+                setSeCargoEventos(true);
             }
         }
 
-        !hasLoaded && obtenerEventos();
-    }, [hasLoaded]);
+        !seCargoEventos && obtenerEventos();
+    }, [seCargoEventos]);
 
 
     return (
         <div>
-            <div className='user-container section'>
-                {
+            {seCargoEventos ?
 
-                    eventos && eventos['usuario'] && eventos['usuario'].razonSocial ? <h4> Buen día {eventos['usuario'].razonSocial}</h4> : <h4></h4>
-                }
+                <div>
+                    <div className='user-container section'>
+                        {
 
-                {
-                    eventos && eventos['usuario'] ? eventos['usuario'].cuentas.map(e =>
-                        <h5>Cuenta {e.numeroCuenta}, {e.denominacionCuenta}</h5>) :
-                        <h5></h5>}
-            </div>
-            <div className='date-container'>
-                <div className='row'>
-                    <h3>{fechaHoy}</h3>
-                </div>
+                            eventos && eventos['usuario'] && eventos['usuario'].razonSocial ? <h4> Buen día {eventos['usuario'].razonSocial}</h4> : <h4></h4>
+                        }
 
-                <div className="botonera" id="botonera">
-                    <div>
-                        <div className={visibilidadCobranzas ? "chip c-cobranzas active" : "chip c-cobranzas"} onClick={() => cambiarCobranzas(!visibilidadCobranzas)}  >COBRANZAS</div>
-                        <div className={visibilidadCupos ? "chip c-cupos active" : "chip c-cupos"} onClick={() => cambiarCupos(!visibilidadCupos)}>CUPOS OTORGADOS</div>
-                        <div className={visibilidadVencimientos ? "chip c-vencimientos active" : "chip c-vencimientos"} onClick={() => cambiarVencimientos(!visibilidadVencimientos)}>VENCIMIENTOS</div>
-                        <div className={visibilidadFuturos ? "chip c-futuros active" : "chip c-futuros"} onClick={() => cambiarFuturos(!visibilidadFuturos)}>FUTUROS Y OPCIONES</div>
-                        {/* <div className={visibilidadEventosZeni?"chip c-eventos active":"chip c-eventos"} onClick={()=>setVisibilidadEventosZeni(!visibilidadEventosZeni)}>EVENTOS</div> */}
-                        <div className={visibilidadTodos ? "chip c-todos active active" : "chip c-todos"} onClick={() => cambiarTodos(!visibilidadTodos)}>TODOS</div>
+                        {
+                            eventos && eventos['usuario'] ? eventos['usuario'].cuentas.map(e =>
+                                <h5>Cuenta {e.numeroCuenta}, {e.denominacionCuenta}</h5>) :
+                                <h5></h5>}
                     </div>
-                    <div>
-                        <Link to={'/calendario'}>
-                            <div className="btn waves-effect indigo lighten-5 color-primary">
-                                <i className="material-icons left">today</i>
-                                VER CALENDARIO
+                    <div className='date-container'>
+                        <div className='row'>
+                            <h3>{fechaHoy}</h3>
+                        </div>
+
+                        <div className="botonera" id="botonera">
+                            <div>
+                                <div className={visibilidadCobranzas ? "chip c-cobranzas active" : "chip c-cobranzas"} onClick={() => cambiarCobranzas(!visibilidadCobranzas)}  >COBRANZAS</div>
+                                <div className={visibilidadCupos ? "chip c-cupos active" : "chip c-cupos"} onClick={() => cambiarCupos(!visibilidadCupos)}>CUPOS OTORGADOS</div>
+                                <div className={visibilidadVencimientos ? "chip c-vencimientos active" : "chip c-vencimientos"} onClick={() => cambiarVencimientos(!visibilidadVencimientos)}>VENCIMIENTOS</div>
+                                <div className={visibilidadFuturos ? "chip c-futuros active" : "chip c-futuros"} onClick={() => cambiarFuturos(!visibilidadFuturos)}>FUTUROS Y OPCIONES</div>
+                                {/* <div className={visibilidadEventosZeni?"chip c-eventos active":"chip c-eventos"} onClick={()=>setVisibilidadEventosZeni(!visibilidadEventosZeni)}>EVENTOS</div> */}
+                                <div className={visibilidadTodos ? "chip c-todos active active" : "chip c-todos"} onClick={() => cambiarTodos(!visibilidadTodos)}>TODOS</div>
                             </div>
-                        </Link>
+                            <div>
+                                <Link to={'/calendario'}>
+                                    <div className="btn waves-effect indigo lighten-5 color-primary">
+                                        <i className="material-icons left">today</i>
+                                        VER CALENDARIO
+                                    </div>
+                                </Link>
+                            </div>
+                        </div>
+
+
+                        <div className='event-container'>
+                            <CobranzasHome visibilidadCobranzas={visibilidadCobranzas} visibilidadTodos={visibilidadTodos} />
+                            <CuposHome visibilidadCupos={visibilidadCupos} visibilidadTodos={visibilidadTodos} />
+                            <VencimientosHome visibilidadVencimientos={visibilidadVencimientos} visibilidadTodos={visibilidadTodos} />
+                            <FuturosHome visibilidadFuturos={visibilidadFuturos} visibilidadTodos={visibilidadTodos} />
+                            {/* <EventosZeniHome visibilidadEventosZeni={visibilidadEventosZeni} visibilidadTodos={visibilidadTodos}/> */}
+                            {!visibilidadTodos && !visibilidadVencimientos && !visibilidadCobranzas && !visibilidadCupos && !visibilidadEventosZeni && !visibilidadFuturos ?
+                                <p>Seleccione al menos un item para ver los eventos</p> : ""
+                            }
+                        </div>
+
                     </div>
                 </div>
-
-
-                <div className='event-container'>
-                    <CobranzasHome visibilidadCobranzas={visibilidadCobranzas} visibilidadTodos={visibilidadTodos} />
-                    <CuposHome visibilidadCupos={visibilidadCupos} visibilidadTodos={visibilidadTodos} />
-                    <VencimientosHome visibilidadVencimientos={visibilidadVencimientos} visibilidadTodos={visibilidadTodos} />
-                    <FuturosHome visibilidadFuturos={visibilidadFuturos} visibilidadTodos={visibilidadTodos} />
-                    {/* <EventosZeniHome visibilidadEventosZeni={visibilidadEventosZeni} visibilidadTodos={visibilidadTodos}/> */}
-                    {!visibilidadTodos && !visibilidadVencimientos && !visibilidadCobranzas && !visibilidadCupos && !visibilidadEventosZeni && !visibilidadFuturos ?
-                        <p>Seleccione al menos un item para ver los eventos</p> : ""
-                    }
-                </div>
-
-            </div>
+                : <>
+                    <div className="pos-center">
+                        <div className="loader">
+                        </div>
+                    </div>
+                </>}
         </div>
     )
 }

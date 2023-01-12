@@ -21,3 +21,8 @@
       transform: rotate(360deg);
     }
   } 
+
+  .fc-more-popover {
+    max-height: 300px;
+    overflow-y: auto;
+  }
