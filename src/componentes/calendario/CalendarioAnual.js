@@ -61,18 +61,30 @@ function CalendarioAnual() {
 
   function toggleModalCobranza() {
     setIsOpenCobranza(!isOpenCobranza);
+    setIsOpenCupo(false);
+    setIsOpenFuturo(false);
+    setIsOpenVencimiento(false);
   }
 
   function toggleModalCupo() {
     setIsOpenCupo(!isOpenCupo);
+    setIsOpenCobranza(false);
+    setIsOpenFuturo(false);
+    setIsOpenVencimiento(false);
   }
 
   function toggleModalVencimiento() {
     setIsOpenVencimiento(!isOpenVencimiento);
+    setIsOpenCupo(false);
+    setIsOpenFuturo(false);
+    setIsOpenCobranza(false);
   }
 
   function toggleModalFuturo() {
     setIsOpenFuturo(!isOpenFuturo);
+    setIsOpenCupo(false);
+    setIsOpenVencimiento(false);
+    setIsOpenCobranza(false);
   }
 
   function handleCheckCupos() {

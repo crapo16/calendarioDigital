@@ -34,9 +34,7 @@ export default function Calendario() {
   const [isCheckedFuturo, setIsCheckedFuturo] = useState(false);
   const [isCheckedTodos, setIsCheckedTodos] = useState(true);
   const navigate = useNavigate();
-  const location = useLocation()
-
-  // const eventoState = useState([]);
+  const location = useLocation();
 
   const { vista = "" } = location?.state || ""
 
@@ -54,18 +52,30 @@ export default function Calendario() {
 
   function toggleModalCobranza() {
     setIsOpenCobranza(!isOpenCobranza);
+    setIsOpenCupo(false);
+    setIsOpenFuturo(false);
+    setIsOpenVencimiento(false);
   }
 
   function toggleModalCupo() {
     setIsOpenCupo(!isOpenCupo);
+    setIsOpenCobranza(false);
+    setIsOpenFuturo(false);
+    setIsOpenVencimiento(false);
   }
 
   function toggleModalVencimiento() {
     setIsOpenVencimiento(!isOpenVencimiento);
+    setIsOpenCupo(false);
+    setIsOpenFuturo(false);
+    setIsOpenCobranza(false);
   }
 
   function toggleModalFuturo() {
     setIsOpenFuturo(!isOpenFuturo);
+    setIsOpenCupo(false);
+    setIsOpenVencimiento(false);
+    setIsOpenCobranza(false);
   }
 
   function handleCheckCupos() {
@@ -196,19 +206,24 @@ export default function Calendario() {
     <div>
 
       {seCargoEventos ?
-        <><CobranzasModal
+        <>
+        <CobranzasModal
           isOpen={isOpenCobranza}
           item={contenido}
-          toggleModal={toggleModalCobranza} /><CuposModal
+          toggleModal={toggleModalCobranza} />
+          <CuposModal
             isOpen={isOpenCupo}
             item={contenido}
-            toggleModal={toggleModalCupo} /><FuturoModal
+            toggleModal={toggleModalCupo} />
+            <FuturoModal
             isOpen={isOpenFuturo}
             item={contenido}
-            toggleModal={toggleModalFuturo} /><VencimientoModal
+            toggleModal={toggleModalFuturo} />
+            <VencimientoModal
             isOpen={isOpenVencimiento}
             item={contenido}
             toggleModal={toggleModalVencimiento} />
+
           <SelectorEventos
             isCheckedCobranza={isCheckedCobranza}
             isCheckedCupo={isCheckedCupo}
@@ -227,7 +242,7 @@ export default function Calendario() {
             views={{
               timeGrid: {
                 dayMaxEventRows: 3 // adjust to 6 only for timeGridWeek/timeGridDay
-              }
+              },
             }}
             eventMaxStack={1}
             locale={esLocale}
@@ -257,7 +272,8 @@ export default function Calendario() {
             eventClick={(info) => {
               mostrarModal(info.event.extendedProps);
             }}
-            events={eventosCalendario} /></>
+            events={eventosCalendario}
+            /></>
         : <>
           <div className="pos-center">
             <div className="loader">
