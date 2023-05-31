@@ -21,7 +21,7 @@ function FuturosHome({ futuros, visibilidadFuturos, visibilidadTodos }) {
 
             <div className="card bg-futuros-light hoverable">
                 <div className="card-content white-text">
-                    <span className="card-title bg-futuros">Futuros</span>
+                    <span className="card-title bg-futuros">VENCIMIENTO FUT y OP</span>
 
                     {
                         eventos != null && eventos['futuros'] != null && eventos['futuros'].length > 0 ?
@@ -33,7 +33,7 @@ function FuturosHome({ futuros, visibilidadFuturos, visibilidadTodos }) {
                     }
                     {
                         mostrarBoton && eventos != null && eventos['futuros'] != null && eventos['futuros'].length > 0 && eventos['futuros'].length > 10
-                            ? <button class="button-ver-mas-futuro" onClick={handleClick}>Ver más</button>
+                            ? <button className="button-ver-mas-futuro" onClick={handleClick}>Ver más</button>
                             : null
                     }
 

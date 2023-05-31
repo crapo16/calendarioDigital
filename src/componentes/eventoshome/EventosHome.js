@@ -11,6 +11,7 @@ import { EventosContext } from '../../context/EventosContext';
 import { Link, useParams } from 'react-router-dom';
 import { useContext } from 'react';
 import configData from '../../config.json';
+import OperatoriaFutyOpcHome from '../operatoriaFutyOpc/home/OperatoriaFutyOpcHome';
 
 
 function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
@@ -21,7 +22,7 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
     const [visibilidadEventosZeni, setVisibilidadEventosZeni] = useState(false);
     const [visibilidadCupos, setVisibilidadCupos] = useState(false);
     const [visibilidadFuturos, setVisibilidadFuturos] = useState(false);
-    const [visibilidadVencimientos, setVisibilidadVencimientos] = useState(false);
+    const [visibilidadOperatoriaFutyOpc, setVisibilidadOperatoriaFutyOpc] = useState(false);
     const [visibilidadTodos, setVisibilidadTodos] = useState(true);
     const [cuentasSeleccionadas, setCuentasSeleccionadas] = useState([]);
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -36,7 +37,7 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
             setVisibilidadEventosZeni(false);
             setVisibilidadCupos(false);
             setVisibilidadFuturos(false);
-            setVisibilidadVencimientos(false);
+            setVisibilidadOperatoriaFutyOpc(false);
             setVisibilidadTodos(true);
         }
         else {
@@ -62,8 +63,8 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
 
     }
 
-    function cambiarVencimientos(visibilidad) {
-        setVisibilidadVencimientos(visibilidad);
+    function cambiarOperatoriaFutyOpc(visibilidad) {
+        setVisibilidadOperatoriaFutyOpc(visibilidad);
         setVisibilidadTodos(false);
 
     }
@@ -134,11 +135,11 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
                             <div className="itemContainer">
                                 
                             <div>
-                               <h5> Cuenta {e.numeroCuenta}, {e.denominacionCuenta}</h5>
+                               <span className='fontSize1'> Cuenta {e.numeroCuenta}, {e.denominacionCuenta}</span>
                             </div>
                             
                             <div>
-                                <label className='fontSize26'>
+                                <label className='fontSize2'>
                                     <input
                                     type="checkbox"
                                     className="filled-in color-cobranzas"
@@ -161,8 +162,8 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
                             <div>
                                 <div className={visibilidadCobranzas ? "chip c-cobranzas active" : "chip c-cobranzas"} onClick={() => cambiarCobranzas(!visibilidadCobranzas)}  >COBRANZAS</div>
                                 <div className={visibilidadCupos ? "chip c-cupos active" : "chip c-cupos"} onClick={() => cambiarCupos(!visibilidadCupos)}>CUPOS OTORGADOS</div>
-                                <div className={visibilidadVencimientos ? "chip c-vencimientos active" : "chip c-vencimientos"} onClick={() => cambiarVencimientos(!visibilidadVencimientos)}>VENCIMIENTOS</div>
-                                <div className={visibilidadFuturos ? "chip c-futuros active" : "chip c-futuros"} onClick={() => cambiarFuturos(!visibilidadFuturos)}>FUTUROS Y OPCIONES</div>
+                                <div className={visibilidadOperatoriaFutyOpc ? "chip c-vencimientos active" : "chip c-vencimientos"} onClick={() => cambiarOperatoriaFutyOpc(!visibilidadOperatoriaFutyOpc)}>OPERATORIA DIARIA FUT Y OPC</div>
+                                <div className={visibilidadFuturos ? "chip c-futuros active" : "chip c-futuros"} onClick={() => cambiarFuturos(!visibilidadFuturos)}>VENCIMIENTO FUT y OP</div>
                                 {/* <div className={visibilidadEventosZeni?"chip c-eventos active":"chip c-eventos"} onClick={()=>setVisibilidadEventosZeni(!visibilidadEventosZeni)}>EVENTOS</div> */}
                                 <div className={visibilidadTodos ? "chip c-todos active active" : "chip c-todos"} onClick={() => cambiarTodos(!visibilidadTodos)}>TODOS</div>
                             </div>
@@ -180,10 +181,11 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
                         <div className='event-container'>
                             <CobranzasHome visibilidadCobranzas={visibilidadCobranzas} visibilidadTodos={visibilidadTodos} />
                             <CuposHome visibilidadCupos={visibilidadCupos} visibilidadTodos={visibilidadTodos} />
-                            <VencimientosHome visibilidadVencimientos={visibilidadVencimientos} visibilidadTodos={visibilidadTodos} />
+                            {/* <VencimientosHome visibilidadVencimientos={visibilidadVencimientos} visibilidadTodos={visibilidadTodos} /> */}
+                            <OperatoriaFutyOpcHome visibilidadOperatoriaFutyOpc={visibilidadOperatoriaFutyOpc} visibilidadTodos={visibilidadTodos} />
                             <FuturosHome visibilidadFuturos={visibilidadFuturos} visibilidadTodos={visibilidadTodos} />
                             {/* <EventosZeniHome visibilidadEventosZeni={visibilidadEventosZeni} visibilidadTodos={visibilidadTodos}/> */}
-                            {!visibilidadTodos && !visibilidadVencimientos && !visibilidadCobranzas && !visibilidadCupos && !visibilidadEventosZeni && !visibilidadFuturos ?
+                            {!visibilidadTodos && !visibilidadOperatoriaFutyOpc && !visibilidadCobranzas && !visibilidadCupos && !visibilidadEventosZeni && !visibilidadFuturos ?
                                 <p>Seleccione al menos un item para ver los eventos</p> : ""
                             }
                         </div>

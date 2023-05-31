@@ -1,10 +1,10 @@
 import Modal from "react-modal";
 import React, { useState } from "react";
-import FuturoModal from '../modal/FuturoModal';
+import OperatoriaFutyOpcModal from '../modal/OperatoriaFutyOpcModal';
 
 Modal.setAppElement("#root");
 
-export default function FuturosItem({item}){
+export default function OperatoriaFutyOpcItem({item}){
     const [isOpen, setIsOpen] = useState(false);
 
     function toggleModal() {
@@ -13,10 +13,10 @@ export default function FuturosItem({item}){
 
     return (
         <div>
-            <FuturoModal item={item} isOpen={isOpen} toggleModal={toggleModal}/>
+            <OperatoriaFutyOpcModal item={item} toggleModal={toggleModal} isOpen={isOpen}/>
             <a href="#" onClick={toggleModal} className="truncate hoverable white-text">{item.fecAlta} - {item.condicion} - {item.producto} - {item.volumen} - {item.posicion}</a><div className="divider"></div>
         </div>
+
         
     );
-
 }

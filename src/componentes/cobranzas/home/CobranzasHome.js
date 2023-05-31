@@ -28,14 +28,14 @@ function CobranzasHome({ visibilidadCobranzas, visibilidadTodos }) {
                         (eventos != null && eventos['cobranzas'] != null && eventos['cobranzas'].length > 0 ?
                             eventos['cobranzas'].slice(0, cantidadItems).map(function (cobranza) {
                                 return (
-                                    <CobranzasItem key={cobranza.id} item={cobranza} />
+                                    <CobranzasItem id={cobranza.id} key={cobranza.id} item={cobranza} />
                                 )
                             }) : <p>Sin eventos</p>)
 
                     }
                     {
                         mostrarBoton && eventos != null && eventos['cobranzas'] != null && eventos['cobranzas'].length > 0 && eventos['cobranzas'].length > 10
-                        ? <button class="button-ver-mas" onClick={handleClick}>Ver más</button> 
+                        ? <button className="button-ver-mas" onClick={handleClick}>Ver más</button> 
                         : <></>
                     }
                 </div>

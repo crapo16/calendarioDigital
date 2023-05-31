@@ -339,7 +339,7 @@ function CalendarioAnual() {
               </div>
             </div>
 
-            <table class="table_year">
+            <table className="table_year">
               <tbody>
                 <tr>
                   {months1.map((item, i) => (

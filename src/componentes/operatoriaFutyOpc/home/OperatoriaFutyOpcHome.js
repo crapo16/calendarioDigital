@@ -1,9 +1,9 @@
-import './VencimientosHome.css';
-import VencimientosItem from "../item/VencimientosItem";
+import './OperatoriaFutyOpcHome.css';
+import OperatoriaFutyOpcItem from "../item/OperatoriaFutyOpcItem";
 import { EventosContext } from "../../../context/EventosContext";
 import { useContext, useState } from "react";
 
-function VencimientosHome({ visibilidadVencimientos, visibilidadTodos }) {
+function OperatoriaFutyOpcHome({ visibilidadOperatoriaFutyOpc, visibilidadTodos }) {
     const { eventos } = useContext(EventosContext);
     const [cantidadItems, setCantidadItems] = useState(10);
     const [mostrarBoton, setMostrarBoton] = useState(true)
@@ -11,28 +11,28 @@ function VencimientosHome({ visibilidadVencimientos, visibilidadTodos }) {
     const handleClick = () => {
         const cantidadItemsNuevo = cantidadItems + 10;
         setCantidadItems(cantidadItemsNuevo);
-        if (eventos['vencimientos'].length <= cantidadItemsNuevo) {
+        if (eventos['operatoriaFutyOpc'].length <= cantidadItemsNuevo) {
             setMostrarBoton(false);
         }
     };
 
 
     return (
-        <div className={visibilidadVencimientos || visibilidadTodos ? "contenedorHome" : "hide"} id="vencimientos">
+        <div className={visibilidadOperatoriaFutyOpc || visibilidadTodos ? "contenedorHome" : "hide"} id="vencimientos">
 
             <div className="card bg-vencimientos-light hoverable">
                 <div className="card-content white-text">
                     <span className="card-title bg-vencimientos">Operatoria Diaria Fut y Opc</span>
                     {
-                        eventos != null && eventos['vencimientos'] != null && eventos['vencimientos'].length > 0 ?
-                            eventos['vencimientos'].slice(0, cantidadItems).map(function (vencimiento) {
+                        eventos != null && eventos['operatoriaFutyOpc'] != null && eventos['operatoriaFutyOpc'].length > 0 ?
+                            eventos['operatoriaFutyOpc'].slice(0, cantidadItems).map(function (operatoriaFutyOpc) {
                                 return (
-                                    <VencimientosItem key={vencimiento.id} item={vencimiento} />
+                                    <OperatoriaFutyOpcItem key={operatoriaFutyOpc.id} item={operatoriaFutyOpc} />
                                 )
                             }) : <p>Sin eventos</p>
                     }
                     {
-                        mostrarBoton && eventos != null && eventos['vencimientos'] != null && eventos['vencimientos'].length > 0 && eventos['vencimientos'].length > 10
+                        mostrarBoton && eventos != null && eventos['operatoriaFutyOpc'] != null && eventos['operatoriaFutyOpc'].length > 0 && eventos['operatoriaFutyOpc'].length > 10
                             ? <button className="button-ver-mas-vencimiento" onClick={handleClick}>Ver más</button>
                             : null
                     }
@@ -44,4 +44,4 @@ function VencimientosHome({ visibilidadVencimientos, visibilidadTodos }) {
     );
 }
 
-export default VencimientosHome;
+export default OperatoriaFutyOpcHome;

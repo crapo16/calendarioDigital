@@ -415,6 +415,9 @@ table.table_year .fc-col-header-cell a {font-size: 1em;}
   padding: 4px 4px;
 }
 
-.fontSize26{
-  font-size: 2.6rem;
+.fontSize2{
+  font-size: 2rem;
+}
+.fontSize1{
+  font-size: 1rem;
 }
