@@ -421,3 +421,10 @@ table.table_year .fc-col-header-cell a {font-size: 1em;}
 .fontSize1{
   font-size: 1rem;
 }
+
+.padding2{
+  padding: 2%;
+}
+.bodyPadding{
+  padding: 3% 15% 0% 15%;
+} 

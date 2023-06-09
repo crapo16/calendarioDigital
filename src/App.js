@@ -4,6 +4,8 @@ import Calendario from './componentes/calendario/Calendario';
 import CalendarioAnual from './componentes/calendario/CalendarioAnual';
 import './App.css';
 import { EventosContextProvider } from './context/EventosContext';
+import ListaEventos from './componentes/eventos/listaEventos/ListaEventos';
+import CrearEvento from './componentes/eventos/crearEvento/CrearEvento';
 // import EventosContextProvider from './context/EventosContext';
 
 function App() {
@@ -25,6 +27,8 @@ function App() {
           <Route path="/:hash/:user/:fechaHasta" element={<EventosHome nombreUsuario="Roberto Villa" nroCuenta="3990" nombreCuenta="Aceitera Gral. Deheza S.A."/>}/>
           <Route path="/calendario" element={<Calendario/>}/>
           <Route path="/CalendarioAnual" element={<CalendarioAnual/>}/>
+          <Route path="/listaDeEventos" element={<ListaEventos/>}/>
+          <Route path="/crearEvento" element={<CrearEvento/>}/>
           <Route path="*" element={ 
             <div>
               <h2>Pagina no encontrada</h2>

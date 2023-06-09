@@ -1,0 +1,9 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 25% 25% 20% 30%;
+    margin: 10px
+  }
+.mr-5{
+    margin-right: 5px;
+}
+  
