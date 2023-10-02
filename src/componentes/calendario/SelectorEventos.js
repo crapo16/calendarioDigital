@@ -37,7 +37,7 @@ function SelectorEventos(props) {
         <span><span className="span-botonera-calendario span-cupos">CUPOS OTORGADOS</span></span>
 
       </label>
-      <label>
+      {/* <label>
         <input
           type="checkbox"
           className="filled-in color-vencimientos"
@@ -46,7 +46,7 @@ function SelectorEventos(props) {
           onClick={handleCheckVencimientos}
         />
         <span><span className="span-botonera-calendario span-vencimientos">VENCIMIENTOS</span></span>
-      </label>
+      </label> */}
 
       <label>
         <input
@@ -56,7 +56,7 @@ function SelectorEventos(props) {
           id="checkbox_futuros"
           onClick={handleCheckFuturos}
         />
-        <span><span className="span-botonera-calendario span-futuros">VENCIMIENTO FUT Y OPC</span></span>
+        <span><span className="span-botonera-calendario span-futuros">FUTUROS Y OPCIONES</span></span>
       </label>
 
       <label>

@@ -17,6 +17,16 @@ function CobranzasModal({item, toggleModal, isOpen}){
                     <div>Vto.</div> 
                     <div>{item.vto}</div>
                 </div>
+                <div className="divider" />
+                <div className="itemContainer">
+                    <div>Comprador</div>
+                    <div>{item.contraparte}</div>
+                </div>
+                <div className="divider" />
+                <div className="itemContainer">
+                    <div>Vendedor</div>
+                    <div>{item.cuenta   }</div>
+                </div>
                 <div className="divider"/>
                 <div className="itemContainer"> 
                     <div>C/V</div> 

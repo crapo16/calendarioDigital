@@ -8,7 +8,7 @@ import { useLocation } from 'react-router-dom';
 import CobranzasModal from "../cobranzas/modal/CobranzasModal";
 import CuposModal from "../cupos/modal/CuposModal";
 import FuturoModal from "../futuros/modal/FuturoModal";
-import VencimientoModal from "../vencimientos/modal/VencimientosModal";
+// import VencimientoModal from "../vencimientos/modal/VencimientosModal";
 import SelectorEventos from "./SelectorEventos";
 import { useNavigate } from 'react-router-dom';
 import configData from '../../config.json';
@@ -25,12 +25,12 @@ export default function Calendario() {
   //Para controlar los modales
   const [isOpenCobranza, setIsOpenCobranza] = useState(false);
   const [isOpenCupo, setIsOpenCupo] = useState(false);
-  const [isOpenVencimiento, setIsOpenVencimiento] = useState(false);
+  // const [isOpenVencimiento, setIsOpenVencimiento] = useState(false);
   const [isOpenFuturo, setIsOpenFuturo] = useState(false);
   //Para controlar los checkboxes
   const [isCheckedCobranza, setIsCheckedCobranza] = useState(false);
   const [isCheckedCupo, setIsCheckedCupo] = useState(false);
-  const [isCheckedVencimiento, setIsCheckedVencimiento] = useState(false);
+  // const [isCheckedVencimiento, setIsCheckedVencimiento] = useState(false);
   const [isCheckedFuturo, setIsCheckedFuturo] = useState(false);
   const [isCheckedTodos, setIsCheckedTodos] = useState(true);
   const navigate = useNavigate();
@@ -54,27 +54,27 @@ export default function Calendario() {
     setIsOpenCobranza(!isOpenCobranza);
     setIsOpenCupo(false);
     setIsOpenFuturo(false);
-    setIsOpenVencimiento(false);
+    // setIsOpenVencimiento(false);
   }
 
   function toggleModalCupo() {
     setIsOpenCupo(!isOpenCupo);
     setIsOpenCobranza(false);
     setIsOpenFuturo(false);
-    setIsOpenVencimiento(false);
+    // setIsOpenVencimiento(false);
   }
 
-  function toggleModalVencimiento() {
-    setIsOpenVencimiento(!isOpenVencimiento);
-    setIsOpenCupo(false);
-    setIsOpenFuturo(false);
-    setIsOpenCobranza(false);
-  }
+  // function toggleModalVencimiento() {
+  //   setIsOpenVencimiento(!isOpenVencimiento);
+  //   setIsOpenCupo(false);
+  //   setIsOpenFuturo(false);
+  //   setIsOpenCobranza(false);
+  // }
 
   function toggleModalFuturo() {
     setIsOpenFuturo(!isOpenFuturo);
     setIsOpenCupo(false);
-    setIsOpenVencimiento(false);
+    //setIsOpenVencimiento(false);
     setIsOpenCobranza(false);
   }
 
@@ -88,10 +88,10 @@ export default function Calendario() {
     setIsCheckedTodos(false);
   }
 
-  function handleCheckVencimientos() {
-    setIsCheckedVencimiento(!isCheckedVencimiento);
-    setIsCheckedTodos(false);
-  }
+  // function handleCheckVencimientos() {
+  //   setIsCheckedVencimiento(!isCheckedVencimiento);
+  //   setIsCheckedTodos(false);
+  // }
   function handleCheckFuturos() {
     setIsCheckedFuturo(!isCheckedFuturo);
     setIsCheckedTodos(false);
@@ -99,7 +99,7 @@ export default function Calendario() {
 
   function handleCheckTodos() {
     setIsCheckedCobranza(false);
-    setIsCheckedVencimiento(false);
+    //setIsCheckedVencimiento(false);
     setIsCheckedFuturo(false);
     setIsCheckedCupo(false);
     setIsCheckedTodos(!isCheckedTodos);
@@ -115,7 +115,7 @@ export default function Calendario() {
         toggleModalCupo();
         break;
       case "Vencimiento":
-        toggleModalVencimiento();
+        //toggleModalVencimiento();
         break;
       case "Futuro":
         toggleModalFuturo();
@@ -181,10 +181,10 @@ export default function Calendario() {
         arrayEventos = arrayEventos.concat(arrayFuturo);
       }
 
-      if (isCheckedVencimiento) {
-        let arrayVencimiento = eventosTodos.filter((e) => e.extendedProps.tipoEvento == "Vencimiento");
-        arrayEventos = arrayEventos.concat(arrayVencimiento);
-      }
+      // if (isCheckedVencimiento) {
+      //   let arrayVencimiento = eventosTodos.filter((e) => e.extendedProps.tipoEvento == "Vencimiento");
+      //   arrayEventos = arrayEventos.concat(arrayVencimiento);
+      // }
 
       if (isCheckedTodos) {
         obtenerEventos();
@@ -197,7 +197,7 @@ export default function Calendario() {
     isCheckedCobranza,
     isCheckedCupo,
     isCheckedFuturo,
-    isCheckedVencimiento,
+    // isCheckedVencimiento,
     isCheckedTodos,
   ]);
 
@@ -219,21 +219,21 @@ export default function Calendario() {
             isOpen={isOpenFuturo}
             item={contenido}
             toggleModal={toggleModalFuturo} />
-            <VencimientoModal
+            {/* <VencimientoModal
             isOpen={isOpenVencimiento}
             item={contenido}
-            toggleModal={toggleModalVencimiento} />
+            toggleModal={toggleModalVencimiento} /> */}
 
           <SelectorEventos
             isCheckedCobranza={isCheckedCobranza}
             isCheckedCupo={isCheckedCupo}
             isCheckedFuturo={isCheckedFuturo}
-            isCheckedVencimiento={isCheckedVencimiento}
+            // isCheckedVencimiento={isCheckedVencimiento}
             isCheckedTodos={isCheckedTodos}
             handleCheckCobranzas={handleCheckCobranzas}
             handleCheckCupos={handleCheckCupos}
             handleCheckFuturos={handleCheckFuturos}
-            handleCheckVencimientos={handleCheckVencimientos}
+            // handleCheckVencimientos={handleCheckVencimientos}
             handleCheckTodos={handleCheckTodos} />
           <FullCalendar
             plugins={[dayGridPlugin, timeGridPlugin]}

@@ -7,6 +7,13 @@
     animation: spin 1s linear infinite;
   }
 
+  .mr-5{
+    margin-right: 5px;
+}
+.matba{
+    background-color: #62306B;
+}
+
   @keyframes spin {
     0% {
       transform: rotate(0deg);

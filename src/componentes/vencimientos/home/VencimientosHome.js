@@ -22,7 +22,7 @@ function VencimientosHome({ visibilidadVencimientos, visibilidadTodos }) {
 
             <div className="card bg-vencimientos-light hoverable">
                 <div className="card-content white-text">
-                    <span className="card-title bg-vencimientos">Operatoria Diaria Fut y Opc</span>
+                    <span className="card-title bg-vencimientos">Vencimientos</span>
                     {
                         eventos != null && eventos['vencimientos'] != null && eventos['vencimientos'].length > 0 ?
                             eventos['vencimientos'].slice(0, cantidadItems).map(function (vencimiento) {
@@ -33,7 +33,7 @@ function VencimientosHome({ visibilidadVencimientos, visibilidadTodos }) {
                     }
                     {
                         mostrarBoton && eventos != null && eventos['vencimientos'] != null && eventos['vencimientos'].length > 0 && eventos['vencimientos'].length > 10
-                            ? <button className="button-ver-mas-vencimiento" onClick={handleClick}>Ver más</button>
+                            ? <button class="button-ver-mas-vencimiento" onClick={handleClick}>Ver más</button>
                             : null
                     }
 

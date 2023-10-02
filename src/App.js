@@ -27,8 +27,8 @@ function App() {
           <Route path="/:hash/:user/:fechaHasta" element={<EventosHome nombreUsuario="Roberto Villa" nroCuenta="3990" nombreCuenta="Aceitera Gral. Deheza S.A."/>}/>
           <Route path="/calendario" element={<Calendario/>}/>
           <Route path="/CalendarioAnual" element={<CalendarioAnual/>}/>
-          <Route path="/listaDeEventos" element={<ListaEventos/>}/>
-          <Route path="/crearEvento" element={<CrearEvento/>}/>
+          {/* <Route path="/listaDeEventos" element={<ListaEventos/>}/> */}
+          {/* <Route path="/crearEvento" element={<CrearEvento/>}/> */}
           <Route path="*" element={ 
             <div>
               <h2>Pagina no encontrada</h2>
