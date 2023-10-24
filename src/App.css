@@ -77,6 +77,7 @@
   color: #08426A;
   padding: 0 2em;
 }
+.cuenta-container h3 {font-size: 1.42em;}
 .date-container h3 {font-size: 1.62em;}
 .date-container > .row {margin-bottom: .5em;}
 .botonera {
@@ -206,6 +207,7 @@
   /*border-bottom: solid thin #ADADAD;*//*se puede utilizar para reemplazar el <div className="divider"/> */
   padding: 4px 0;
 }
+
 .itemContainer > div:first-child {font-family: 'goldplaysemibold';}
 
 .ReactModal__Content .divider {margin: 0;}
@@ -428,3 +430,7 @@ table.table_year .fc-col-header-cell a {font-size: 1em;}
 .bodyPadding{
   padding: 3% 15% 0% 15%;
 } 
+
+.margin1{
+  margin:1.4%!important
+}

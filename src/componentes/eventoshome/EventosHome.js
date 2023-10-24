@@ -131,26 +131,26 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
                         {
                         
                             eventos && eventos['usuario'] ? eventos['usuario'].cuentas.map((e,index) =>
-                            <div className="itemContainer">
+                            <div className="itemContainer cuenta-container">
                                 
                             <div>
-                               <h5> Cuenta {e.numeroCuenta}, {e.denominacionCuenta}</h5>
+                               <h3 className='margin1'> Cuenta {e.numeroCuenta}, {e.denominacionCuenta}</h3>
                             </div>
                             
-                            <div>
-                                <label className='fontSize26'>
+                            <div className='margin1'>
+                                <label className='fontSize26 margin1'>
                                     <input
-                                    type="checkbox"
-                                    className="filled-in color-cobranzas"
-                                    checked={ index === 0 ? true : e.checked }
-                                    onChange={cuentaCheckedChange}
-                                    id={e.numeroCuenta}
-                                    disabled={cargandoInfo}
+                                        type="checkbox"
+                                        className="filled-in color-cobranzas"
+                                        checked={ index === 0 && !seCargoEventos ? true : e.checked }
+                                        onChange={cuentaCheckedChange}
+                                        id={e.numeroCuenta}
+                                        disabled={cargandoInfo}
 
                                     /><span></span></label>
                             </div>
                         </div>) :
-                                <h5></h5>}
+                                <h3></h3>}
                     </div>
                     <div className='date-container'>
                         <div className='row'>
