@@ -25,7 +25,7 @@ function CobranzasModal({item, toggleModal, isOpen}){
                 <div className="divider" />
                 <div className="itemContainer">
                     <div>Vendedor</div>
-                    <div>{item.cuenta   }</div>
+                    <div>{item.cuenta}</div>
                 </div>
                 <div className="divider"/>
                 <div className="itemContainer"> 
