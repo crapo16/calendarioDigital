@@ -93,8 +93,36 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
         await fetch(`${configData.SERVER_URL}Evento?hash=${datosUsuario[1]}&user=${datosUsuario[0]}&fechaHasta=${datosUsuario[2]}&cuentasSeleccionadasString=${cuentasSeleccionadasAux.toString()}&getTodasLasCuentas=false`, options)
         .then((response) => {
             response.json().then((json) =>
-                setEventos(json),
-            )
+            {
+            try{
+                json["cobranzas"] = json["cobranzas"].sort((a,b) => {
+                    var contratoA = a.cto || a.contrato
+                    var contratoB = b.cto || b.contrato
+      
+                    if(contratoA < contratoB){
+                      return -1
+                    }
+                    else{
+                      return 1
+                    }
+                  })
+                json["cupos"] = json["cupos"].sort((a,b) => {
+                    var contratoA = a.cto || a.contrato
+                    var contratoB = b.cto || b.contrato
+    
+                    if(contratoA < contratoB){
+                    return -1
+                    }
+                    else{
+                    return 1
+                    }
+                })
+            }
+            catch(exceptionSort){
+
+            }
+            setEventos(json)
+            })
         }).catch(exception => {
             setCargandoInfo(false);
 
@@ -124,7 +152,6 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
                 <div>
                     <div className='user-container section'>
                         {
-
                             eventos && eventos['usuario'] && eventos['usuario'].razonSocial ? <h4> Buen día {eventos['usuario'].razonSocial}</h4> : <h4></h4>
                         }
 
