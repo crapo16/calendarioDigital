@@ -354,6 +354,18 @@ function CalendarioAnual() {
                           weekNumbers={false}
                           locale="es"
                           firstDay={1}
+                          eventOrder={(a,b) => {
+                            var contratoA = a.cto || a.contrato
+                            var contratoB = b.cto || b.contrato
+              
+                            if(contratoA < contratoB){
+                              return -1
+                            }
+                            else{
+                              return 1
+                            }
+                          } 
+                          }
                           headerToolbar={headerToolbar}
                           views={{
                             dayGridMonth: {
@@ -393,6 +405,18 @@ function CalendarioAnual() {
                           locale="es"
                           weekNumbers={false}
                           firstDay={1}
+                          eventOrder={(a,b) => {
+                            var contratoA = a.cto || a.contrato
+                            var contratoB = b.cto || b.contrato
+              
+                            if(contratoA < contratoB){
+                              return -1
+                            }
+                            else{
+                              return 1
+                            }
+                          } 
+                          }
                           headerToolbar={headerToolbar}
                           views={{
                             dayGridMonth: {
@@ -430,6 +454,18 @@ function CalendarioAnual() {
                           plugins={[dayGridPlugin, timeGridPlugin]}
                           height="auto"
                           locale="es"
+                          eventOrder={(a,b) => {
+                            var contratoA = a.cto || a.contrato
+                            var contratoB = b.cto || b.contrato
+              
+                            if(contratoA < contratoB){
+                              return -1
+                            }
+                            else{
+                              return 1
+                            }
+                          } 
+                          }
                           datesSet={(arg) => {
                             console.log(arg.start) //starting visible date
                             console.log(arg.end) //ending visible date
@@ -477,6 +513,18 @@ function CalendarioAnual() {
                           weekNumbers={false}
                           firstDay={1}
                           headerToolbar={headerToolbar}
+                          eventOrder={(a,b) => {
+                            var contratoA = a.cto || a.contrato
+                            var contratoB = b.cto || b.contrato
+              
+                            if(contratoA < contratoB){
+                              return -1
+                            }
+                            else{
+                              return 1
+                            }
+                          } 
+                          }
                           views={{
                             dayGridMonth: {
                               titleFormat: {

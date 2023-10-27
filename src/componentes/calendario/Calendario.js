@@ -238,6 +238,18 @@ export default function Calendario() {
           <FullCalendar
             plugins={[dayGridPlugin, timeGridPlugin]}
             initialView={initialView}
+            eventOrder={(a,b) => {
+              var contratoA = a.cto || a.contrato
+              var contratoB = b.cto || b.contrato
+
+              if(contratoA < contratoB){
+                return -1
+              }
+              else{
+                return 1
+              }
+            } 
+            }
             dayMaxEventRows={true} // for all non-TimeGrid views
             views={{
               timeGrid: {
