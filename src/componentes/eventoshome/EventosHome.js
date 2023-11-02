@@ -158,12 +158,8 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
                         {
                         
                             eventos && eventos['usuario'] ? eventos['usuario'].cuentas.map((e,index) =>
-                            <div className="itemContainer cuenta-container">
-                                
-                            <div>
-                               <h3 className='margin1'> Cuenta {e.numeroCuenta}, {e.denominacionCuenta}</h3>
-                            </div>
-                            
+                            <div className="itemHome cuenta-container">
+
                             <div className='margin1'>
                                 <label className='fontSize26 margin1'>
                                     <input
@@ -176,6 +172,12 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
 
                                     /><span></span></label>
                             </div>
+                                
+                            <div>
+                               <h3 className='margin1'>{e.numeroCuenta} - {e.denominacionCuenta}</h3>
+                            </div>
+                            
+                           
                         </div>) :
                                 <h3></h3>}
                     </div>

@@ -77,7 +77,7 @@
   color: #08426A;
   padding: 0 2em;
 }
-.cuenta-container h3 {font-size: 1.42em;}
+.cuenta-container h3 {font-size: 14px;}
 .date-container h3 {font-size: 1.62em;}
 .date-container > .row {margin-bottom: .5em;}
 .botonera {
@@ -203,9 +203,15 @@
 }
 .itemContainer {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  /*border-bottom: solid thin #ADADAD;*//*se puede utilizar para reemplazar el <div className="divider"/> */
+  grid-template-columns: 1fr 1fr;  /*border-bottom: solid thin #ADADAD;*//*se puede utilizar para reemplazar el <div className="divider"/> */
   padding: 4px 0;
+}
+
+.itemHome{
+  display: grid;
+  grid-template-columns: 0.1fr 0.2fr;  /*border-bottom: solid thin #ADADAD;*//*se puede utilizar para reemplazar el <div className="divider"/> */
+  padding: 4px 0;
+
 }
 
 .itemContainer > div:first-child {font-family: 'goldplaysemibold';}
