@@ -1,4 +1,5 @@
 import './EventosHome.css';
+import cloneDeep from 'lodash/cloneDeep';
 
 /*import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'*/
@@ -17,6 +18,8 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
 
     const { user, hash, fechaHasta } = useParams();
     const { eventos, setEventos } = useContext(EventosContext);
+    //const { eventosFull, setEventosFull } = useContext(EventosContext);
+    const [eventosFull, setEventosFull] = useState({});
     const [visibilidadCobranzas, setVisibilidadCobranzas] = useState(false);
     const [visibilidadEventosZeni, setVisibilidadEventosZeni] = useState(false);
     const [visibilidadCupos, setVisibilidadCupos] = useState(false);
@@ -61,7 +64,9 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
         setVisibilidadTodos(false);
 
     }
-
+    function updateEventos(eventos) {
+        setEventos(eventos);
+    }
     // function cambiarVencimientos(visibilidad) {
     //     setVisibilidadVencimientos(visibilidad);
     //     setVisibilidadTodos(false);
@@ -69,9 +74,35 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
     // }
 
     const cuentaCheckedChange = (event) => {
-        let cuenta = eventos['usuario'].cuentas.filter(cuenta =>  cuenta.numeroCuenta === event.target.id)[0]
+        let cuenta = eventosFull['usuario'].cuentas.filter(cuenta =>  cuenta.numeroCuenta === event.target.id)[0]
         cuenta.checked = event.target.checked
-        obtenerEventos()
+        let seleccionadas = eventosFull['usuario'].cuentas.filter(cuenta => cuenta.checked);
+        let eventosUpdate =  cloneDeep(eventosFull);
+        eventosUpdate.cobranzas = []    
+        eventosUpdate.futuros = []    
+        eventosUpdate.cupos = []    
+        eventosFull.cobranzas.forEach(cobranza => {
+            let encuentra = seleccionadas.find(cuenta => cuenta.id === cobranza.cuentaId)
+            if(encuentra){
+                eventosUpdate.cobranzas.push(cobranza)
+            }
+        })
+        eventosFull.futuros.forEach(futuro => {
+            let encuentra = seleccionadas.find(cuenta => cuenta.id === futuro.cuentaId)
+            if(encuentra){
+                eventosUpdate.futuros.push(futuro)
+            }
+        })
+        eventosFull.cupos.forEach(cupo => {
+            let encuentra = seleccionadas.find(cuenta => cuenta.id === cupo.cuentaId)
+            if(encuentra){
+                eventosUpdate.cupos.push(cupo)
+            }
+        })
+        updateEventos(eventosUpdate)
+
+        // let eventosAmostrar = eventos.filter(evento => eventos['usuario'].cuentas.includes(evento["cobranzas"].cuenta))
+        //obtenerEventos()
     }
     async function obtenerEventos() {
         let datosUsuario = [user, hash, fechaHasta];
@@ -81,16 +112,17 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
             method: "GET"
         };
 
-        let cuentasSeleccionadasAux = eventos && eventos['usuario'] ? eventos['usuario'].cuentas.filter(function(cuenta) {
-            return cuenta.checked;
-          })
-          .map(function(cuenta) {
-            return cuenta.numeroCuenta;
-          }): []
-        setCuentasSeleccionadas(cuentasSeleccionadasAux)
+       
+        // let cuentasSeleccionadasAux = eventos && eventos['usuario'] ? eventos['usuario'].cuentas.filter(function(cuenta) {
+        //     return cuenta.checked;
+        //   })
+        //   .map(function(cuenta) {
+        //     return cuenta.numeroCuenta;
+        //   }): []
+        // setCuentasSeleccionadas(cuentasSeleccionadasAux)
         setCargandoInfo(true);
 
-        await fetch(`${configData.SERVER_URL}Evento?hash=${datosUsuario[1]}&user=${datosUsuario[0]}&fechaHasta=${datosUsuario[2]}&cuentasSeleccionadasString=${cuentasSeleccionadasAux.toString()}&getTodasLasCuentas=false`, options)
+        await fetch(`${configData.SERVER_URL}Evento?hash=${datosUsuario[1]}&user=${datosUsuario[0]}&fechaHasta=${datosUsuario[2]}&cuentasSeleccionadasString=${"".toString()}&getTodasLasCuentas=false`, options)
         .then((response) => {
             response.json().then((json) =>
             {
@@ -122,7 +154,11 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
 
             }
             setEventos(json)
-            })
+           
+            let fullEventos = cloneDeep(json);
+            setEventosFull(fullEventos)
+            
+        })
         }).catch(exception => {
             setCargandoInfo(false);
 
@@ -131,7 +167,11 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
         setCargandoInfo(false);
 
         if (eventos) {
-            
+            if(eventos['usuario']){
+                eventos['usuario'].cuentas.forEach(cuenta => {
+                    cuenta.checked = true
+                });
+        } 
             setSeCargoEventos(true);
         }
        
@@ -158,25 +198,27 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
                         {
                         
                             eventos && eventos['usuario'] ? eventos['usuario'].cuentas.map((e,index) =>
-                            <div className="itemContainer cuenta-container">
+                            <div key={index + " " + e.numeroCuenta}>
+                                <div className="itemContainer cuenta-container" >
+                                    
+                                <div>
+                                    <h3 className='margin1'> Cuenta {e.numeroCuenta}, {e.denominacionCuenta}</h3>
+                                </div>
                                 
-                            <div>
-                               <h3 className='margin1'> Cuenta {e.numeroCuenta}, {e.denominacionCuenta}</h3>
-                            </div>
-                            
-                            <div className='margin1'>
-                                <label className='fontSize26 margin1'>
-                                    <input
-                                        type="checkbox"
-                                        className="filled-in color-cobranzas"
-                                        checked={ index === 0 && !seCargoEventos ? true : e.checked }
-                                        onChange={cuentaCheckedChange}
-                                        id={e.numeroCuenta}
-                                        disabled={cargandoInfo}
+                                <div className='margin1'>
+                                    <label className='fontSize26 margin1'>
+                                        <input
+                                            type="checkbox"
+                                            className="filled-in color-cobranzas"
+                                            checked = {e.checked}
+                                            onChange={cuentaCheckedChange}
+                                            id={e.numeroCuenta}
+                                            disabled={cargandoInfo}
 
-                                    /><span></span></label>
-                            </div>
-                        </div>) :
+                                        /><span></span></label>
+                                    </div>
+                                </div>
+                            </div>) :
                                 <h3></h3>}
                     </div>
                     <div className='date-container'>

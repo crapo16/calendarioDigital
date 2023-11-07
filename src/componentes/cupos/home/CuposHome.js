@@ -26,9 +26,9 @@ function CuposHome({ visibilidadCupos, visibilidadTodos }) {
 
                     {
                         eventos != null && eventos['cupos'] != null && eventos['cupos'].length > 0 ?
-                            eventos['cupos'].slice(0, cantidadItems).map(function (cupo) {
+                            eventos['cupos'].slice(0, cantidadItems).map(function (cupo,index) {
                                 return (
-                                    <CupoItem key={cupo.id} item={cupo} />
+                                    <CupoItem key={cupo.id + " " + index} item={cupo} />
                                 )
                             }) : <p>Sin eventos</p>
                     }

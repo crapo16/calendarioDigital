@@ -25,9 +25,9 @@ function FuturosHome({ futuros, visibilidadFuturos, visibilidadTodos }) {
 
                     {
                         eventos != null && eventos['futuros'] != null && eventos['futuros'].length > 0 ?
-                            eventos['futuros'].slice(0, cantidadItems).map(function (futuro) {
+                            eventos['futuros'].slice(0, cantidadItems).map(function (futuro,index) {
                                 return (
-                                    <FuturosItem key={futuro.id} item={futuro} />
+                                    <FuturosItem key={futuro.id + " " + index} item={futuro} />
                                 )
                             }) : <p>Sin eventos</p>
                     }
