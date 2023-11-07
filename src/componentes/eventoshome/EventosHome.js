@@ -199,12 +199,8 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
                         
                             eventos && eventos['usuario'] ? eventos['usuario'].cuentas.map((e,index) =>
                             <div key={index + " " + e.numeroCuenta}>
-                                <div className="itemContainer cuenta-container" >
+                                <div className="itemHome cuenta-container" >
                                     
-                                <div>
-                                    <h3 className='margin1'> Cuenta {e.numeroCuenta}, {e.denominacionCuenta}</h3>
-                                </div>
-                                
                                 <div className='margin1'>
                                     <label className='fontSize26 margin1'>
                                         <input
@@ -215,13 +211,15 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
                                             id={e.numeroCuenta}
                                             disabled={cargandoInfo}
 
-                                        /><span></span></label>
-                                    </div>
+                                        /><span></span>
+                                    </label>
                                 </div>
-                                
-                            <div>
-                               <h3 className='margin1'>{e.numeroCuenta} - {e.denominacionCuenta}</h3>
+                                <div>
+                                    <h3 className='margin1'>{e.numeroCuenta} - {e.denominacionCuenta}</h3>
+                                </div>
                             </div>
+                                
+                           
                             
                            
                             </div>) :
