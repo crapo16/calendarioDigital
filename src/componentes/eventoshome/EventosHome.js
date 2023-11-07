@@ -218,6 +218,12 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
                                         /><span></span></label>
                                     </div>
                                 </div>
+                                
+                            <div>
+                               <h3 className='margin1'>{e.numeroCuenta} - {e.denominacionCuenta}</h3>
+                            </div>
+                            
+                           
                             </div>) :
                                 <h3></h3>}
                     </div>
