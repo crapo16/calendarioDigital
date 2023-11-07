@@ -18,6 +18,7 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
 
     const { user, hash, fechaHasta } = useParams();
     const { eventos, setEventos } = useContext(EventosContext);
+    
     //const { eventosFull, setEventosFull } = useContext(EventosContext);
     const [eventosFull, setEventosFull] = useState({});
     const [visibilidadCobranzas, setVisibilidadCobranzas] = useState(false);
@@ -73,9 +74,7 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
 
     // }
 
-    const cuentaCheckedChange = (event) => {
-        let cuenta = eventosFull['usuario'].cuentas.filter(cuenta =>  cuenta.numeroCuenta === event.target.id)[0]
-        cuenta.checked = event.target.checked
+    function filtrarEventos(eventosFull){
         let seleccionadas = eventosFull['usuario'].cuentas.filter(cuenta => cuenta.checked);
         let eventosUpdate =  cloneDeep(eventosFull);
         eventosUpdate.cobranzas = []    
@@ -101,9 +100,13 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
         })
         updateEventos(eventosUpdate)
 
-        // let eventosAmostrar = eventos.filter(evento => eventos['usuario'].cuentas.includes(evento["cobranzas"].cuenta))
-        //obtenerEventos()
     }
+    const cuentaCheckedChange = (event) => {
+        let cuenta = eventosFull['usuario'].cuentas.filter(cuenta =>  cuenta.numeroCuenta === event.target.id)[0]
+        cuenta.checked = event.target.checked
+        filtrarEventos(eventosFull)
+    }
+    
     async function obtenerEventos() {
         let datosUsuario = [user, hash, fechaHasta];
         localStorage.setItem('userData', JSON.stringify(datosUsuario));
@@ -124,7 +127,7 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
 
         await fetch(`${configData.SERVER_URL}Evento?hash=${datosUsuario[1]}&user=${datosUsuario[0]}&fechaHasta=${datosUsuario[2]}&cuentasSeleccionadasString=${"".toString()}&getTodasLasCuentas=false`, options)
         .then((response) => {
-            response.json().then((json) =>
+            response.json().then(async(json) =>
             {
             try{
                 json["cobranzas"] = json["cobranzas"].sort((a,b) => {
@@ -143,21 +146,37 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
                     var contratoB = b.cto || b.contrato
     
                     if(contratoA < contratoB){
-                    return -1
+                        return -1
                     }
                     else{
-                    return 1
+                        return 1
                     }
                 })
             }
             catch(exceptionSort){
 
             }
-            setEventos(json)
-           
-            let fullEventos = cloneDeep(json);
-            setEventosFull(fullEventos)
             
+            
+
+            if(json && json['usuario']){
+                json['usuario'].cuentas.forEach((cuenta,index) => {
+                    if(index === 0){
+                        cuenta.checked  = true;
+                        
+                    }
+                    else{
+                        cuenta.checked = false
+                    }    
+                });
+              
+            } 
+            setEventos(json)
+            let fullEventos = cloneDeep(json);
+
+            setEventosFull(fullEventos)
+
+            filtrarEventos(fullEventos)
         })
         }).catch(exception => {
             setCargandoInfo(false);
@@ -167,11 +186,7 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
         setCargandoInfo(false);
 
         if (eventos) {
-            if(eventos['usuario']){
-                eventos['usuario'].cuentas.forEach(cuenta => {
-                    cuenta.checked = true
-                });
-        } 
+            
             setSeCargoEventos(true);
         }
        
