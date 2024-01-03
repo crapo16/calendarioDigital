@@ -24,7 +24,7 @@ function App() {
   return (
       <EventosContextProvider>
         <Routes>
-          <Route path="/:hash/:user/:fechaHasta" element={<EventosHome nombreUsuario="Roberto Villa" nroCuenta="3990" nombreCuenta="Aceitera Gral. Deheza S.A."/>}/>
+          <Route path="/:hash/:user/:fechaHasta" element={<EventosHome nombreUsuario="" nroCuenta="" nombreCuenta=""/>}/>
           <Route path="/calendario" element={<Calendario/>}/>
           <Route path="/CalendarioAnual" element={<CalendarioAnual/>}/>
           {/* <Route path="/listaDeEventos" element={<ListaEventos/>}/> */}
