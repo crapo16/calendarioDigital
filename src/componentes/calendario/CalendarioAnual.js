@@ -162,7 +162,7 @@ function CalendarioAnual() {
     useEffect(() => {
         //cargo los eventos que se muestran en el calendario\
         const options = {
-            headers: new Headers({ 'Access-Control-Allow-Origin': '*', Accept: 'application/json' }),
+            headers: new Headers({ Accept: 'application/json' }),
             method: "GET"
         };
         const datosUsuario = JSON.parse(localStorage.getItem('userData'));

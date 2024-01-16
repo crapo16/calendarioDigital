@@ -10,9 +10,10 @@ import CuposModal from "../cupos/modal/CuposModal";
 import FuturoModal from "../futuros/modal/FuturoModal";
 // import VencimientoModal from "../vencimientos/modal/VencimientosModal";
 import SelectorEventos from "./SelectorEventos";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import configData from '../../config.json';
 import './Calendario.css';
+
 
 export default function Calendario() {
 
@@ -136,7 +137,7 @@ export default function Calendario() {
     useEffect(() => {
 
         const options = {
-            headers: new Headers({ 'Access-Control-Allow-Origin': '*', Accept: 'application/json' }),
+            headers: new Headers({ Accept: 'application/json' }),
             method: "GET"
         };
         const datosUsuario = JSON.parse(localStorage.getItem('userData'));
@@ -216,6 +217,13 @@ export default function Calendario() {
     return (
 
         <div>
+
+            <div>
+                <div className="btn waves-effect indigo lighten-5 color-primary" onClick={() => navigate(-1)}>
+                    <i className="material-icons left">arrow_back</i>
+                    VOLVER ATRÁS
+                </div>
+            </div>
 
             {seCargoEventos ?
                 <>

@@ -65,7 +65,7 @@ const CrearEvento = (props) => {
 
   async function guardarEvento() {
     const options = {
-        headers: new Headers({ 'Access-Control-Allow-Origin': '*', Accept: 'application/json' }),
+        headers: new Headers({ Accept: 'application/json' }),
         method: "POST",
         
     };

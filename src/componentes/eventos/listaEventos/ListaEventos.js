@@ -27,7 +27,7 @@ function ListaEventos() {
   async function obtenerEventos() {
     
     const options = {
-        headers: new Headers({ 'Access-Control-Allow-Origin': '*', Accept: 'application/json' }),
+        headers: new Headers({ Accept: 'application/json' }),
         method: "GET"
     };
 

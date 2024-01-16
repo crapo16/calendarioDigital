@@ -18,7 +18,7 @@ function CupoItem({item}){
         <div>
             <CuposModal isOpen={isOpen} item={item} toggleModal={toggleModal}/>
 
-            <><a href="#" onClick={toggleModal} className="truncate hoverable white-text">{item.contrato} - Vendedor: {item.vendedor} - Comprador: {item.comprador} - {item.producto} - {item.otorgados}</a>
+            <><a href="#" onClick={toggleModal} className="truncate hoverable white-text">{item.contrato} - Comprador: {item.comprador} - Cantidad: {item.otorgados} - {item.fecha}</a>
             <div className="divider"></div></>
         </div>
         
