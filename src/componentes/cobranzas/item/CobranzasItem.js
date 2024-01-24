@@ -17,11 +17,12 @@ function CobranzasItem({ item }) {
     return (
         <div>
             <CobranzasModal isOpen={isOpen} toggleModal={toggleModal} item={item} />
-            <a href="#" onClick={toggleModal} data-target={"modal" + item.id} className="truncate hoverable white-text modal-trigger">
-                {item.cto} - Comprador: {item.contraparte} - {"$ " + parseFloat(item.impComprobante).toLocaleString('es-AR')}
+            <a href="#" onClick={toggleModal} className="truncate hoverable white-text modal-trigger">
+                {item.cto} - Comprador: {item.contraparte} - {"$ " + (item.impComprobante ? parseFloat(item.impComprobante.replace(',', '.')).toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : 0)}
             </a>
             <div className="divider"></div>
         </div>
+
     );
 
 }

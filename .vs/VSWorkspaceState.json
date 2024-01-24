@@ -3,10 +3,10 @@
     "",
     "\\src",
     "\\src\\componentes",
-    "\\src\\componentes\\cobranzas",
-    "\\src\\componentes\\cobranzas\\home",
-    "\\src\\componentes\\cobranzas\\item"
+    "\\src\\componentes\\calendario",
+    "\\src\\componentes\\eventos",
+    "\\src\\componentes\\eventoshome"
   ],
-  "SelectedNode": "\\src\\componentes\\cobranzas\\item\\CobranzasItem.js",
+  "SelectedNode": "\\src\\componentes\\eventoshome\\EventosHome.css",
   "PreviewInSolutionExplorer": false
 }

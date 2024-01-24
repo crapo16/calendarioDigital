@@ -35,23 +35,24 @@ function CobranzasModal({ item, toggleModal, isOpen }) {
             <div className="divider" />
             <div className="itemContainer">
                 <div>Imp. Comprobante</div>
-                <div>{parseFloat(item.impComprobante).toLocaleString('es-AR')}</div>
+                <div>{(item.impComprobante ? parseFloat(item.impComprobante.replace(',', '.')) : 0).toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
             </div>
             <div className="divider" />
             <div className="itemContainer">
                 <div>IVA</div>
-                <div>{parseFloat(item.iva).toLocaleString('es-AR')}</div>
+                <div>{item.iva ? parseFloat(item.iva.replace(',', '.')).toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : 0}</div>
             </div>
             <div className="divider" />
             <div className="itemContainer">
                 <div>Saldo a Conf.</div>
-                <div>{item.saldoConf}</div>
+                <div>{item.saldoConf ? parseFloat(item.saldoConf.replace(',', '.')).toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : 0}</div>
             </div>
             <div className="divider" />
             <div className="itemContainer">
                 <div>Pendiente</div>
-                <div>{item.pendiente}</div>
+                <div>{item.pendiente ? parseFloat(item.pendiente.replace(',', '.')).toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : 0}</div>
             </div>
+
             <div className="divider" />
             <div className="itemContainer">
                 <div>Moneda</div>

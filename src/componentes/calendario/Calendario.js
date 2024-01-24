@@ -37,6 +37,8 @@ export default function Calendario() {
     const navigate = useNavigate();
     const location = useLocation();
 
+    const { selectedIDs } = location.state || {};
+
     const { vista = "" } = location?.state || ""
 
     let initialView = "dayGridMonth"
@@ -141,6 +143,7 @@ export default function Calendario() {
             method: "GET"
         };
         const datosUsuario = JSON.parse(localStorage.getItem('userData'));
+
         const obtenerEventos = async () => {
             await fetch(`${configData.SERVER_URL}Evento?hash=${datosUsuario[1]}&user=${datosUsuario[0]}&fechaHasta=${datosUsuario[2]}`, options)
                 .then(res => res.json())
@@ -150,8 +153,32 @@ export default function Calendario() {
                         const setEventos = new Set(result['eventosFullCalendar'].map(JSON.stringify));
                         const eventosSinDuplicados = Array.from(setEventos).map(JSON.parse);
 
-                        setEventosCalendario(eventosSinDuplicados);
-                        setEventosTodos(eventosSinDuplicados);
+                        // Filtrar los eventos basados en selectedIDs
+                        const eventosFiltrados = eventosSinDuplicados.filter(evento => selectedIDs.includes(evento.extendedProps.cuentaId));
+
+                        // Actualizar los títulos según el className
+                        const eventosFiltradosActualizados = eventosFiltrados.map(item => {
+                            if (item.className === "eventoCobranza") {
+                                const nuevoTitle = `${item.extendedProps.cto} - Comprador: ${item.extendedProps.contraparte} - $${(item.extendedProps.impComprobante ? parseFloat(item.extendedProps.impComprobante.replace(',', '.')).toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '0.00')}`;
+                                return {
+                                    ...item,
+                                    title: nuevoTitle
+                                };
+                            } else if (item.className === "eventoCupo") {
+                                const nuevoTitle = `${item.extendedProps.contrato} - Comprador: ${item.extendedProps.comprador} - Cantidad: ${item.extendedProps.otorgados} - ${item.extendedProps.fecha}`;
+                                return {
+                                    ...item,
+                                    title: nuevoTitle
+                                };
+                            }
+
+                            return item;
+                        });
+
+                        console.log(selectedIDs);
+
+                        setEventosCalendario(eventosFiltradosActualizados);
+                        setEventosTodos(eventosFiltradosActualizados);
                         setSeCargoEventos(true);
                     },
                     // Note: it's important to handle errors here
@@ -161,8 +188,10 @@ export default function Calendario() {
                         setSeCargoEventos(true);
                         setError(error);
                     }
-                )
-        }
+                );
+        };
+
+
 
 
         if (!seCargoEventos) {

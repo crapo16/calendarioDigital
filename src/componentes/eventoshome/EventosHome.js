@@ -33,6 +33,9 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
     const [seCargoEventos, setSeCargoEventos] = useState(false);
     const [cargandoInfo, setCargandoInfo] = useState(false);
 
+    const [selectedIDs, setSelectedIDs] = useState([]);
+
+
     function cambiarTodos(visibilidad) {
 
         if (visibilidad) {
@@ -101,11 +104,32 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
         updateEventos(eventosUpdate)
 
     }
+
     const cuentaCheckedChange = (event) => {
-        let cuenta = eventosFull['usuario'].cuentas.filter(cuenta => cuenta.numeroCuenta === event.target.id)[0]
-        cuenta.checked = event.target.checked
-        filtrarEventos(eventosFull)
-    }
+        let cuenta = eventosFull['usuario'].cuentas.find(cuenta => cuenta.numeroCuenta === event.target.id);
+        cuenta.checked = event.target.checked;
+        filtrarEventos(eventosFull);
+
+        // Actualizar el array de selectedIDs
+        if (event.target.checked) {
+            setSelectedIDs(prevSelectedIDs => [...prevSelectedIDs, cuenta.id]);
+        } else {
+            setSelectedIDs(prevSelectedIDs => prevSelectedIDs.filter(id => id !== cuenta.id));
+        }
+    };
+
+    useEffect(() => {
+        // Verificar que eventosFull['usuario'] y eventosFull['usuario'].cuentas estén definidos
+        if (eventosFull && eventosFull['usuario'] && eventosFull['usuario'].cuentas) {
+            // Obtener el ID del checkbox inicialmente marcado
+            const initialCheckedID = eventosFull['usuario'].cuentas.find(cuenta => cuenta.checked)?.id;
+
+            if (initialCheckedID) {
+                setSelectedIDs([initialCheckedID]);
+            }
+        }
+    }, [eventosFull]);
+
 
     //async function obtenerEventos() {
     //    let datosUsuario = [user, hash, fechaHasta];
@@ -240,14 +264,15 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
 
 
 
-
+    useEffect(() => {
+        console.log("Selected IDs:", selectedIDs);
+    }, [selectedIDs]);
 
     useEffect(() => {
-
-
-
         !seCargoEventos && obtenerEventos();
     }, [seCargoEventos]);
+
+
 
 
     return (
@@ -273,6 +298,7 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
                                                     className="filled-in color-cobranzas"
                                                     checked={e.checked}
                                                     onChange={cuentaCheckedChange}
+                                                    selectedID={e.id}
                                                     id={e.numeroCuenta}
                                                     disabled={cargandoInfo}
                                                 />
@@ -309,7 +335,7 @@ function EventosHome({ nombreUsuario, nroCuenta, nombreCuenta }) {
                                         CALENDARIO MATBA
                                     </div>
                                 </Link>
-                                <Link to={'/calendario'}>
+                                <Link to="/calendario" state={{ selectedIDs }}>
                                     <div className="btn waves-effect indigo lighten-5 color-primary">
                                         <i className="material-icons left">today</i>
                                         VER CALENDARIO
