@@ -4,7 +4,7 @@ import CuposModal from '../modal/CuposModal'
 
 Modal.setAppElement("#root");
 
-function CupoItem({item}){
+function CupoItem({ item }) {
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -16,12 +16,12 @@ function CupoItem({item}){
     return (
 
         <div>
-            <CuposModal isOpen={isOpen} item={item} toggleModal={toggleModal}/>
+            <CuposModal isOpen={isOpen} item={item} toggleModal={toggleModal} />
 
-            <><a href="#" onClick={toggleModal} className="truncate hoverable white-text">{item.contrato} - Comprador: {item.comprador} - Cantidad: {item.otorgados} - {item.fecha}</a>
-            <div className="divider"></div></>
+            <><a href="#" onClick={toggleModal} className="truncate hoverable white-text">{item.contrato} - Comprador: {item.comprador} - Cantidad: {item.nroCupos.length} - {item.fecha}</a>
+                <div className="divider"></div></>
         </div>
-        
+
     );
 
 }

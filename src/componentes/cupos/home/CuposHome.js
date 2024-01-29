@@ -1,5 +1,8 @@
+// CuposHome.js
+
 import './CuposHome.css';
 import CupoItem from "../item/CupoItem";
+import CuposModal from "../modal/CuposModal";  // Añadir la importación de CuposModal
 import { useContext, useState, memo } from "react";
 import { EventosContext } from "../../../context/EventosContext";
 
@@ -7,7 +10,9 @@ function CuposHome({ visibilidadCupos, visibilidadTodos }) {
     const { eventos } = useContext(EventosContext);
 
     const [cantidadItems, setCantidadItems] = useState(10);
-    const [mostrarBoton, setMostrarBoton] = useState(true)
+    const [mostrarBoton, setMostrarBoton] = useState(true);
+    const [isOpen, setIsOpen] = useState(false); // Agregar isOpen
+    const [selectedCupo, setSelectedCupo] = useState(null); // Agregar selectedCupo
 
     const handleClick = () => {
         const cantidadItemsNuevo = cantidadItems + 10;
@@ -16,6 +21,20 @@ function CuposHome({ visibilidadCupos, visibilidadTodos }) {
             setMostrarBoton(false);
         }
     };
+
+    const toggleModal = (cupo) => {
+        setIsOpen(!isOpen);
+        setSelectedCupo(cupo);
+    };
+
+    const cuposUnicos = Object.values(
+        eventos['cupos'].reduce((acc, cupo) => {
+            const key = `${cupo.fecha}_${cupo.contrato}`;
+            if (!acc[key]) acc[key] = { ...cupo, nroCupos: [cupo.nroCupo] };
+            else acc[key].nroCupos.push(cupo.nroCupo);
+            return acc;
+        }, {})
+    );
 
     return (
         <div className={visibilidadCupos || visibilidadTodos ? "contenedorHome" : "hide"} id="cupos">
@@ -26,9 +45,11 @@ function CuposHome({ visibilidadCupos, visibilidadTodos }) {
 
                     {
                         eventos != null && eventos['cupos'] != null && eventos['cupos'].length > 0 ?
-                            eventos['cupos'].slice(0, cantidadItems).map(function (cupo,index) {
+                            cuposUnicos.slice(0, cantidadItems).map(function (cupo, index) {
                                 return (
-                                    <CupoItem key={cupo.id + " " + index} item={cupo} />
+                                    <div key={cupo.id + " " + index}>
+                                        <CupoItem item={cupo} />
+                                    </div>
                                 )
                             }) : <p>Sin eventos</p>
                     }
@@ -40,6 +61,8 @@ function CuposHome({ visibilidadCupos, visibilidadTodos }) {
                 </div>
             </div>
 
+            {/* Renderizar el modal */}
+            {isOpen && <CuposModal isOpen={isOpen} item={selectedCupo} toggleModal={toggleModal} />}
         </div>
     );
 }

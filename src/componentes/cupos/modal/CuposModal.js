@@ -1,17 +1,17 @@
 import Modal from "react-modal";
 
-function CuposModal({isOpen,item,toggleModal}){
+function CuposModal({ isOpen, item, toggleModal }) {
     return (
         <Modal
-                isOpen={isOpen}
-                onRequestClose={toggleModal}
-                contentLabel="Detalle Evento"
-                className={"modalCupo"}
-            >
-                <div className="modalHeader bg-cupos">
-                    <h6>Cupos Otorgados</h6>
-                    <button className="btnCerrarModal" onClick={toggleModal}><i className="material-icons">close</i></button>
-                </div>    
+            isOpen={isOpen}
+            onRequestClose={toggleModal}
+            contentLabel="Detalle Evento"
+            className={"modalCupo"}
+        >
+            <div className="modalHeader bg-cupos">
+                <h6>Cupos Otorgados</h6>
+                <button className="btnCerrarModal" onClick={toggleModal}><i className="material-icons">close</i></button>
+            </div>
             <div className="itemContainer">
                 <div>Fecha</div>
                 <div>{item.fecha}</div>
@@ -49,7 +49,7 @@ function CuposModal({isOpen,item,toggleModal}){
             <div className="divider" />
             <div className="itemContainer">
                 <div>Otorgados</div>
-                <div>{item.otorgados}</div>
+                <div>{item.nroCupos ? item.nroCupos.length : item.otorgados}</div>
             </div>
             <div className="divider" />
             <div className="itemContainer">
@@ -59,10 +59,10 @@ function CuposModal({isOpen,item,toggleModal}){
             <div className="divider" />
             <div className="itemContainer">
                 <div>Nro. Cupo</div>
-                <div>{item.nroCupo}</div>
+                <div>{item.nroCupos ? item.nroCupos.join(', ') : item.nroCupo}</div>
             </div>
 
-          </Modal>
+        </Modal>
     )
 
 }
