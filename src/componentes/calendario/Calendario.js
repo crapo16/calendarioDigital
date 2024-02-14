@@ -176,35 +176,55 @@ export default function Calendario() {
                         });
 
                         // Agrupar los eventos por contrato y fecha
-                        const cuposAgrupados = Object.values(
-                            eventosFiltradosActualizados.reduce((acc, cupo) => {
-                                const key = `${cupo.extendedProps.contrato}_${cupo.extendedProps.fecha}`;
-                                if (!acc[key]) {
-                                    acc[key] = { ...cupo, cantidad: 1, nroCupos: [cupo.extendedProps.nroCupo] };
-                                } else {
-                                    acc[key].cantidad += 1;
-                                    acc[key].nroCupos.push(cupo.extendedProps.nroCupo);
-                                }
-                                return acc;
-                            }, {})
-                        );
+                        const eventosAgrupados = {};
+                        const eventosNoAgrupados = [];
 
-                        // Convertir los cupos agrupados a la estructura original
-                        const cuposAgrupadosOriginal = cuposAgrupados.map(cupoAgrupado => {
-                            return {
-                                ...cupoAgrupado,
-                                title: `${cupoAgrupado.extendedProps.contrato} - Comprador: ${cupoAgrupado.extendedProps.comprador} - Cantidad: ${cupoAgrupado.cantidad} - ${cupoAgrupado.extendedProps.fecha}`,
-                                className: "eventoCupo",
-                                date: cupoAgrupado.extendedProps.date,
-                                extendedProps: {
-                                    ...cupoAgrupado.extendedProps,
-                                    nroCupo: cupoAgrupado.nroCupos[0], // Tomar solo el primer número de cupo
-                                },
-                            };
+                        eventosFiltradosActualizados.forEach(evento => {
+                            const contrato = evento.extendedProps.contrato;
+                            const fecha = evento.extendedProps.fecha;
+                            if (contrato !== undefined && fecha !== undefined) {
+                                const key = `${contrato}_${fecha}`;
+                                if (!eventosAgrupados[key]) {
+                                    eventosAgrupados[key] = { ...evento, cantidad: 1, nroCupos: [evento.extendedProps.nroCupo || ''], impComprobanteTotal: 0 };
+                                } else {
+                                    eventosAgrupados[key].cantidad += 1;
+                                    if (evento.className === 'eventoCobranza') {
+                                        eventosAgrupados[key].impComprobanteTotal += parseFloat(evento.extendedProps.impComprobante.replace(',', '.')) || 0;
+                                    }
+                                    eventosAgrupados[key].nroCupos.push(evento.extendedProps.nroCupo || '');
+                                }
+                            } else {
+                                eventosNoAgrupados.push(evento);
+                            }
                         });
 
-                        setEventosCalendario(cuposAgrupadosOriginal);
-                        setEventosTodos(cuposAgrupadosOriginal);
+                        // Combinar eventos agrupados y no agrupados en una sola lista
+                        const eventosAgrupadosList = Object.values(eventosAgrupados);
+                        const eventosFinal = eventosAgrupadosList.concat(eventosNoAgrupados);
+
+
+
+                        // Convertir los eventos agrupados a la estructura original
+                        const eventosAgrupadosOriginal = eventosFinal.map(eventoAgrupado => {
+                            if (eventoAgrupado.className === 'eventoCupo') {
+                                return {
+                                    ...eventoAgrupado,
+                                    title: `${eventoAgrupado.extendedProps.contrato} - Comprador: ${eventoAgrupado.extendedProps.comprador} - Cantidad: ${eventoAgrupado.cantidad} - ${eventoAgrupado.extendedProps.fecha}`,
+                                    className: 'eventoCupo',
+                                    date: eventoAgrupado.extendedProps.date,
+                                    extendedProps: {
+                                        ...eventoAgrupado.extendedProps,
+                                        nroCupo: eventoAgrupado.nroCupos[0], // Tomar solo el primer número de cupo
+                                    },
+                                };
+                            } else {
+                                return eventoAgrupado; // Si no es un cupo, devolver el evento sin modificar
+                            }
+                        });
+
+
+                        setEventosCalendario(eventosAgrupadosOriginal);
+                        setEventosTodos(eventosAgrupadosOriginal);
                         setSeCargoEventos(true);
                     },
                     // Note: it's important to handle errors here

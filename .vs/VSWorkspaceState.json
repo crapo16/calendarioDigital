@@ -3,11 +3,8 @@
     "",
     "\\src",
     "\\src\\componentes",
-    "\\src\\componentes\\cobranzas\\item",
-    "\\src\\componentes\\cupos\\item",
-    "\\src\\componentes\\futuros",
-    "\\src\\componentes\\futuros\\item"
+    "\\src\\componentes\\cobranzas",
+    "\\src\\componentes\\cobranzas\\item"
   ],
-  "SelectedNode": "\\src\\componentes\\futuros\\item\\FuturosItem.js",
   "PreviewInSolutionExplorer": false
 }
