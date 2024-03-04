@@ -3,8 +3,10 @@
     "",
     "\\src",
     "\\src\\componentes",
-    "\\src\\componentes\\cobranzas",
-    "\\src\\componentes\\cobranzas\\item"
+    "\\src\\componentes\\calendario",
+    "\\src\\componentes\\futuros\\home",
+    "\\src\\componentes\\futuros\\item"
   ],
+  "SelectedNode": "\\src\\componentes\\calendario\\CalendarioAnual.js",
   "PreviewInSolutionExplorer": false
 }

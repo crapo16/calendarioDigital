@@ -4,7 +4,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import * as React from "react";
 import { useEffect, useState } from "react";
 import SelectorEventos from "./SelectorEventos";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CobranzasModal from "../cobranzas/modal/CobranzasModal";
 import CuposModal from "../cupos/modal/CuposModal";
 import FuturoModal from "../futuros/modal/FuturoModal";
@@ -30,6 +30,7 @@ function CalendarioAnual() {
     const [isCheckedFuturo, setIsCheckedFuturo] = useState(false);
     const [isCheckedTodos, setIsCheckedTodos] = useState(true);
     const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+    const navigate = useNavigate(); 
     const [months1, setMonths1] = useState([
         new Date(currentYear + "-01-01T12:00:00"),
         new Date(currentYear + "-02-01T12:00:00"),
@@ -239,6 +240,15 @@ function CalendarioAnual() {
 
     return (
         <div>
+
+            <div>
+                <div className="btn waves-effect indigo lighten-5 color-primary" onClick={() => navigate(-1)}>
+                    <i className="material-icons left">arrow_back</i>
+                    VOLVER ATRÁS
+                </div>
+            </div>
+
+
             {seCargoEventos ?
                 <>
                     <CobranzasModal
